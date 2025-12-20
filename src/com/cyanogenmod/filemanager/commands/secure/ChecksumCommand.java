@@ -18,7 +18,7 @@ package com.cyanogenmod.filemanager.commands.secure;
 
 import android.util.Log;
 
-import com.android.internal.util.HexDump;
+import com.cyanogenmod.filemanager.util.HexDump;
 import com.cyanogenmod.filemanager.commands.AsyncResultListener;
 import com.cyanogenmod.filemanager.commands.ChecksumExecutable;
 import com.cyanogenmod.filemanager.console.ExecutionException;

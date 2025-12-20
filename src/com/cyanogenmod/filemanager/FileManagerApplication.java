@@ -187,7 +187,7 @@ public final class FileManagerApplication extends Application {
         MimeTypeIndexService.indexFileRoot(this, Environment.getRootDirectory().getAbsolutePath());
         StorageVolume[] storageVolumes = StorageHelper.getStorageVolumes(this, true);
         for (StorageVolume storageVolume : storageVolumes) {
-            MimeTypeIndexService.indexFileRoot(this, storageVolume.getPath());
+            MimeTypeIndexService.indexFileRoot(this, StorageHelper.getStorageVolumePath(storageVolume));
         }
 
 

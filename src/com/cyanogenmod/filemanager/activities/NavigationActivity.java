@@ -46,8 +46,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.storage.StorageVolume;
 import android.provider.Settings;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
@@ -71,7 +71,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 import android.widget.ArrayAdapter;
 
-import com.android.internal.util.XmlUtils;
+import com.cyanogenmod.filemanager.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.activities.preferences.SettingsPreferences;
@@ -125,7 +125,7 @@ import com.cyanogenmod.filemanager.util.FileHelper;
 import com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory;
 import com.cyanogenmod.filemanager.util.MountPointHelper;
 import com.cyanogenmod.filemanager.util.StorageHelper;
-import com.cyngn.uicommon.view.Snackbar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -549,12 +549,12 @@ public class NavigationActivity extends Activity
                 final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
                         .findViewById(android.R.id.content)).getChildAt(0);
                 if (viewGroup != null) {
-                    Snackbar snackbar = Snackbar.make(viewGroup, text,
-                            Snackbar.LENGTH_INDEFINITE, 3);
+                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar.make(viewGroup, text,
+                            com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            requestNecessaryPermissions();
+                            snackbar.dismiss();
                         }
                     });
                     snackbar.show();
@@ -567,13 +567,14 @@ public class NavigationActivity extends Activity
                 final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
                         .findViewById(android.R.id.content)).getChildAt(0);
                 if (viewGroup != null) {
-                    Snackbar snackbar = Snackbar.make(viewGroup, builder.toString(),
-                            Snackbar.LENGTH_INDEFINITE, 7);
+                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar.make(viewGroup, builder.toString(),
+                            com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction(R.string.snackbar_settings, new OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            startInstalledAppDetailsActivity(NavigationActivity.this);
-                            finish();
+                            snackbar.dismiss();
+                            startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                                    Uri.fromParts("package", getPackageName(), null))); //$NON-NLS-1$
                         }
                     });
                     snackbar.show();
@@ -1040,7 +1041,6 @@ public class NavigationActivity extends Activity
 
         // Set the navigation drawer "hamburger" icon
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-                R.drawable.ic_material_light_navigation_drawer,
                 R.string.drawer_open, R.string.drawer_close) {
 
             /** Called when a drawer has settled in a completely closed state. */
@@ -1563,7 +1563,7 @@ public class NavigationActivity extends Activity
             for (StorageVolume volume: volumes) {
                 if (volume != null) {
                     String mountedState = volume.getState();
-                    String path = volume.getPath();
+                    String path = StorageHelper.getStorageVolumePath(volume);
                     if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
                             !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
                         Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
@@ -1916,12 +1916,12 @@ public class NavigationActivity extends Activity
                 StorageVolume[] volumes =
                         StorageHelper.getStorageVolumes(this, false);
                 if (volumes != null && volumes.length > 0) {
-                    initialDir = volumes[0].getPath();
+                    initialDir = StorageHelper.getStorageVolumePath(volumes[0]);
                     int count = volumes.length;
                     for (int i = 0; i < count; i++) {
                         StorageVolume volume = volumes[i];
                         if (Environment.MEDIA_MOUNTED.equalsIgnoreCase(volume.getState())) {
-                            initialDir = volume.getPath();
+                            initialDir = StorageHelper.getStorageVolumePath(volume);
                             break;
                         }
                     }

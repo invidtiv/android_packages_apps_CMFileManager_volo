@@ -1,0 +1,83 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.2.0'
+    }
+}
+
+// Apply Android application plugin
+apply plugin: 'com.android.application'
+
+// Repositories for dependencies
+repositories {
+    google()
+    mavenCentral()
+}
+
+android {
+    namespace "com.cyanogenmod.filemanager"
+    compileSdkVersion 33
+    defaultConfig {
+        applicationId "com.cyanogenmod.filemanager"
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode 104
+        versionName "3.0.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.flags'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src', 'libs/android-syntax-highlight/src', 'libs/color-picker-view/src']
+            res.srcDirs = ['res']
+            manifest.srcFile 'AndroidManifest.xml'
+            assets.srcDirs = ['assets']
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:1.6.1"
+    implementation "androidx.core:core-ktx:1.10.1"
+    implementation "androidx.annotation:annotation:1.7.1"
+    implementation "androidx.activity:activity:1.7.2"
+    implementation "com.google.android.material:material:1.9.0"
+    implementation "com.googlecode.juniversalchardet:juniversalchardet:1.0.3"
+    // Include local jars from libs directory
+    implementation('de.schlichtherle.truezip:truezip-file:7.7.10') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation('de.schlichtherle.truezip:truezip-driver-file:7.7.10') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation('de.schlichtherle.truezip:truezip-driver-zip:7.7.10') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation('de.schlichtherle.truezip:truezip-swing:7.7.10') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation('de.schlichtherle.truezip:truezip-driver-tzp:7.7.10') {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.10'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10'
+        force 'androidx.activity:activity:1.7.2'
+    }
+}

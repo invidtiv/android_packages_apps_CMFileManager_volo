@@ -110,7 +110,7 @@ public class SecureCacheCleanupService extends IntentService {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, SecureCacheCleanupService.class);
         intent.setAction(ACTION_START);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, 1000,
                 AlarmManager.INTERVAL_HOUR, pendingIntent);
     }
@@ -129,7 +129,7 @@ public class SecureCacheCleanupService extends IntentService {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, SecureCacheCleanupService.class);
         intent.setAction(ACTION_START);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.cancel(pendingIntent);
     }
 }

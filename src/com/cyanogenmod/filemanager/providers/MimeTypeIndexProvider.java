@@ -45,7 +45,7 @@ public class MimeTypeIndexProvider extends ContentProvider {
     private static final String TAG = MimeTypeIndexProvider.class.getSimpleName();
     private static final String AUTHORITY = "com.cyanogenmod.filemanager.providers.index";
     private static final int ID_INDEX = 1;
-    private static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY +
+    private static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" +
             DatabaseHelper.INDEX_TABLE);
 
     private static final UriMatcher sUriMatcher = new UriMatcher(NO_MATCH);

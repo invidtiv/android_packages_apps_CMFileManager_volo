@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
-import android.os.UserHandle;
 import android.os.Handler.Callback;
 import android.util.Log;
 import android.widget.Toast;
@@ -49,6 +48,7 @@ import com.cyanogenmod.filemanager.model.DiskUsage;
 import com.cyanogenmod.filemanager.model.MountPoint;
 import com.cyanogenmod.filemanager.preferences.FileManagerSettings;
 import com.cyanogenmod.filemanager.preferences.Preferences;
+import com.cyanogenmod.filemanager.util.AndroidHelper;
 import com.cyanogenmod.filemanager.util.DialogHelper;
 import com.cyanogenmod.filemanager.util.ExceptionUtil;
 import com.cyanogenmod.filemanager.util.FileHelper;
@@ -57,7 +57,8 @@ import de.schlichtherle.truezip.crypto.raes.RaesAuthenticationException;
 import de.schlichtherle.truezip.file.TArchiveDetector;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TVFS;
-import de.schlichtherle.truezip.key.CancelledOperation;
+import de.schlichtherle.truezip.key.KeyPromptingCancelledException;
+import de.schlichtherle.truezip.key.KeyPromptingInterruptedException;
 import static de.schlichtherle.truezip.fs.FsSyncOption.CLEAR_CACHE;
 import static de.schlichtherle.truezip.fs.FsSyncOption.FORCE_CLOSE_INPUT;
 import static de.schlichtherle.truezip.fs.FsSyncOption.FORCE_CLOSE_OUTPUT;
@@ -87,7 +88,7 @@ public class SecureConsole extends VirtualMountPointConsole {
 
     public static String getSecureStorageName() {
         return String.format("storage.%s.%s",
-                String.valueOf(UserHandle.myUserId()),
+                String.valueOf(AndroidHelper.getMyUserId()),
                 SecureStorageDriverProvider.SECURE_STORAGE_SCHEME);
     }
 
@@ -419,7 +420,11 @@ public class SecureConsole extends VirtualMountPointConsole {
             File root = mStorageRoot.getFile();
             try {
                 boolean newStorage = !root.exists();
-                mStorageRoot.mount();
+                if (newStorage) {
+                    mStorageRoot.mkdirs();
+                } else {
+                    mStorageRoot.list();
+                }
                 if (newStorage) {
                     // Force a synchronization
                     mRequiresSync = true;
@@ -439,8 +444,10 @@ public class SecureConsole extends VirtualMountPointConsole {
                 intent.putExtra(FileManagerSettings.EXTRA_STATUS, MountExecutable.READWRITE);
                 getCtx().sendBroadcast(intent);
 
-            } catch (IOException ex) {
-                if (ex.getCause() != null && ex.getCause() instanceof CancelledOperation) {
+            } catch (RuntimeException ex) {
+                if (ex.getCause() != null &&
+                        (ex.getCause() instanceof KeyPromptingCancelledException
+                                || ex.getCause() instanceof KeyPromptingInterruptedException)) {
                     throw new CancelledOperationException();
                 }
                 if (ex.getCause() != null && ex.getCause() instanceof RaesAuthenticationException) {

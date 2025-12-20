@@ -94,7 +94,7 @@ public class SecureStorageKeyManagerProvider extends AbstractKeyManagerProvider 
             MANAGERS = Collections.unmodifiableMap(fast);
 
             // We need that the provider ask always for a password
-            getKeyProvider().setAskAlwaysForWriteKey(true);
+            getKeyProvider().resetUnconditionally();
         }
     } // class Boot
 
