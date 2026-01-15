@@ -36,6 +36,10 @@ APK outputs:
 - Let Gradle sync.
 - Use the `debug` or `release` build variant.
 
+## Documentation
+
+- [Intents Documentation](INTENTS.md) - Details on supported Intent actions and parameters.
+
 ## Notes
 
 - minSdkVersion: 23

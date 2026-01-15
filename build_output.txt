@@ -1,0 +1,135 @@
+> Task :preBuild UP-TO-DATE
+> Task :preLegacyDebugBuild UP-TO-DATE
+> Task :mergeLegacyDebugNativeDebugMetadata NO-SOURCE
+> Task :javaPreCompileLegacyDebug UP-TO-DATE
+> Task :checkLegacyDebugAarMetadata UP-TO-DATE
+> Task :generateLegacyDebugResValues UP-TO-DATE
+> Task :mapLegacyDebugSourceSetPaths UP-TO-DATE
+> Task :generateLegacyDebugResources UP-TO-DATE
+> Task :mergeLegacyDebugResources UP-TO-DATE
+> Task :createLegacyDebugCompatibleScreenManifests UP-TO-DATE
+> Task :extractDeepLinksLegacyDebug UP-TO-DATE
+> Task :processLegacyDebugMainManifest UP-TO-DATE
+> Task :processLegacyDebugManifest UP-TO-DATE
+> Task :processLegacyDebugManifestForPackage UP-TO-DATE
+> Task :processLegacyDebugResources UP-TO-DATE
+
+> Task :compileLegacyDebugJavaWithJavac
+warning: [options] source value 8 is obsolete and will be removed in a future release
+warning: [options] target value 8 is obsolete and will be removed in a future release
+warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+3 warnings
+
+> Task :mergeLegacyDebugShaders UP-TO-DATE
+> Task :compileLegacyDebugShaders NO-SOURCE
+> Task :generateLegacyDebugAssets UP-TO-DATE
+> Task :mergeLegacyDebugAssets UP-TO-DATE
+> Task :compressLegacyDebugAssets UP-TO-DATE
+> Task :checkLegacyDebugDuplicateClasses UP-TO-DATE
+> Task :dexBuilderLegacyDebug
+> Task :desugarLegacyDebugFileDependencies UP-TO-DATE
+> Task :processLegacyDebugJavaRes NO-SOURCE
+> Task :mergeLegacyDebugJavaResource UP-TO-DATE
+> Task :mergeLegacyDebugJniLibFolders UP-TO-DATE
+> Task :mergeLegacyDebugNativeLibs NO-SOURCE
+> Task :stripLegacyDebugDebugSymbols NO-SOURCE
+> Task :validateSigningLegacyDebug UP-TO-DATE
+> Task :writeLegacyDebugAppMetadata UP-TO-DATE
+> Task :writeLegacyDebugSigningConfigVersions UP-TO-DATE
+
+> Task :mergeExtDexLegacyDebug FAILED
+ERROR: D8: Cannot fit requested classes in a single dex file (# methods: 80620 > 65536)
+com.android.builder.dexing.DexArchiveMergerException: Error while merging dex archives: 
+The number of method references in a .dex file cannot exceed 64K.
+Learn how to resolve this issue at https://developer.android.com/tools/building/multidex.html
+	at com.android.builder.dexing.D8DexArchiveMerger.getMergingExceptionToRethrow(D8DexArchiveMerger.java:159)
+	at com.android.builder.dexing.D8DexArchiveMerger.mergeDexArchives(D8DexArchiveMerger.java:147)
+	at com.android.build.gradle.internal.tasks.DexMergingWorkAction.merge(DexMergingTask.kt:891)
+	at com.android.build.gradle.internal.tasks.DexMergingWorkAction.run(DexMergingTask.kt:835)
+	at com.android.build.gradle.internal.profile.ProfileAwareWorkAction.execute(ProfileAwareWorkAction.kt:74)
+	at org.gradle.workers.internal.DefaultWorkerServer.execute(DefaultWorkerServer.java:63)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:66)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1$1.create(NoIsolationWorkerFactory.java:62)
+	at org.gradle.internal.classloader.ClassLoaderUtils.executeInClassloader(ClassLoaderUtils.java:100)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.lambda$execute$0(NoIsolationWorkerFactory.java:62)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:44)
+	at org.gradle.workers.internal.AbstractWorker$1.call(AbstractWorker.java:41)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:210)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:205)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:67)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:167)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:60)
+	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:54)
+	at org.gradle.workers.internal.AbstractWorker.executeWrappedInBuildOperation(AbstractWorker.java:41)
+	at org.gradle.workers.internal.NoIsolationWorkerFactory$1.execute(NoIsolationWorkerFactory.java:59)
+	at org.gradle.workers.internal.DefaultWorkerExecutor.lambda$submitWork$0(DefaultWorkerExecutor.java:174)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runExecution(DefaultConditionalExecutionQueue.java:194)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.access$700(DefaultConditionalExecutionQueue.java:127)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner$1.run(DefaultConditionalExecutionQueue.java:169)
+	at org.gradle.internal.Factories$1.create(Factories.java:31)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:263)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:127)
+	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:132)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.runBatch(DefaultConditionalExecutionQueue.java:164)
+	at org.gradle.internal.work.DefaultConditionalExecutionQueue$ExecutionRunner.run(DefaultConditionalExecutionQueue.java:133)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: com.android.tools.r8.CompilationFailedException: Compilation failed to complete, position: null
+	at Version.fakeStackEntry(Version_8.2.33.java:0)
+	at com.android.tools.r8.T.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:5)
+	at com.android.tools.r8.utils.S0.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:82)
+	at com.android.tools.r8.utils.S0.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:32)
+	at com.android.tools.r8.utils.S0.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:31)
+	at com.android.tools.r8.utils.S0.b(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:2)
+	at com.android.tools.r8.D8.run(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:11)
+	at com.android.builder.dexing.D8DexArchiveMerger.mergeDexArchives(D8DexArchiveMerger.java:145)
+	... 37 more
+Caused by: com.android.tools.r8.utils.b: Cannot fit requested classes in a single dex file (# methods: 80620 > 65536)
+	at com.android.tools.r8.utils.Q2.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:21)
+	at com.android.tools.r8.dex.o0.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:29)
+	at com.android.tools.r8.dex.k.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:70)
+	at com.android.tools.r8.dex.k.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:182)
+	at com.android.tools.r8.D8.d(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:146)
+	at com.android.tools.r8.D8.b(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:1)
+	at com.android.tools.r8.utils.S0.a(R8_8.2.33_429c93fd24a535127db6f4e2628eb18f2f978e02f99f55740728d6b22bef16dd:28)
+	... 40 more
+
+
+[Incubating] Problems report is available at: file:///C:/Users/tiaz/Desktop/android_packages_apps_CMFileManager_volo/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':mergeExtDexLegacyDebug'.
+> A failure occurred while executing com.android.build.gradle.internal.tasks.DexMergingTaskDelegate
+   > There was a failure while executing work items
+      > A failure occurred while executing com.android.build.gradle.internal.tasks.DexMergingWorkAction
+         > com.android.builder.dexing.DexArchiveMergerException: Error while merging dex archives: 
+           The number of method references in a .dex file cannot exceed 64K.
+           Learn how to resolve this issue at https://developer.android.com/tools/building/multidex.html
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 8s
+24 actionable tasks: 3 executed, 21 up-to-date

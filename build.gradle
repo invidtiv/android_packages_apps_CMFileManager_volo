@@ -20,17 +20,36 @@ repositories {
 android {
     namespace "com.cyanogenmod.filemanager"
     compileSdkVersion 33
+    buildFeatures {
+        buildConfig true
+    }
     defaultConfig {
         applicationId "com.cyanogenmod.filemanager"
-        minSdkVersion 23
+        // minSdkVersion handled by flavors
         targetSdkVersion 33
         versionCode 104
         versionName "3.0.0"
+        multiDexEnabled true
+    }
+    flavorDimensions "compatibility"
+    productFlavors {
+        legacy {
+            dimension "compatibility"
+            minSdkVersion 19
+            versionNameSuffix "-legacy"
+        }
+        standard {
+            dimension "compatibility"
+            minSdkVersion 23
+        }
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.flags'
+        }
+        debug {
+            applicationIdSuffix ".dev"
         }
     }
     sourceSets {
@@ -54,6 +73,7 @@ dependencies {
     implementation "androidx.activity:activity:1.7.2"
     implementation "com.google.android.material:material:1.9.0"
     implementation "com.googlecode.juniversalchardet:juniversalchardet:1.0.3"
+    implementation "androidx.multidex:multidex:2.0.1"
     // Include local jars from libs directory
     implementation('de.schlichtherle.truezip:truezip-file:7.7.10') {
         exclude group: 'org.jetbrains.kotlin'

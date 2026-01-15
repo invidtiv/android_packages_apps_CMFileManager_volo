@@ -141,18 +141,23 @@ import static com.cyanogenmod.filemanager.util.MimeTypeHelper.MimeTypeCategory.*
 /**
  * The main navigation activity. This activity is the center of the application.
  * From this the user can navigate, search, make actions.<br/>
- * This activity is singleTop, so when it is displayed no other activities exists in
+ * This activity is singleTop, so when it is displayed no other activities
+ * exists in
  * the stack.<br/>
- * This cause an issue with the saved instance of this class, because if another activity
- * is displayed, and the process is killed, NavigationActivity is started and the saved
+ * This cause an issue with the saved instance of this class, because if another
+ * activity
+ * is displayed, and the process is killed, NavigationActivity is started and
+ * the saved
  * instance gets corrupted.<br/>
- * For this reason the methods {link {@link Activity#onSaveInstanceState(Bundle)} and
- * {@link Activity#onRestoreInstanceState(Bundle)} are not implemented, and every time
+ * For this reason the methods {link
+ * {@link Activity#onSaveInstanceState(Bundle)} and
+ * {@link Activity#onRestoreInstanceState(Bundle)} are not implemented, and
+ * every time
  * the app is killed, is restarted from his initial state.
  */
 public class NavigationActivity extends Activity
-    implements OnHistoryListener, OnRequestRefreshListener,
-    OnNavigationRequestMenuListener, OnNavigationSelectionChangedListener {
+        implements OnHistoryListener, OnRequestRefreshListener,
+        OnNavigationRequestMenuListener, OnNavigationSelectionChangedListener {
 
     private static final String TAG = "NavigationActivity"; //$NON-NLS-1$
 
@@ -177,32 +182,27 @@ public class NavigationActivity extends Activity
     /**
      * Constant for extra information about selected search entry.
      */
-    public static final String EXTRA_SEARCH_ENTRY_SELECTION =
-            "extra_search_entry_selection"; //$NON-NLS-1$
+    public static final String EXTRA_SEARCH_ENTRY_SELECTION = "extra_search_entry_selection"; //$NON-NLS-1$
 
     /**
      * Constant for extra information about last search data.
      */
-    public static final String EXTRA_SEARCH_LAST_SEARCH_DATA =
-            "extra_search_last_search_data"; //$NON-NLS-1$
+    public static final String EXTRA_SEARCH_LAST_SEARCH_DATA = "extra_search_last_search_data"; //$NON-NLS-1$
 
     /**
      * Constant for extra information for request a navigation to the passed path.
      */
-    public static final String EXTRA_NAVIGATE_TO =
-            "extra_navigate_to"; //$NON-NLS-1$
+    public static final String EXTRA_NAVIGATE_TO = "extra_navigate_to"; //$NON-NLS-1$
 
     /**
      * Constant for extra information for request to add navigation to the history
      */
-    public static final String EXTRA_ADD_TO_HISTORY =
-            "extra_add_to_history"; //$NON-NLS-1$
+    public static final String EXTRA_ADD_TO_HISTORY = "extra_add_to_history"; //$NON-NLS-1$
 
     // The timeout needed to reset the exit status for back button
     // After this time user need to tap 2 times the back button to
     // exit, and the toast is shown again after the first tap.
     private static final int RELEASE_EXIT_CHECK_TIMEOUT = 3500;
-
 
     private Toolbar mToolBar;
     private SearchView mSearchView;
@@ -220,55 +220,45 @@ public class NavigationActivity extends Activity
                     String key = intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
                     if (key != null) {
                         // Disk usage warning level
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId()) == 0) {
 
                             // Set the free disk space warning level of the breadcrumb widget
                             Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
                             String fds = Preferences.getSharedPreferences().getString(
                                     FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
-                                    (String)FileManagerSettings.
-                                        SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
+                                    (String) FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
                             breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
                             breadcrumb.updateMountPointInfo();
                             return;
                         }
 
                         // Case sensitive sort
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_CASE_SENSITIVE_SORT.getId()) == 0) {
                             getCurrentNavigationView().refresh();
                             return;
                         }
 
                         // Display thumbs
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_DISPLAY_THUMBS.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_DISPLAY_THUMBS.getId()) == 0) {
                             // Clean the icon cache applying the current theme
                             applyTheme();
                             return;
                         }
 
                         // Use flinger
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_USE_FLINGER.getId()) == 0) {
-                            boolean useFlinger =
-                                    Preferences.getSharedPreferences().getBoolean(
-                                            FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
-                                                ((Boolean)FileManagerSettings.
-                                                        SETTINGS_USE_FLINGER.
-                                                            getDefaultValue()).booleanValue());
+                        if (key.compareTo(FileManagerSettings.SETTINGS_USE_FLINGER.getId()) == 0) {
+                            boolean useFlinger = Preferences.getSharedPreferences().getBoolean(
+                                    FileManagerSettings.SETTINGS_USE_FLINGER.getId(),
+                                    ((Boolean) FileManagerSettings.SETTINGS_USE_FLINGER.getDefaultValue())
+                                            .booleanValue());
                             getCurrentNavigationView().setUseFlinger(useFlinger);
                             return;
                         }
 
                         // Access mode
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_ACCESS_MODE.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_ACCESS_MODE.getId()) == 0) {
                             // Is it necessary to create or exit of the ChRooted?
-                            boolean chRooted =
-                                    FileManagerApplication.
-                                        getAccessMode().compareTo(AccessMode.SAFE) == 0;
+                            boolean chRooted = FileManagerApplication.getAccessMode().compareTo(AccessMode.SAFE) == 0;
                             if (chRooted != NavigationActivity.this.mChRooted) {
                                 if (chRooted) {
                                     createChRooted();
@@ -279,8 +269,7 @@ public class NavigationActivity extends Activity
                         }
 
                         // Restricted access
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId()) == 0) {
                             if (AndroidHelper.isSecondaryUser(context)) {
                                 try {
                                     Preferences.savePreference(
@@ -295,8 +284,7 @@ public class NavigationActivity extends Activity
                         }
 
                         // Filetime format mode
-                        if (key.compareTo(FileManagerSettings.
-                                SETTINGS_FILETIME_FORMAT_MODE.getId()) == 0) {
+                        if (key.compareTo(FileManagerSettings.SETTINGS_FILETIME_FORMAT_MODE.getId()) == 0) {
                             // Refresh the data
                             synchronized (FileHelper.DATETIME_SYNC) {
                                 FileHelper.sReloadDateTimeFormats = true;
@@ -308,8 +296,7 @@ public class NavigationActivity extends Activity
                 } else if (intent.getAction().compareTo(
                         FileManagerSettings.INTENT_FILE_CHANGED) == 0) {
                     // Retrieve the file that was changed
-                    String file =
-                            intent.getStringExtra(FileManagerSettings.EXTRA_FILE_CHANGED_KEY);
+                    String file = intent.getStringExtra(FileManagerSettings.EXTRA_FILE_CHANGED_KEY);
                     try {
                         FileSystemObject fso = CommandHelper.getFileInfo(context, file, null);
                         if (fso != null) {
@@ -324,9 +311,9 @@ public class NavigationActivity extends Activity
                     applyTheme();
 
                 } else if (intent.getAction().compareTo(Intent.ACTION_TIME_CHANGED) == 0 ||
-                           intent.getAction().compareTo(Intent.ACTION_DATE_CHANGED) == 0 ||
-                           intent.getAction().compareTo(Intent.ACTION_TIMEZONE_CHANGED) == 0 ||
-                           intent.getAction().compareTo(Intent.ACTION_LOCALE_CHANGED) == 0) {
+                        intent.getAction().compareTo(Intent.ACTION_DATE_CHANGED) == 0 ||
+                        intent.getAction().compareTo(Intent.ACTION_TIMEZONE_CHANGED) == 0 ||
+                        intent.getAction().compareTo(Intent.ACTION_LOCALE_CHANGED) == 0) {
                     // Refresh the data
                     synchronized (FileHelper.DATETIME_SYNC) {
                         FileHelper.sReloadDateTimeFormats = true;
@@ -334,8 +321,8 @@ public class NavigationActivity extends Activity
                     }
                 } else if (intent.getAction().compareTo(
                         FileManagerSettings.INTENT_MOUNT_STATUS_CHANGED) == 0 ||
-                            intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED) ||
-                            intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED)) {
+                        intent.getAction().equals(Intent.ACTION_MEDIA_MOUNTED) ||
+                        intent.getAction().equals(Intent.ACTION_MEDIA_UNMOUNTED)) {
                     MountPointHelper.refreshMountPoints(
                             FileManagerApplication.getBackgroundConsole());
                     onRequestBookmarksRefresh();
@@ -422,8 +409,7 @@ public class NavigationActivity extends Activity
     /**
      * @hide
      */
-    static Map<MimeTypeCategory, Drawable> EASY_MODE_ICONS = new
-            HashMap<MimeTypeCategory, Drawable>();
+    static Map<MimeTypeCategory, Drawable> EASY_MODE_ICONS = new HashMap<MimeTypeCategory, Drawable>();
 
     /**
      * @hide
@@ -512,6 +498,7 @@ public class NavigationActivity extends Activity
     private AsyncTask<Void, Void, Boolean> mHistoryTask;
 
     private static final int REQUEST_CODE_STORAGE_PERMS = 321;
+
     private boolean hasPermissions() {
         int res = checkCallingOrSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return (res == PackageManager.PERMISSION_GRANTED);
@@ -549,8 +536,9 @@ public class NavigationActivity extends Activity
                 final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
                         .findViewById(android.R.id.content)).getChildAt(0);
                 if (viewGroup != null) {
-                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar.make(viewGroup, text,
-                            com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
+                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar
+                            .make(viewGroup, text,
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction(android.R.string.ok, new OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -560,15 +548,15 @@ public class NavigationActivity extends Activity
                     snackbar.show();
                 }
             } else {
-                StringBuilder builder = new StringBuilder(getString(R.string
-                        .storage_permissions_denied));
+                StringBuilder builder = new StringBuilder(getString(R.string.storage_permissions_denied));
                 builder.append("\n\n");
                 builder.append(getString(R.string.storage_permissions_explanation));
                 final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
                         .findViewById(android.R.id.content)).getChildAt(0);
                 if (viewGroup != null) {
-                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar.make(viewGroup, builder.toString(),
-                            com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
+                    com.google.android.material.snackbar.Snackbar snackbar = com.google.android.material.snackbar.Snackbar
+                            .make(viewGroup, builder.toString(),
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_INDEFINITE);
                     snackbar.setAction(R.string.snackbar_settings, new OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -620,22 +608,21 @@ public class NavigationActivity extends Activity
         newFilter.addDataScheme(ContentResolver.SCHEME_FILE);
         registerReceiver(mNotificationReceiver, newFilter);
 
-        //the input manager service
+        // the input manager service
         mImm = (InputMethodManager) this.getSystemService(
                 Context.INPUT_METHOD_SERVICE);
 
-        //Initialize nfc adapter
+        // Initialize nfc adapter
         NfcAdapter mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (mNfcAdapter != null) {
             mNfcAdapter.setBeamPushUrisCallback(new NfcAdapter.CreateBeamUrisCallback() {
                 @Override
                 public Uri[] createBeamUris(NfcEvent event) {
-                    List<FileSystemObject> selectedFiles =
-                            getCurrentNavigationView().getSelectedFiles();
+                    List<FileSystemObject> selectedFiles = getCurrentNavigationView().getSelectedFiles();
                     if (selectedFiles.size() > 0) {
                         List<Uri> fileUri = new ArrayList<Uri>();
                         for (FileSystemObject f : selectedFiles) {
-                            //Beam ignores folders and system files
+                            // Beam ignores folders and system files
                             if (!FileHelper.isDirectory(f) && !FileHelper.isSystemFile(f)) {
                                 fileUri.add(Uri.fromFile(new File(f.getFullPath())));
                             }
@@ -649,10 +636,10 @@ public class NavigationActivity extends Activity
             }, this);
         }
 
-        //Initialize activity
+        // Initialize activity
         init();
 
-        //Navigation views
+        // Navigation views
         initNavigationViews();
 
         // As we're using a Toolbar, we should retrieve it and set it
@@ -660,7 +647,7 @@ public class NavigationActivity extends Activity
         mToolBar = (Toolbar) findViewById(R.id.material_toolbar);
         setActionBar(mToolBar);
 
-        //Initialize action bars
+        // Initialize action bars
         initTitleActionBar();
         initStatusActionBar();
         initSelectionBar();
@@ -690,32 +677,25 @@ public class NavigationActivity extends Activity
                 // Initialize console
                 initConsole();
 
-                //Initialize navigation
+                // Initialize navigation
                 int cc = NavigationActivity.this.mNavigationViews.length;
                 for (int i = 0; i < cc; i++) {
                     initNavigation(i, false, getIntent());
                 }
 
-                //Check the intent action
+                // Check the intent action
                 checkIntent(getIntent());
             }
         });
 
-        MIME_TYPE_LOCALIZED_NAMES = MimeTypeCategory.getFriendlyLocalizedNames(NavigationActivity
-            .this);
+        MIME_TYPE_LOCALIZED_NAMES = MimeTypeCategory.getFriendlyLocalizedNames(NavigationActivity.this);
 
-        EASY_MODE_ICONS.put(MimeTypeCategory.NONE, getResources().getDrawable(R.drawable
-                .ic_em_all));
-        EASY_MODE_ICONS.put(MimeTypeCategory.IMAGE, getResources().getDrawable(R.drawable
-                .ic_em_image));
-        EASY_MODE_ICONS.put(MimeTypeCategory.VIDEO, getResources().getDrawable(R.drawable
-                .ic_em_video));
-        EASY_MODE_ICONS.put(MimeTypeCategory.AUDIO, getResources().getDrawable(R.drawable
-                .ic_em_music));
-        EASY_MODE_ICONS.put(MimeTypeCategory.DOCUMENT, getResources().getDrawable(R.drawable
-                .ic_em_document));
-        EASY_MODE_ICONS.put(MimeTypeCategory.APP, getResources().getDrawable(R.drawable
-                .ic_em_application));
+        EASY_MODE_ICONS.put(MimeTypeCategory.NONE, getResources().getDrawable(R.drawable.ic_em_all));
+        EASY_MODE_ICONS.put(MimeTypeCategory.IMAGE, getResources().getDrawable(R.drawable.ic_em_image));
+        EASY_MODE_ICONS.put(MimeTypeCategory.VIDEO, getResources().getDrawable(R.drawable.ic_em_video));
+        EASY_MODE_ICONS.put(MimeTypeCategory.AUDIO, getResources().getDrawable(R.drawable.ic_em_music));
+        EASY_MODE_ICONS.put(MimeTypeCategory.DOCUMENT, getResources().getDrawable(R.drawable.ic_em_document));
+        EASY_MODE_ICONS.put(MimeTypeCategory.APP, getResources().getDrawable(R.drawable.ic_em_application));
 
     }
 
@@ -729,14 +709,14 @@ public class NavigationActivity extends Activity
             Log.d(TAG, "NavigationActivity.onCreate"); //$NON-NLS-1$
         }
 
-         // Set the theme before setContentView
+        // Set the theme before setContentView
         Theme theme = ThemeManager.getCurrentTheme(this);
         theme.setBaseThemeNoActionBar(this);
 
-        //Set the main layout of the activity
+        // Set the main layout of the activity
         setContentView(R.layout.navigation);
 
-        //Save state
+        // Save state
         super.onCreate(state);
 
         if (!hasPermissions()) {
@@ -794,14 +774,14 @@ public class NavigationActivity extends Activity
         final String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
         final boolean restore = TextUtils.isEmpty(navigateTo);
 
-        //Initialize navigation
+        // Initialize navigation
         if (!hasPermissions()) {
             requestNecessaryPermissions();
         } else {
             initNavigation(this.mCurrentNavigationView, restore, intent);
         }
 
-        //Check the intent action
+        // Check the intent action
         checkIntent(intent);
     }
 
@@ -813,7 +793,7 @@ public class NavigationActivity extends Activity
         super.onConfigurationChanged(newConfig);
         if (hasPermissions()) {
             onLayoutChanged();
-            if (mDrawerToggle != null ) {
+            if (mDrawerToggle != null) {
                 mDrawerToggle.onConfigurationChanged(newConfig);
             }
         }
@@ -832,7 +812,7 @@ public class NavigationActivity extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (mDrawerToggle.onOptionsItemSelected(item)) {
-          return true;
+            return true;
         }
 
         if (mNeedsEasyMode) {
@@ -864,11 +844,11 @@ public class NavigationActivity extends Activity
         try {
             unregisterReceiver(this.mNotificationReceiver);
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
 
         recycle();
-        //All destroy. Continue
+        // All destroy. Continue
         super.onDestroy();
     }
 
@@ -888,7 +868,8 @@ public class NavigationActivity extends Activity
      * @return NavigationView The current navigation view
      */
     public NavigationView getNavigationView(int viewId) {
-        if (this.mNavigationViews == null) return null;
+        if (this.mNavigationViews == null)
+            return null;
         return this.mNavigationViews[viewId];
     }
 
@@ -908,9 +889,9 @@ public class NavigationActivity extends Activity
     private void showWelcomeMsg() {
         boolean firstUse = Preferences.getSharedPreferences().getBoolean(
                 FileManagerSettings.SETTINGS_FIRST_USE.getId(),
-                ((Boolean)FileManagerSettings.SETTINGS_FIRST_USE.getDefaultValue()).booleanValue());
+                ((Boolean) FileManagerSettings.SETTINGS_FIRST_USE.getDefaultValue()).booleanValue());
 
-        //Display the welcome message?
+        // Display the welcome message?
         if (firstUse && FileManagerApplication.hasShellCommands()) {
             // open navigation drawer to show user that it exists
             mDrawerLayout.openDrawer(Gravity.START);
@@ -924,7 +905,9 @@ public class NavigationActivity extends Activity
             try {
                 Preferences.savePreference(
                         FileManagerSettings.SETTINGS_FIRST_USE, Boolean.FALSE, true);
-            } catch (Exception e) {/**NON BLOCK**/}
+            } catch (Exception e) {
+                /** NON BLOCK **/
+            }
         }
     }
 
@@ -932,13 +915,13 @@ public class NavigationActivity extends Activity
      * Method that initializes the titlebar of the activity.
      */
     private void initTitleActionBar() {
-        //Inflate the view and associate breadcrumb
+        // Inflate the view and associate breadcrumb
         View titleLayout = getLayoutInflater().inflate(
                 R.layout.navigation_view_customtitle, null, false);
-        NavigationCustomTitleView title =
-                (NavigationCustomTitleView)titleLayout.findViewById(R.id.navigation_title_flipper);
+        NavigationCustomTitleView title = (NavigationCustomTitleView) titleLayout
+                .findViewById(R.id.navigation_title_flipper);
         title.setOnHistoryListener(this);
-        Breadcrumb breadcrumb = (Breadcrumb)title.findViewById(R.id.breadcrumb_view);
+        Breadcrumb breadcrumb = (Breadcrumb) title.findViewById(R.id.breadcrumb_view);
         int cc = this.mNavigationViews.length;
         for (int i = 0; i < cc; i++) {
             this.mNavigationViews[i].setBreadcrumb(breadcrumb);
@@ -951,10 +934,10 @@ public class NavigationActivity extends Activity
         // Set the free disk space warning level of the breadcrumb widget
         String fds = Preferences.getSharedPreferences().getString(
                 FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getId(),
-                (String)FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
+                (String) FileManagerSettings.SETTINGS_DISK_USAGE_WARNING_LEVEL.getDefaultValue());
         breadcrumb.setFreeDiskSpaceWarningLevel(Integer.parseInt(fds));
 
-        //Configure the action bar options
+        // Configure the action bar options
         getActionBar().setBackgroundDrawable(
                 getResources().getDrawable(R.drawable.bg_material_titlebar));
         mToolBar.addView(titleLayout);
@@ -964,24 +947,24 @@ public class NavigationActivity extends Activity
      * Method that initializes the statusbar of the activity.
      */
     private void initStatusActionBar() {
-        //Performs a width calculation of buttons. Buttons exceeds the width
-        //of the action bar should be hidden
-        //This application not use android ActionBar because the application
-        //make uses of the title and bottom areas, and wants to force to show
-        //the overflow button (without care of physical buttons)
-        this.mActionBar = (ViewGroup)findViewById(R.id.navigation_actionbar);
+        // Performs a width calculation of buttons. Buttons exceeds the width
+        // of the action bar should be hidden
+        // This application not use android ActionBar because the application
+        // make uses of the title and bottom areas, and wants to force to show
+        // the overflow button (without care of physical buttons)
+        this.mActionBar = (ViewGroup) findViewById(R.id.navigation_actionbar);
         this.mActionBar.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(
                     View v, int left, int top, int right, int bottom, int oldLeft,
                     int oldTop, int oldRight, int oldBottom) {
-                //Get the width of the action bar
+                // Get the width of the action bar
                 int w = v.getMeasuredWidth();
 
-                //Wake through children calculation his dimensions
-                int bw = (int)getResources().getDimension(R.dimen.default_buttom_width);
+                // Wake through children calculation his dimensions
+                int bw = (int) getResources().getDimension(R.dimen.default_buttom_width);
                 int cw = 0;
-                final ViewGroup abView = ((ViewGroup)v);
+                final ViewGroup abView = ((ViewGroup) v);
                 int cc = abView.getChildCount();
                 for (int i = 0; i < cc; i++) {
                     View child = abView.getChildAt(i);
@@ -1005,7 +988,7 @@ public class NavigationActivity extends Activity
      * Method that initializes the selectionbar of the activity.
      */
     private void initSelectionBar() {
-        this.mSelectionBar = (SelectionView)findViewById(R.id.navigation_selectionbar);
+        this.mSelectionBar = (SelectionView) findViewById(R.id.navigation_selectionbar);
     }
 
     /**
@@ -1013,7 +996,7 @@ public class NavigationActivity extends Activity
      */
     private void initDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        //Set our status bar color
+        // Set our status bar color
         mDrawerLayout.setStatusBarBackgroundColor(R.color.material_palette_blue_primary_dark);
         mDrawer = (ViewGroup) findViewById(R.id.drawer);
         mDrawerBookmarks = (LinearLayout) findViewById(R.id.bookmarks_list);
@@ -1063,7 +1046,7 @@ public class NavigationActivity extends Activity
     /***
      * Method that do something when the DrawerLayout opened.
      */
-    private void onDrawerLayoutOpened(View drawerView){
+    private void onDrawerLayoutOpened(View drawerView) {
         if (mSearchView != null && mSearchView.getVisibility() == View.VISIBLE) {
             closeSearch();
             hideSoftInput(drawerView);
@@ -1073,8 +1056,8 @@ public class NavigationActivity extends Activity
     /**
      * Method that hide the software when the software showing.
      *
-     * */
-    private void hideSoftInput(View view){
+     */
+    private void hideSoftInput(View view) {
         if (mImm != null) {
             mImm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
@@ -1207,8 +1190,7 @@ public class NavigationActivity extends Activity
             action = iconholder.getDrawable("ic_edit_home_bookmark_drawable"); //$NON-NLS-1$
             actionCd = getApplicationContext().getString(
                     R.string.bookmarks_button_config_cd);
-        }
-        else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
+        } else if (bookmark.mType.compareTo(BOOKMARK_TYPE.USER_DEFINED) == 0) {
             action = iconholder.getDrawable("ic_close_drawable"); //$NON-NLS-1$
             actionCd = getApplicationContext().getString(
                     R.string.bookmarks_button_remove_bookmark_cd);
@@ -1282,8 +1264,7 @@ public class NavigationActivity extends Activity
                         performShowBackArrow(!mDrawerToggle.isDrawerIndicatorEnabled());
                         getCurrentNavigationView().open(fso);
                         mDrawerLayout.closeDrawer(Gravity.START);
-                    }
-                    else {
+                    } else {
                         // The bookmark does not exist, delete the user-defined
                         // bookmark
                         try {
@@ -1292,12 +1273,10 @@ public class NavigationActivity extends Activity
 
                             // reset bookmarks list to default
                             initBookmarks();
-                        }
-                        catch (Exception ex) {
+                        } catch (Exception ex) {
                         }
                     }
-                }
-                catch (Exception e) { // Capture the exception
+                } catch (Exception e) { // Capture the exception
                     ExceptionUtil
                             .translateException(NavigationActivity.this, e);
                     if (e instanceof NoSuchFileOrDirectory
@@ -1310,8 +1289,7 @@ public class NavigationActivity extends Activity
 
                             // reset bookmarks list to default
                             initBookmarks();
-                        }
-                        catch (Exception ex) {
+                        } catch (Exception ex) {
                         }
                     }
                     return;
@@ -1344,8 +1322,7 @@ public class NavigationActivity extends Activity
                     mBookmarks = loadBookmarks();
                     return Boolean.TRUE;
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     this.mCause = e;
                     return Boolean.FALSE;
                 }
@@ -1364,8 +1341,7 @@ public class NavigationActivity extends Activity
                     for (Bookmark bookmark : mBookmarks) {
                         addBookmarkToDrawer(bookmark);
                     }
-                }
-                else {
+                } else {
                     if (this.mCause != null) {
                         ExceptionUtil.translateException(
                                 NavigationActivity.this, this.mCause);
@@ -1401,8 +1377,7 @@ public class NavigationActivity extends Activity
                 try {
                     loadHistory();
                     return Boolean.TRUE;
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     this.mCause = e;
                     return Boolean.FALSE;
                 }
@@ -1506,16 +1481,14 @@ public class NavigationActivity extends Activity
                         try {
                             name = getString(parser.getAttributeResourceValue(
                                     R.styleable.Bookmark_name, 0));
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             /** NON BLOCK **/
                         }
                         try {
                             directory = getString(parser
                                     .getAttributeResourceValue(
                                             R.styleable.Bookmark_directory, 0));
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             /** NON BLOCK **/
                         }
                         if (directory == null) {
@@ -1533,12 +1506,10 @@ public class NavigationActivity extends Activity
                 // Return the bookmarks
                 return bookmarks;
 
-            }
-            finally {
+            } finally {
                 parser.close();
             }
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             Log.e(TAG, "Load filesystem bookmarks failed", ex); //$NON-NLS-1$
         }
 
@@ -1560,13 +1531,13 @@ public class NavigationActivity extends Activity
             // Recovery sdcards from storage manager
             StorageVolume[] volumes = StorageHelper
                     .getStorageVolumes(getApplication(), true);
-            for (StorageVolume volume: volumes) {
+            for (StorageVolume volume : volumes) {
                 if (volume != null) {
                     String mountedState = volume.getState();
                     String path = StorageHelper.getStorageVolumePath(volume);
                     if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
                             !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
-                        Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
+                        Log.w(TAG, "Ignoring '" + path + "' with state of '" + mountedState + "'");
                         continue;
                     }
                     if (!TextUtils.isEmpty(path)) {
@@ -1586,8 +1557,7 @@ public class NavigationActivity extends Activity
 
             // Return the bookmarks
             return bookmarks;
-        }
-        catch (Throwable ex) {
+        } catch (Throwable ex) {
             Log.e(TAG, "Load filesystem bookmarks failed", ex); //$NON-NLS-1$
         }
 
@@ -1638,17 +1608,14 @@ public class NavigationActivity extends Activity
                         continue;
                     }
                     bookmarks.add(bm);
-                }
-                while (cursor.moveToNext());
+                } while (cursor.moveToNext());
             }
-        }
-        finally {
+        } finally {
             try {
                 if (cursor != null) {
                     cursor.close();
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 /** NON BLOCK **/
             }
         }
@@ -1656,8 +1623,7 @@ public class NavigationActivity extends Activity
         // Remove bookmarks from virtual storage if the filesystem is not mount
         int c = bookmarks.size() - 1;
         for (int i = c; i >= 0; i--) {
-            VirtualMountPointConsole vc =
-                    VirtualMountPointConsole.getVirtualConsoleForPath(bookmarks.get(i).mPath);
+            VirtualMountPointConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(bookmarks.get(i).mPath);
             if (vc != null && !vc.isMounted()) {
                 bookmarks.remove(i);
             }
@@ -1753,19 +1719,19 @@ public class NavigationActivity extends Activity
      * Method that initializes the navigation views of the activity
      */
     private void initNavigationViews() {
-        //Get the navigation views (wishlist: multiple view; for now only one view)
+        // Get the navigation views (wishlist: multiple view; for now only one view)
         this.mNavigationViews = new NavigationView[1];
         this.mCurrentNavigationView = 0;
-        //- 0
-        this.mNavigationViews[0] = (NavigationView)findViewById(R.id.navigation_view);
+        // - 0
+        this.mNavigationViews[0] = (NavigationView) findViewById(R.id.navigation_view);
         this.mNavigationViews[0].setId(0);
         this.mEasyModeListView = (ListView) findViewById(R.id.lv_easy_mode);
-        mEasyModeAdapter = new ArrayAdapter<MimeTypeCategory>(this, R.layout
-                .navigation_view_simple_item) {
+        mEasyModeAdapter = new ArrayAdapter<MimeTypeCategory>(this, R.layout.navigation_view_simple_item) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                convertView = (convertView == null) ?getLayoutInflater().inflate(R.layout
-                        .navigation_view_simple_item, parent, false) : convertView;
+                convertView = (convertView == null)
+                        ? getLayoutInflater().inflate(R.layout.navigation_view_simple_item, parent, false)
+                        : convertView;
                 MimeTypeCategory item = getItem(position);
                 String typeTitle = MIME_TYPE_LOCALIZED_NAMES[item.ordinal()];
                 TextView typeTitleTV = (TextView) convertView
@@ -1793,7 +1759,8 @@ public class NavigationActivity extends Activity
         intent.putExtra(SearchManager.QUERY, "*"); // Use wild-card '*'
 
         if (position == 0) {
-            // the user has selected all items, they want to see their folders so let's do that.
+            // the user has selected all items, they want to see their folders so let's do
+            // that.
             performHideEasyMode();
             performShowBackArrow(true);
             return;
@@ -1802,7 +1769,8 @@ public class NavigationActivity extends Activity
             ArrayList<MimeTypeCategory> searchCategories = new ArrayList<MimeTypeCategory>();
             MimeTypeCategory selectedCategory = EASY_MODE_LIST.get(position);
             searchCategories.add(selectedCategory);
-            // a one off case where we implicitly want to also search for TEXT mimetypes when the
+            // a one off case where we implicitly want to also search for TEXT mimetypes
+            // when the
             // DOCUMENTS category is selected
             if (selectedCategory == MimeTypeCategory.DOCUMENT) {
                 searchCategories.add(MimeTypeCategory.TEXT);
@@ -1815,10 +1783,11 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that initialize the console
+     * 
      * @hide
      */
     void initConsole() {
-        //Create the default console (from the preferences)
+        // Create the default console (from the preferences)
         try {
             Console console = ConsoleBuilder.getConsole(NavigationActivity.this);
             if (console == null) {
@@ -1826,7 +1795,7 @@ public class NavigationActivity extends Activity
             }
         } catch (Throwable ex) {
             if (!NavigationActivity.this.mChRooted) {
-                //Show exception and exit
+                // Show exception and exit
                 Log.e(TAG, getString(R.string.msgs_cant_create_console), ex);
                 // We don't have any console
                 // Show exception and exit
@@ -1848,9 +1817,9 @@ public class NavigationActivity extends Activity
     /**
      * Method that initializes the navigation.
      *
-     * @param viewId The navigation view identifier where apply the navigation
+     * @param viewId  The navigation view identifier where apply the navigation
      * @param restore Initialize from a restore info
-     * @param intent The current intent
+     * @param intent  The current intent
      * @hide
      */
     void initNavigation(final int viewId, final boolean restore, final Intent intent) {
@@ -1862,7 +1831,7 @@ public class NavigationActivity extends Activity
         this.mHandler.post(new Runnable() {
             @Override
             public void run() {
-                //Is necessary navigate?
+                // Is necessary navigate?
                 applyInitialDir(navigationView, intent);
             }
         });
@@ -1872,16 +1841,14 @@ public class NavigationActivity extends Activity
      * Method that applies the user-defined initial directory
      *
      * @param navigationView The navigation view
-     * @param intent The current intent
+     * @param intent         The current intent
      * @hide
      */
     void applyInitialDir(final NavigationView navigationView, final Intent intent) {
-        //Load the user-defined initial directory
-        String initialDir =
-                Preferences.getSharedPreferences().getString(
-                    FileManagerSettings.SETTINGS_INITIAL_DIR.getId(),
-                    (String)FileManagerSettings.
-                        SETTINGS_INITIAL_DIR.getDefaultValue());
+        // Load the user-defined initial directory
+        String initialDir = Preferences.getSharedPreferences().getString(
+                FileManagerSettings.SETTINGS_INITIAL_DIR.getId(),
+                (String) FileManagerSettings.SETTINGS_INITIAL_DIR.getDefaultValue());
 
         // Check if request navigation to directory (use as default), and
         // ensure chrooted and absolute path
@@ -1904,7 +1871,8 @@ public class NavigationActivity extends Activity
         // Add to history
         final boolean addToHistory = intent.getBooleanExtra(EXTRA_ADD_TO_HISTORY, true);
 
-        // We cannot navigate to a secure console if it is unmounted. So go to root in that case
+        // We cannot navigate to a secure console if it is unmounted. So go to root in
+        // that case
         VirtualConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(initialDir);
         if (vc != null && vc instanceof SecureConsole && !((SecureConsole) vc).isMounted()) {
             initialDir = FileHelper.ROOT_DIRECTORY;
@@ -1913,8 +1881,7 @@ public class NavigationActivity extends Activity
         if (this.mChRooted) {
             // Initial directory is the first external sdcard (sdcard, emmc, usb, ...)
             if (!StorageHelper.isPathInStorageVolume(initialDir)) {
-                StorageVolume[] volumes =
-                        StorageHelper.getStorageVolumes(this, false);
+                StorageVolume[] volumes = StorageHelper.getStorageVolumes(this, false);
                 if (volumes != null && volumes.length > 0) {
                     initialDir = StorageHelper.getStorageVolumePath(volumes[0]);
                     int count = volumes.length;
@@ -1925,7 +1892,7 @@ public class NavigationActivity extends Activity
                             break;
                         }
                     }
-                    //Ensure that initial directory is an absolute directory
+                    // Ensure that initial directory is an absolute directory
                     initialDir = FileHelper.getAbsPath(initialDir);
                 } else {
                     // Show exception and exit
@@ -1937,7 +1904,7 @@ public class NavigationActivity extends Activity
                 }
             }
         } else {
-            //Ensure that initial directory is an absolute directory
+            // Ensure that initial directory is an absolute directory
             final String userInitialDir = initialDir;
             initialDir = FileHelper.getAbsPath(initialDir);
             final String absInitialDir = initialDir;
@@ -1950,23 +1917,25 @@ public class NavigationActivity extends Activity
                 } catch (InsufficientPermissionsException ipex) {
                     ExceptionUtil.translateException(
                             this, ipex, false, true, new OnRelaunchCommandResult() {
-                        @Override
-                        public void onSuccess() {
-                            navigationView.changeCurrentDir(absInitialDir, addToHistory);
-                        }
-                        @Override
-                        public void onFailed(Throwable cause) {
-                            showInitialInvalidDirectoryMsg(userInitialDir);
-                            navigationView.changeCurrentDir(FileHelper.ROOT_DIRECTORY,
-                                    addToHistory);
-                        }
-                        @Override
-                        public void onCancelled() {
-                            showInitialInvalidDirectoryMsg(userInitialDir);
-                            navigationView.changeCurrentDir(FileHelper.ROOT_DIRECTORY,
-                                    addToHistory);
-                        }
-                    });
+                                @Override
+                                public void onSuccess() {
+                                    navigationView.changeCurrentDir(absInitialDir, addToHistory);
+                                }
+
+                                @Override
+                                public void onFailed(Throwable cause) {
+                                    showInitialInvalidDirectoryMsg(userInitialDir);
+                                    navigationView.changeCurrentDir(FileHelper.ROOT_DIRECTORY,
+                                            addToHistory);
+                                }
+
+                                @Override
+                                public void onCancelled() {
+                                    showInitialInvalidDirectoryMsg(userInitialDir);
+                                    navigationView.changeCurrentDir(FileHelper.ROOT_DIRECTORY,
+                                            addToHistory);
+                                }
+                            });
 
                     // Asynchronous mode
                     return;
@@ -1986,8 +1955,8 @@ public class NavigationActivity extends Activity
         }
 
         boolean needsEasyMode = false;
-        if (mSdBookmarks != null ) {
-            for (Bookmark bookmark :mSdBookmarks) {
+        if (mSdBookmarks != null) {
+            for (Bookmark bookmark : mSdBookmarks) {
                 if (bookmark.mPath.equalsIgnoreCase(initialDir)) {
                     needsEasyMode = true;
                     break;
@@ -2031,33 +2000,61 @@ public class NavigationActivity extends Activity
      * @hide
      */
     void checkIntent(Intent intent) {
-        //Search action
+        // Search action
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             Intent searchIntent = new Intent(this, SearchActivity.class);
             searchIntent.setAction(Intent.ACTION_SEARCH);
-            //- SearchActivity.EXTRA_SEARCH_DIRECTORY
+            // - SearchActivity.EXTRA_SEARCH_DIRECTORY
             searchIntent.putExtra(
                     SearchActivity.EXTRA_SEARCH_DIRECTORY,
                     getCurrentNavigationView().getCurrentDir());
-            //- SearchManager.APP_DATA
+            // - SearchManager.APP_DATA
             if (intent.getBundleExtra(SearchManager.APP_DATA) != null) {
                 Bundle bundle = new Bundle();
                 bundle.putAll(intent.getBundleExtra(SearchManager.APP_DATA));
                 searchIntent.putExtra(SearchManager.APP_DATA, bundle);
             }
-            //-- SearchManager.QUERY
+            // -- SearchManager.QUERY
             String query = intent.getStringExtra(SearchManager.QUERY);
             if (query != null) {
                 searchIntent.putExtra(SearchManager.QUERY, query);
             }
-            //- android.speech.RecognizerIntent.EXTRA_RESULTS
-            ArrayList<String> extraResults =
-                    intent.getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS);
+            // - android.speech.RecognizerIntent.EXTRA_RESULTS
+            ArrayList<String> extraResults = intent
+                    .getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS);
             if (extraResults != null) {
                 searchIntent.putStringArrayListExtra(
                         android.speech.RecognizerIntent.EXTRA_RESULTS, extraResults);
             }
             startActivityForResult(searchIntent, INTENT_REQUEST_SEARCH);
+            return;
+        }
+
+        // Set home directory action
+        if (FileManagerSettings.INTENT_SET_HOME.equals(intent.getAction())) {
+            String path = null;
+            Uri data = intent.getData();
+            if (data != null) {
+                path = data.getPath();
+            }
+            if (path == null) {
+                path = intent.getStringExtra(EXTRA_NAVIGATE_TO);
+            }
+
+            if (path != null) {
+                File f = new File(path);
+                if (f.exists() && f.isDirectory()) {
+                    try {
+                        Preferences.savePreference(FileManagerSettings.SETTINGS_INITIAL_DIR, f.getAbsolutePath(), true);
+                        DialogHelper.showToast(this, "Home directory saved", Toast.LENGTH_SHORT);
+                    } catch (Exception ex) {
+                        DialogHelper.showToast(this, "Failed to save home directory", Toast.LENGTH_SHORT);
+                        Log.e(TAG, "Failed to save home directory", ex);
+                    }
+                } else {
+                    DialogHelper.showToast(this, "Directory does not exist", Toast.LENGTH_SHORT);
+                }
+            }
             return;
         }
     }
@@ -2109,71 +2106,71 @@ public class NavigationActivity extends Activity
      */
     public void onActionBarItemClick(View view) {
         switch (view.getId()) {
-            //######################
-            //Navigation Custom Title
-            //######################
+            // ######################
+            // Navigation Custom Title
+            // ######################
             case R.id.ab_configuration:
-                //Show navigation view configuration toolbar
+                // Show navigation view configuration toolbar
                 getCurrentNavigationView().getCustomTitle().showConfigurationView();
                 break;
             case R.id.ab_close:
-                //Hide navigation view configuration toolbar
+                // Hide navigation view configuration toolbar
                 getCurrentNavigationView().getCustomTitle().hideConfigurationView();
                 break;
 
-            //######################
-            //Breadcrumb Actions
-            //######################
+            // ######################
+            // Breadcrumb Actions
+            // ######################
             case R.id.ab_filesystem_info:
-                //Show information of the filesystem
+                // Show information of the filesystem
                 MountPoint mp = getCurrentNavigationView().getBreadcrumb().getMountPointInfo();
                 DiskUsage du = getCurrentNavigationView().getBreadcrumb().getDiskUsageInfo();
                 showMountPointInfo(mp, du);
                 break;
 
-            //######################
-            //Navigation view options
-            //######################
+            // ######################
+            // Navigation view options
+            // ######################
             case R.id.ab_sort_mode:
                 showSettingsPopUp(view,
                         Arrays.asList(
-                                new FileManagerSettings[]{
-                                        FileManagerSettings.SETTINGS_SORT_MODE}));
+                                new FileManagerSettings[] {
+                                        FileManagerSettings.SETTINGS_SORT_MODE }));
                 break;
             case R.id.ab_layout_mode:
                 showSettingsPopUp(view,
                         Arrays.asList(
-                                new FileManagerSettings[]{
-                                        FileManagerSettings.SETTINGS_LAYOUT_MODE}));
+                                new FileManagerSettings[] {
+                                        FileManagerSettings.SETTINGS_LAYOUT_MODE }));
                 break;
             case R.id.ab_view_options:
                 // If we are in ChRooted mode, then don't show non-secure items
                 if (this.mChRooted) {
                     showSettingsPopUp(view,
-                            Arrays.asList(new FileManagerSettings[]{
-                                    FileManagerSettings.SETTINGS_SHOW_DIRS_FIRST}));
+                            Arrays.asList(new FileManagerSettings[] {
+                                    FileManagerSettings.SETTINGS_SHOW_DIRS_FIRST }));
                 } else {
                     showSettingsPopUp(view,
-                            Arrays.asList(new FileManagerSettings[]{
+                            Arrays.asList(new FileManagerSettings[] {
                                     FileManagerSettings.SETTINGS_SHOW_DIRS_FIRST,
                                     FileManagerSettings.SETTINGS_SHOW_HIDDEN,
                                     FileManagerSettings.SETTINGS_SHOW_SYSTEM,
-                                    FileManagerSettings.SETTINGS_SHOW_SYMLINKS}));
+                                    FileManagerSettings.SETTINGS_SHOW_SYMLINKS }));
                 }
 
                 break;
 
-            //######################
-            //Selection Actions
-            //######################
+            // ######################
+            // Selection Actions
+            // ######################
             case R.id.ab_selection_done:
-                //Show information of the filesystem
+                // Show information of the filesystem
                 getCurrentNavigationView().onDeselectAll();
                 break;
 
-            //######################
-            //Action Bar buttons
-            //######################
+            // ######################
+            // Action Bar buttons
+            // ######################
             case R.id.ab_actions:
                 openActionsDialog(getCurrentNavigationView().getCurrentDir(),
                         true);
@@ -2205,25 +2202,23 @@ public class NavigationActivity extends Activity
             switch (requestCode) {
                 case INTENT_REQUEST_SEARCH:
                     if (resultCode == RESULT_OK) {
-                        //Change directory?
+                        // Change directory?
                         Bundle bundle = data.getExtras();
                         if (bundle != null) {
                             FileSystemObject fso = (FileSystemObject) bundle.getSerializable(
                                     EXTRA_SEARCH_ENTRY_SELECTION);
-                            SearchInfoParcelable searchInfo =
-                                    bundle.getParcelable(EXTRA_SEARCH_LAST_SEARCH_DATA);
+                            SearchInfoParcelable searchInfo = bundle.getParcelable(EXTRA_SEARCH_LAST_SEARCH_DATA);
                             if (fso != null) {
-                                //Goto to new directory
+                                // Goto to new directory
                                 getCurrentNavigationView().open(fso, searchInfo);
                                 performHideEasyMode();
                                 mDisplayingSearchResults = true;
                             }
                         }
                     } else if (resultCode == RESULT_CANCELED) {
-                        SearchInfoParcelable searchInfo =
-                                data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
+                        SearchInfoParcelable searchInfo = data.getParcelableExtra(EXTRA_SEARCH_LAST_SEARCH_DATA);
                         if (searchInfo != null && searchInfo.isSuccessNavigation()) {
-                            //Navigate to previous history
+                            // Navigate to previous history
                             back();
                         } else {
                             // I don't know is the search view was changed, so try to do a refresh
@@ -2247,7 +2242,7 @@ public class NavigationActivity extends Activity
      */
     @Override
     public void onNewHistory(HistoryNavigable navigable) {
-        //Recollect information about current status
+        // Recollect information about current status
         History history = new History(this.mHistory.size(), navigable);
         this.mHistory.add(history);
         if (!shouldAddHistory(navigable)) {
@@ -2274,7 +2269,7 @@ public class NavigationActivity extends Activity
     public void onRequestRefresh(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             // Refresh only the item
-            this.getCurrentNavigationView().refresh((FileSystemObject)o);
+            this.getCurrentNavigationView().refresh((FileSystemObject) o);
         } else if (o == null) {
             // Refresh all
             getCurrentNavigationView().refresh();
@@ -2304,10 +2299,10 @@ public class NavigationActivity extends Activity
     public void onRequestRemove(Object o, boolean clearSelection) {
         if (o instanceof FileSystemObject) {
             // Remove from view
-            this.getCurrentNavigationView().removeItem((FileSystemObject)o);
+            this.getCurrentNavigationView().removeItem((FileSystemObject) o);
 
-            //Remove from history
-            removeFromHistory((FileSystemObject)o);
+            // Remove from history
+            removeFromHistory((FileSystemObject) o);
         } else {
             onRequestRefresh(null, clearSelection);
         }
@@ -2325,7 +2320,7 @@ public class NavigationActivity extends Activity
     }
 
     @Override
-    public void onCancel(){
+    public void onCancel() {
         // nop
     }
 
@@ -2347,34 +2342,34 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that shows a popup with a menu associated a {@link FileManagerSettings}.
+     * Method that shows a popup with a menu associated a
+     * {@link FileManagerSettings}.
      *
-     * @param anchor The action button that was pressed
+     * @param anchor   The action button that was pressed
      * @param settings The array of settings associated with the action button
      */
     private void showSettingsPopUp(View anchor, List<FileManagerSettings> settings) {
-        //Create the adapter
+        // Create the adapter
         final MenuSettingsAdapter adapter = new MenuSettingsAdapter(this, settings);
 
-        //Create a show the popup menu
+        // Create a show the popup menu
         mPopupWindow = DialogHelper.createListPopupWindow(this, adapter, anchor);
         mPopupWindow.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                FileManagerSettings setting =
-                        ((MenuSettingsAdapter)parent.getAdapter()).getSetting(position);
-                final int value = ((MenuSettingsAdapter)parent.getAdapter()).getId(position);
+                FileManagerSettings setting = ((MenuSettingsAdapter) parent.getAdapter()).getSetting(position);
+                final int value = ((MenuSettingsAdapter) parent.getAdapter()).getId(position);
                 mPopupWindow.dismiss();
                 mPopupWindow = null;
                 try {
                     if (setting.compareTo(FileManagerSettings.SETTINGS_LAYOUT_MODE) == 0) {
-                        //Need to change the layout
+                        // Need to change the layout
                         getCurrentNavigationView().changeViewMode(
                                 NavigationLayoutMode.fromId(value));
                     } else {
-                        //Save and refresh
+                        // Save and refresh
                         if (setting.getDefaultValue() instanceof Enum<?>) {
-                            //Enumeration
+                            // Enumeration
                             Preferences.savePreference(setting, new ObjectIdentifier() {
                                 @Override
                                 public int getId() {
@@ -2382,12 +2377,10 @@ public class NavigationActivity extends Activity
                                 }
                             }, false);
                         } else {
-                            //Boolean
-                            boolean newval =
-                                    Preferences.getSharedPreferences().
-                                        getBoolean(
-                                            setting.getId(),
-                                            ((Boolean)setting.getDefaultValue()).booleanValue());
+                            // Boolean
+                            boolean newval = Preferences.getSharedPreferences().getBoolean(
+                                    setting.getId(),
+                                    ((Boolean) setting.getDefaultValue()).booleanValue());
                             Preferences.savePreference(setting, Boolean.valueOf(!newval), false);
                         }
                         getCurrentNavigationView().refresh();
@@ -2427,24 +2420,23 @@ public class NavigationActivity extends Activity
      * @param du The disk usage of the mount point
      */
     private void showMountPointInfo(MountPoint mp, DiskUsage du) {
-        //Has mount point info?
+        // Has mount point info?
         if (mp == null) {
-            //There is no information
-            AlertDialog alert =
-                    DialogHelper.createWarningDialog(
-                            this,
-                            R.string.filesystem_info_warning_title,
-                            R.string.filesystem_info_warning_msg);
+            // There is no information
+            AlertDialog alert = DialogHelper.createWarningDialog(
+                    this,
+                    R.string.filesystem_info_warning_title,
+                    R.string.filesystem_info_warning_msg);
             DialogHelper.delegateDialogShow(this, alert);
             return;
         }
 
-        //Show a the filesystem info dialog
+        // Show a the filesystem info dialog
         FilesystemInfoDialog dialog = new FilesystemInfoDialog(this, mp, du);
         dialog.setOnMountListener(new OnMountListener() {
             @Override
             public void onRemount(MountPoint mountPoint) {
-                //Update the statistics of breadcrumb, only if mount point is the same
+                // Update the statistics of breadcrumb, only if mount point is the same
                 Breadcrumb breadcrumb = getCurrentNavigationView().getBreadcrumb();
                 if (breadcrumb.getMountPointInfo().compareTo(mountPoint) == 0) {
                     breadcrumb.updateMountPointInfo();
@@ -2469,20 +2461,21 @@ public class NavigationActivity extends Activity
      */
     private boolean checkBackAction() {
         // We need a basic structure to check this
-        if (getCurrentNavigationView() == null) return false;
+        if (getCurrentNavigationView() == null)
+            return false;
 
         if (mSearchView.getVisibility() == View.VISIBLE) {
             closeSearch();
         }
 
-        //Check if the configuration view is showing. In this case back
-        //action must be "close configuration"
+        // Check if the configuration view is showing. In this case back
+        // action must be "close configuration"
         if (getCurrentNavigationView().getCustomTitle().isConfigurationViewShowing()) {
             getCurrentNavigationView().getCustomTitle().restoreView();
             return true;
         }
 
-        //Do back operation over the navigation history
+        // Do back operation over the navigation history
         boolean flag = this.mExitFlag;
 
         this.mExitFlag = !back();
@@ -2490,11 +2483,11 @@ public class NavigationActivity extends Activity
         // Retrieve if the exit status timeout has expired
         long now = System.currentTimeMillis();
         boolean timeout = (this.mExitBackTimeout == -1 ||
-                            (now - this.mExitBackTimeout) > RELEASE_EXIT_CHECK_TIMEOUT);
+                (now - this.mExitBackTimeout) > RELEASE_EXIT_CHECK_TIMEOUT);
 
-        //Check if there no history and if the user was advised in the last back action
+        // Check if there no history and if the user was advised in the last back action
         if (this.mExitFlag && (this.mExitFlag != flag || timeout)) {
-            //Communicate the user that the next time the application will be closed
+            // Communicate the user that the next time the application will be closed
             this.mExitBackTimeout = System.currentTimeMillis();
             DialogHelper.showToast(this, R.string.msgs_push_again_to_exit, Toast.LENGTH_SHORT);
             if (mNeedsEasyMode) {
@@ -2504,7 +2497,7 @@ public class NavigationActivity extends Activity
             }
         }
 
-        //Back action not applied
+        // Back action not applied
         return !this.mExitFlag;
     }
 
@@ -2535,14 +2528,14 @@ public class NavigationActivity extends Activity
     /**
      * Method that navigates to the passed history reference.
      *
-     * @param history The history reference
+     * @param history            The history reference
      * @param isFromSavedHistory Whether this is called by saved history item
      * @return boolean A problem occurs while navigate
      */
     public synchronized boolean navigateToHistory(
             History history, boolean isFromSavedHistory) {
         try {
-            //Gets the history
+            // Gets the history
             final History realHistory;
             if (isFromSavedHistory) {
                 realHistory = mHistorySaved.get(history.getPosition());
@@ -2550,11 +2543,10 @@ public class NavigationActivity extends Activity
                 realHistory = mHistory.get(history.getPosition());
             }
 
-            //Navigate to item. Check what kind of history is
+            // Navigate to item. Check what kind of history is
             if (realHistory.getItem() instanceof NavigationViewInfoParcelable) {
-                //Navigation
-                NavigationViewInfoParcelable info =
-                        (NavigationViewInfoParcelable)realHistory.getItem();
+                // Navigation
+                NavigationViewInfoParcelable info = (NavigationViewInfoParcelable) realHistory.getItem();
                 int viewId = info.getId();
                 NavigationView view = getNavigationView(viewId);
                 // Selected items must not be restored from on history navigation
@@ -2564,11 +2556,11 @@ public class NavigationActivity extends Activity
                 }
 
             } else if (realHistory.getItem() instanceof SearchInfoParcelable) {
-                //Search (open search with the search results)
-                SearchInfoParcelable info = (SearchInfoParcelable)realHistory.getItem();
+                // Search (open search with the search results)
+                SearchInfoParcelable info = (SearchInfoParcelable) realHistory.getItem();
                 Intent searchIntent = new Intent(this, SearchActivity.class);
                 searchIntent.setAction(SearchActivity.ACTION_RESTORE);
-                searchIntent.putExtra(SearchActivity.EXTRA_SEARCH_RESTORE, (Parcelable)info);
+                searchIntent.putExtra(SearchActivity.EXTRA_SEARCH_RESTORE, (Parcelable) info);
                 startActivityForResult(searchIntent, INTENT_REQUEST_SEARCH);
             } else if (realHistory.getItem() instanceof HistoryItem) {
                 final String path = realHistory.getItem().getDescription();
@@ -2582,11 +2574,11 @@ public class NavigationActivity extends Activity
                     mDrawerLayout.closeDrawer(Gravity.START);
                 }
             } else {
-                //The type is unknown
+                // The type is unknown
                 throw new IllegalArgumentException("Unknown history type"); //$NON-NLS-1$
             }
 
-            //Remove the old history
+            // Remove the old history
             int cc = realHistory.getPosition();
             for (int i = this.mHistory.size() - 1; i >= cc; i--) {
                 this.mHistory.remove(i);
@@ -2596,9 +2588,8 @@ public class NavigationActivity extends Activity
                 mDrawerHistoryEmpty.setVisibility(View.VISIBLE);
             }
 
-            //Navigate
-            final boolean clearHistory =
-                    mHistoryTab.isSelected() && mHistorySaved.size() > 0;
+            // Navigate
+            final boolean clearHistory = mHistoryTab.isSelected() && mHistorySaved.size() > 0;
             mClearHistory.setVisibility(clearHistory ? View.VISIBLE : View.GONE);
             return true;
 
@@ -2607,7 +2598,8 @@ public class NavigationActivity extends Activity
                 Log.e(TAG,
                         String.format("Failed to navigate to history %d: %s", //$NON-NLS-1$
                                 Integer.valueOf(history.getPosition()),
-                                history.getItem().getTitle()), ex);
+                                history.getItem().getTitle()),
+                        ex);
             } else {
                 Log.e(TAG,
                         String.format("Failed to navigate to history: null", ex)); //$NON-NLS-1$
@@ -2621,7 +2613,7 @@ public class NavigationActivity extends Activity
                 }
             });
 
-            //Not change directory
+            // Not change directory
             return false;
         }
     }
@@ -2637,7 +2629,7 @@ public class NavigationActivity extends Activity
             History h = this.mHistory.get(this.mHistory.size() - 1);
             if (h.getItem() instanceof NavigationViewInfoParcelable) {
                 // Verify that the path exists
-                String path = ((NavigationViewInfoParcelable)h.getItem()).getCurrentDir();
+                String path = ((NavigationViewInfoParcelable) h.getItem()).getCurrentDir();
 
                 try {
                     FileSystemObject info = CommandHelper.getFileInfo(this, path, null);
@@ -2654,12 +2646,12 @@ public class NavigationActivity extends Activity
             }
         }
 
-        //Navigate to history
+        // Navigate to history
         if (this.mHistory.size() > 0) {
             return navigateToHistory(mHistory.get(mHistory.size() - 1), false);
         }
 
-        //Nothing to apply
+        // Nothing to apply
         mClearHistory.setVisibility(View.GONE);
         return false;
     }
@@ -2689,12 +2681,14 @@ public class NavigationActivity extends Activity
     /**
      * Method that opens the actions dialog
      *
-     * @param item The path or the {@link FileSystemObject}
+     * @param item   The path or the {@link FileSystemObject}
      * @param global If the menu to display is the one with global actions
      */
     private void openActionsDialog(FileSystemObject item, boolean global) {
-        // We used to refresh the item reference here, but the access to the SecureConsole is synchronized,
-        // which can/will cause on ANR in certain scenarios.  We don't care if it doesn't exist anymore really
+        // We used to refresh the item reference here, but the access to the
+        // SecureConsole is synchronized,
+        // which can/will cause on ANR in certain scenarios. We don't care if it doesn't
+        // exist anymore really
         // For this to work, SecureConsole NEEDS to be refactored.
 
         // Show the dialog
@@ -2741,7 +2735,7 @@ public class NavigationActivity extends Activity
     private void removeFromHistory(FileSystemObject fso) {
         if (this.mHistory != null) {
             int cc = this.mHistory.size() - 1;
-            for (int i = cc; i >= 0 ; i--) {
+            for (int i = cc; i >= 0; i--) {
                 History history = this.mHistory.get(i);
                 if (history.getItem() instanceof NavigationViewInfoParcelable) {
                     String p0 = fso.getFullPath();
@@ -2763,7 +2757,7 @@ public class NavigationActivity extends Activity
      */
     private void updateHistoryPositions() {
         int cc = this.mHistory.size() - 1;
-        for (int i = 0; i <= cc ; i++) {
+        for (int i = 0; i <= cc; i++) {
             History history = this.mHistory.get(i);
             history.setPosition(i + 1);
         }
@@ -2771,12 +2765,12 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that ask the user to change the access mode prior to crash.
+     * 
      * @hide
      */
     void askOrExit() {
-        //Show a dialog asking the user
-        AlertDialog dialog =
-            DialogHelper.createYesNoDialog(
+        // Show a dialog asking the user
+        AlertDialog dialog = DialogHelper.createYesNoDialog(
                 this,
                 R.string.msgs_change_to_prompt_access_mode_title,
                 R.string.msgs_change_to_prompt_access_mode_msg,
@@ -2813,18 +2807,21 @@ public class NavigationActivity extends Activity
                             exit();
                         }
                     }
-               });
+                });
         DialogHelper.delegateDialogShow(this, dialog);
     }
 
     /**
-     * Method that creates a ChRooted environment, protecting the user to break anything in
+     * Method that creates a ChRooted environment, protecting the user to break
+     * anything in
      * the device
+     * 
      * @hide
      */
     void createChRooted() {
         // If we are in a ChRooted mode, then do nothing
-        if (this.mChRooted) return;
+        if (this.mChRooted)
+            return;
         this.mChRooted = true;
 
         int cc = this.mNavigationViews.length;
@@ -2844,11 +2841,13 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that exits from a ChRooted
+     * 
      * @hide
      */
     void exitChRooted() {
         // If we aren't in a ChRooted mode, then do nothing
-        if (!this.mChRooted) return;
+        if (!this.mChRooted)
+            return;
         this.mChRooted = false;
 
         int cc = this.mNavigationViews.length;
@@ -2859,6 +2858,7 @@ public class NavigationActivity extends Activity
 
     /**
      * Method called when a controlled exit is required
+     * 
      * @hide
      */
     void exit() {
@@ -2876,17 +2876,18 @@ public class NavigationActivity extends Activity
         try {
             FileManagerApplication.destroyBackgroundConsole();
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
         try {
             ConsoleBuilder.destroyConsole();
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
     }
 
     /**
-     * Method that reconfigures the layout for better fit in portrait and landscape modes
+     * Method that reconfigures the layout for better fit in portrait and landscape
+     * modes
      */
     private void onLayoutChanged() {
         Theme theme = ThemeManager.getCurrentTheme(this);
@@ -2894,7 +2895,8 @@ public class NavigationActivity extends Activity
 
         // Apply only when the orientation was changed
         int orientation = getResources().getConfiguration().orientation;
-        if (this.mOrientation == orientation) return;
+        if (this.mOrientation == orientation)
+            return;
         this.mOrientation = orientation;
 
         // imitate a closed drawer while layout is rebuilt to avoid NullPointerException
@@ -2904,14 +2906,14 @@ public class NavigationActivity extends Activity
 
         if (this.mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             // Landscape mode
-            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            ViewGroup statusBar = (ViewGroup) findViewById(R.id.navigation_statusbar);
             if (statusBar.getParent() != null) {
                 ViewGroup parent = (ViewGroup) statusBar.getParent();
                 parent.removeView(statusBar);
             }
 
             // Calculate the action button size (all the buttons must fit in the title bar)
-            int bw = (int)getResources().getDimension(R.dimen.default_buttom_width);
+            int bw = (int) getResources().getDimension(R.dimen.default_buttom_width);
             int abw = this.mActionBar.getChildCount() * bw;
             int rbw = 0;
             int cc = statusBar.getChildCount();
@@ -2925,11 +2927,10 @@ public class NavigationActivity extends Activity
             int w = abw + rbw - bw;
 
             // Add to the new location
-            ViewGroup newParent = (ViewGroup)findViewById(R.id.navigation_title_landscape_holder);
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(
-                            w,
-                            ViewGroup.LayoutParams.MATCH_PARENT);
+            ViewGroup newParent = (ViewGroup) findViewById(R.id.navigation_title_landscape_holder);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    w,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
             statusBar.setLayoutParams(params);
             newParent.addView(statusBar);
 
@@ -2942,19 +2943,18 @@ public class NavigationActivity extends Activity
 
         } else {
             // Portrait mode
-            ViewGroup statusBar = (ViewGroup)findViewById(R.id.navigation_statusbar);
+            ViewGroup statusBar = (ViewGroup) findViewById(R.id.navigation_statusbar);
             if (statusBar.getParent() != null) {
                 ViewGroup parent = (ViewGroup) statusBar.getParent();
                 parent.removeView(statusBar);
             }
 
             // Add to the new location
-            ViewGroup newParent = (ViewGroup)findViewById(
+            ViewGroup newParent = (ViewGroup) findViewById(
                     R.id.navigation_statusbar_portrait_holder);
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT);
             statusBar.setLayoutParams(params);
             newParent.addView(statusBar);
 
@@ -2972,18 +2972,17 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that removes all the history items that refers to virtual unmounted filesystems
+     * Method that removes all the history items that refers to virtual unmounted
+     * filesystems
      */
     private void removeUnmountedHistory() {
         int cc = mHistory.size() - 1;
         for (int i = cc; i >= 0; i--) {
             History history = mHistory.get(i);
             if (history.getItem() instanceof NavigationViewInfoParcelable) {
-                NavigationViewInfoParcelable navigableInfo =
-                        ((NavigationViewInfoParcelable) history.getItem());
-                VirtualMountPointConsole vc =
-                        VirtualMountPointConsole.getVirtualConsoleForPath(
-                                navigableInfo.getCurrentDir());
+                NavigationViewInfoParcelable navigableInfo = ((NavigationViewInfoParcelable) history.getItem());
+                VirtualMountPointConsole vc = VirtualMountPointConsole.getVirtualConsoleForPath(
+                        navigableInfo.getCurrentDir());
                 if (vc != null && !vc.isMounted()) {
                     mHistory.remove(i);
                     mDrawerHistory.removeViewAt(mDrawerHistory.getChildCount() - i - 1);
@@ -2996,7 +2995,8 @@ public class NavigationActivity extends Activity
     }
 
     /**
-     * Method that removes all the selection items that refers to virtual unmounted filesystems
+     * Method that removes all the selection items that refers to virtual unmounted
+     * filesystems
      */
     private void removeUnmountedSelection() {
         for (NavigationView view : mNavigationViews) {
@@ -3007,6 +3007,7 @@ public class NavigationActivity extends Activity
 
     /**
      * Method that applies the current theme to the activity
+     * 
      * @hide
      */
     void applyTheme() {
@@ -3021,11 +3022,11 @@ public class NavigationActivity extends Activity
             mDrawerLayout.closeDrawer(Gravity.START);
         }
 
-        //- Layout
+        // - Layout
         View v = findViewById(R.id.navigation_layout);
         theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$
 
-        //- ActionBar
+        // - ActionBar
         theme.setTitlebarDrawable(this, getActionBar(), "titlebar_drawable"); //$NON-NLS-1$
 
         // Hackery to theme search view
@@ -3056,7 +3057,7 @@ public class NavigationActivity extends Activity
         mCustomTitleView = (NavigationCustomTitleView) findViewById(R.id.navigation_title_flipper);
         mCustomTitleView.setVisibility(View.VISIBLE);
 
-        //- StatusBar
+        // - StatusBar
         v = findViewById(R.id.navigation_statusbar);
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             theme.setBackgroundDrawable(this, v, "titlebar_drawable"); //$NON-NLS-1$
@@ -3064,46 +3065,46 @@ public class NavigationActivity extends Activity
             theme.setBackgroundDrawable(this, v, "statusbar_drawable"); //$NON-NLS-1$
         }
         v = findViewById(R.id.ab_overflow);
-        theme.setImageDrawable(this, (ImageView)v, "ab_overflow_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_overflow_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_actions);
-        theme.setImageDrawable(this, (ImageView)v, "ab_actions_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_actions_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_search);
-        theme.setImageDrawable(this, (ImageView)v, "ab_search_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_search_drawable"); //$NON-NLS-1$
 
-        //- Expanders
+        // - Expanders
         v = findViewById(R.id.ab_configuration);
-        theme.setImageDrawable(this, (ImageView)v, "expander_open_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "expander_open_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_close);
-        theme.setImageDrawable(this, (ImageView)v, "expander_close_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "expander_close_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_sort_mode);
-        theme.setImageDrawable(this, (ImageView)v, "ab_sort_mode_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_sort_mode_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_layout_mode);
-        theme.setImageDrawable(this, (ImageView)v, "ab_layout_mode_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_layout_mode_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_view_options);
-        theme.setImageDrawable(this, (ImageView)v, "ab_view_options_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_view_options_drawable"); //$NON-NLS-1$
 
-        //- SelectionBar
+        // - SelectionBar
         v = findViewById(R.id.navigation_selectionbar);
         theme.setBackgroundDrawable(this, v, "selectionbar_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.ab_selection_done);
-        theme.setImageDrawable(this, (ImageView)v, "ab_selection_done_drawable"); //$NON-NLS-1$
+        theme.setImageDrawable(this, (ImageView) v, "ab_selection_done_drawable"); //$NON-NLS-1$
         v = findViewById(R.id.navigation_status_selection_label);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
 
         // - Navigation drawer
         v = findViewById(R.id.history_empty);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
 
-        for (int i=0; i<mDrawerHistory.getChildCount(); i++) {
+        for (int i = 0; i < mDrawerHistory.getChildCount(); i++) {
             View item = mDrawerHistory.getChildAt(i);
 
             v = item.findViewById(R.id.history_item_name);
-            theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+            theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
             v = item.findViewById(R.id.history_item_directory);
-            theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+            theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
         }
 
-        //- NavigationView
+        // - NavigationView
         int cc = this.mNavigationViews.length;
         for (int i = 0; i < cc; i++) {
             getNavigationView(i).applyTheme();
@@ -3126,9 +3127,9 @@ public class NavigationActivity extends Activity
         theme.setBackgroundDrawable(this, v, "background_drawable"); //$NON-NLS-1$
 
         v = findViewById(R.id.drawer_bookmarks_tab);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
         v = findViewById(R.id.drawer_history_tab);
-        theme.setTextColor(this, (TextView)v, "text_color"); //$NON-NLS-1$
+        theme.setTextColor(this, (TextView) v, "text_color"); //$NON-NLS-1$
 
         v = findViewById(R.id.ab_settings);
         theme.setImageDrawable(this, (ButtonItem) v, "ab_settings_drawable"); //$NON-NLS-1$
@@ -3155,7 +3156,8 @@ public class NavigationActivity extends Activity
         }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {}
+        public void writeToParcel(Parcel dest, int flags) {
+        }
 
         public String getTitle() {
             return mTitle;

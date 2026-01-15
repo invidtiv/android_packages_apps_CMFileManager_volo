@@ -30,6 +30,7 @@ import java.util.Date;
 
 /**
  * SecureCacheCleanupService
+ * 
  * <pre>
  *    Service that cleans up cache
  * </pre>
@@ -39,11 +40,12 @@ import java.util.Date;
 public class SecureCacheCleanupService extends IntentService {
 
     // Constants
-    private static final String ACTION_START = "com.cyanogenmod.filemanager.ACTION_START_CLEANUP";
+    private static final String ACTION_START = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID
+            + ".ACTION_START_CLEANUP";
     private static final String NAME = "cleanup-service";
 
     /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
+     * Creates an IntentService. Invoked by your subclass's constructor.
      */
     public SecureCacheCleanupService() {
         super(NAME);

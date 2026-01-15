@@ -33,6 +33,7 @@ import java.util.Map;
 
 /**
  * MimeTypeIndexService
+ * 
  * <pre>
  *    Service intended to index space used by mime type
  * </pre>
@@ -43,7 +44,7 @@ public class MimeTypeIndexService extends IntentService {
 
     // Constants
     private static final String TAG = MimeTypeIndexService.class.getSimpleName();
-    public static final String ACTION_START_INDEX = "com.cyanogenmod.filemanager" +
+    public static final String ACTION_START_INDEX = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID +
             ".ACTION_START_INDEX";
     public static final String EXTRA_FILE_ROOT = "extra_file_root";
 
@@ -86,8 +87,7 @@ public class MimeTypeIndexService extends IntentService {
         Log.i(TAG, "Starting mime type usage indexing on '" + fileRoot + "'");
         fileRoot = fileRoot.trim();
         File rootFile = new File(fileRoot);
-        Map<MimeTypeCategory, Long> spaceCalculationMap =
-                new HashMap<MimeTypeCategory, Long>();
+        Map<MimeTypeCategory, Long> spaceCalculationMap = new HashMap<MimeTypeCategory, Long>();
         calculateUsageByType(rootFile, spaceCalculationMap);
         ContentValues[] valuesList = new ContentValues[spaceCalculationMap.keySet().size()];
         int i = 0;
@@ -157,8 +157,7 @@ public class MimeTypeIndexService extends IntentService {
      *
      * @throws IllegalArgumentException {@link java.lang.IllegalArgumentException}
      */
-    public static void indexFileRoot(Context context, String fileRoot) throws
-            IllegalArgumentException {
+    public static void indexFileRoot(Context context, String fileRoot) throws IllegalArgumentException {
         if (context == null) {
             throw new IllegalArgumentException("'context' cannot be null");
         }

@@ -33,6 +33,7 @@ import static android.content.UriMatcher.NO_MATCH;
 
 /**
  * MimeTypeIndexProvider
+ * 
  * <pre>
  *     Provider for handling access of mime type indexes
  * </pre>
@@ -43,7 +44,7 @@ public class MimeTypeIndexProvider extends ContentProvider {
 
     // Constants
     private static final String TAG = MimeTypeIndexProvider.class.getSimpleName();
-    private static final String AUTHORITY = "com.cyanogenmod.filemanager.providers.index";
+    private static final String AUTHORITY = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID + ".providers.index";
     private static final int ID_INDEX = 1;
     private static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" +
             DatabaseHelper.INDEX_TABLE);
@@ -54,8 +55,7 @@ public class MimeTypeIndexProvider extends ContentProvider {
     public static final String COLUMN_SIZE = "size";
 
     public static Uri getContentUri() {
-        return new Uri.Builder().scheme("content").authority(AUTHORITY).path
-                (DatabaseHelper.INDEX_TABLE).build();
+        return new Uri.Builder().scheme("content").authority(AUTHORITY).path(DatabaseHelper.INDEX_TABLE).build();
     }
 
     static {
@@ -130,8 +130,7 @@ public class MimeTypeIndexProvider extends ContentProvider {
     }
 
     @Override
-    public int update(Uri uri, ContentValues contentValues, String selection, String[]
-            selectionArgs) {
+    public int update(Uri uri, ContentValues contentValues, String selection, String[] selectionArgs) {
         throw new RuntimeException("MimeTypeIndexProvider::update(): Not implemented!");
     }
 
@@ -181,8 +180,7 @@ public class MimeTypeIndexProvider extends ContentProvider {
      *
      * @throws IllegalArgumentException {@link java.lang.IllegalArgumentException}
      */
-    public static Cursor getMountPointUsage(Context context, String fileRoot) throws
-            IllegalArgumentException {
+    public static Cursor getMountPointUsage(Context context, String fileRoot) throws IllegalArgumentException {
         if (context == null) {
             throw new IllegalArgumentException("'context' cannot be null!");
         }
@@ -206,15 +204,14 @@ public class MimeTypeIndexProvider extends ContentProvider {
      *
      * @throws IllegalArgumentException {@link java.lang.IllegalArgumentException}
      */
-    public static int clearMountPointUsages(Context context, String fileRoot)  throws
-            IllegalArgumentException {
+    public static int clearMountPointUsages(Context context, String fileRoot) throws IllegalArgumentException {
         if (context == null) {
             throw new IllegalArgumentException("'context' cannot be null!");
         }
         if (TextUtils.isEmpty(fileRoot)) {
             throw new IllegalArgumentException("'fileRoot' cannot be null or empty!");
         }
-                String selection = COLUMN_FILE_ROOT + " = ?";
+        String selection = COLUMN_FILE_ROOT + " = ?";
         String[] selectionArgs = new String[] { fileRoot };
         return context.getContentResolver().delete(MimeTypeIndexProvider.getContentUri(), selection, selectionArgs);
     }
