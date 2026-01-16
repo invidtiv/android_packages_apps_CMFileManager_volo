@@ -4,6 +4,59 @@ LineageOS File Manager
 A file manager for AOSP, focused on rooted devices and specially designed
 for the LineageOS Project.
 
+## Project Status & History
+
+This project (the "Volo" fork) represents a revival of the classic CyanogenMod/LineageOS File Manager. After more than **10 years of freeze**, the codebase has been modified and updated to address modern requirements and new features.
+
+Key updates since the "unfreeze":
+- Integration with the **BSLauncher** ecosystem.
+- Enhanced **Intent Support** for automated navigation and folder handling.
+- Modernized build system and SDK targeting (up to Android 13 / SDK 33).
+- Critical bug fixes and feature enhancements to support specialized use cases.
+
+
+## Requirements
+
+- Java 17
+- Android SDK with platform API 33 installed (compileSdkVersion is 33)
+
+## Building
+
+### Command line (Windows)
+
+Debug APK:
+
+```
+./gradlew.bat assembleDebug
+```
+
+Release APK:
+
+```
+./gradlew.bat assembleRelease
+```
+
+APK outputs:
+
+- `build/outputs/apk/debug/`
+- `build/outputs/apk/release/`
+
+### Android Studio
+
+- Open the project folder.
+- Let Gradle sync.
+- Use the `debug` or `release` build variant.
+
+## Documentation
+
+- [Intents Documentation](INTENTS.md) - Details on supported Intent actions and parameters.
+
+## Notes
+
+- minSdkVersion: 23
+- targetSdkVersion: 33
+- This app requests legacy external storage behavior via `android:requestLegacyExternalStorage="true"`.
+
 This source was released under the terms of
 [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0.html) license.
 

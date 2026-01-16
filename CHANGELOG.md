@@ -1,5 +1,12 @@
-LineageOS File Manager
-========================
+Version 3.5.1
+-------------
+* Automatically set home folder when opening directory via intent with "resource/folder" type.
+* Bump version to 3.5.1.
+
+Version 3.0.1
+-------------
+* Initial forked version for BSLauncher.
+* Integration with BSLauncher mode cycling.
 
 Version 2.0.0
 -------------

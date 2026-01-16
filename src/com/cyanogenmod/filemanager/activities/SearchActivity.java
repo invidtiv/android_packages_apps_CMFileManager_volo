@@ -1497,7 +1497,7 @@ public class SearchActivity extends Activity
 
         @Override
         protected void onPostExecute(List<DataHolder> results) {
-            if (!isResumed()) {
+            if (SearchActivity.this.isFinishing() || SearchActivity.this.isDestroyed()) {
                 return;
             }
             mAdapterList.clear();

@@ -26,6 +26,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -155,7 +156,7 @@ public class IconHolder {
         private Drawable getImageDrawable(String file) {
             Bitmap thumb = ThumbnailUtils.createImageThumbnail(
                     MediaHelper.normalizeMediaPath(file),
-                    ThumbnailUtils.TARGET_SIZE_MICRO_THUMBNAIL);
+                    MediaStore.Images.Thumbnails.MICRO_KIND);
             if (thumb == null) {
                 return null;
             }
@@ -171,7 +172,7 @@ public class IconHolder {
         private Drawable getVideoDrawable(String file) {
             Bitmap thumb = ThumbnailUtils.createVideoThumbnail(
                     MediaHelper.normalizeMediaPath(file),
-                    ThumbnailUtils.TARGET_SIZE_MICRO_THUMBNAIL);
+                    MediaStore.Video.Thumbnails.MICRO_KIND);
             if (thumb == null) {
                 return null;
             }
@@ -190,7 +191,7 @@ public class IconHolder {
                 return null;
             }
             Bitmap thumb = ThumbnailUtils.createImageThumbnail(path,
-                    ThumbnailUtils.TARGET_SIZE_MICRO_THUMBNAIL);
+                    MediaStore.Images.Thumbnails.MICRO_KIND);
             if (thumb == null) {
                 return null;
             }
@@ -341,8 +342,11 @@ public class IconHolder {
             switch (msg.what) {
                 case MSG_LOAD:
                     Loadable l = (Loadable) msg.obj;
-                    if (l.load()) {
-                        mHandler.obtainMessage(MSG_LOADED, l).sendToTarget();
+                    try {
+                        if (l.load()) {
+                            mHandler.obtainMessage(MSG_LOADED, l).sendToTarget();
+                        }
+                    } catch (RuntimeException ignored) {
                     }
                     break;
             }

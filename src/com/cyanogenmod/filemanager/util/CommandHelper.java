@@ -16,8 +16,8 @@
 
 package com.cyanogenmod.filemanager.util;
 
-import android.annotation.NonNull;
-import android.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaScannerConnection;

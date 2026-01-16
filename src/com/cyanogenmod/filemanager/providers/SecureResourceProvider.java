@@ -54,8 +54,8 @@ public final class SecureResourceProvider extends ContentProvider {
 
     private static final String TAG = "SecureResourceProvider";
 
-    public static final String AUTHORITY =
-            "com.cyanogenmod.filemanager.providers.resources";
+    public static final String AUTHORITY = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID
+            + ".providers.resources";
 
     private static final String CONTENT_AUTHORITY = "content://" + AUTHORITY;
 
@@ -64,7 +64,7 @@ public final class SecureResourceProvider extends ContentProvider {
     private static final String COLUMS_SIZE = OpenableColumns.SIZE;
 
     private static final String[] COLUMN_PROJECTION = {
-        COLUMS_ID, COLUMS_NAME, COLUMS_SIZE
+            COLUMS_ID, COLUMS_NAME, COLUMS_SIZE
     };
 
     public static class AuthorizationResource {
@@ -114,8 +114,9 @@ public final class SecureResourceProvider extends ContentProvider {
         @Override
         public void onPartialResult(Object result) {
             try {
-                if (result == null) return;
-                byte[] partial = (byte[])result;
+                if (result == null)
+                    return;
+                byte[] partial = (byte[]) result;
                 mOut.write(partial);
                 mOut.flush();
             } catch (Exception ex) {
@@ -190,8 +191,8 @@ public final class SecureResourceProvider extends ContentProvider {
     private static final String EXTRA_AUTH_ID = "auth_id";
     private static final Handler CLEAR_AUTH_HANDLER = new Handler(CLEAR_AUTH_CALLBACK);
 
-    private static Map<UUID, AuthorizationResource> AUTHORIZATIONS =
-            (Map<UUID, AuthorizationResource>) Collections.synchronizedMap(
+    private static Map<UUID, AuthorizationResource> AUTHORIZATIONS = (Map<UUID, AuthorizationResource>) Collections
+            .synchronizedMap(
                     new HashMap<UUID, AuthorizationResource>());
 
     private final ExecutorService mExecutorService = Executors.newFixedThreadPool(1);
@@ -214,7 +215,7 @@ public final class SecureResourceProvider extends ContentProvider {
                 AUTHORIZATIONS.put(uuid, resource);
                 break;
             }
-        } while(true);
+        } while (true);
 
         // Post a message to clear authorization after an interval of time
         Message msg = Message.obtain(CLEAR_AUTH_HANDLER, MSG_CLEAR_AUTHORIZATIONS);
@@ -226,8 +227,10 @@ public final class SecureResourceProvider extends ContentProvider {
     }
 
     /**
-     * Method that register the {@link FileSystemObject} that allow external apps to access
-     * private files. An authorization MUST be explicit done by this app. Third party apps
+     * Method that register the {@link FileSystemObject} that allow external apps to
+     * access
+     * private files. An authorization MUST be explicit done by this app. Third
+     * party apps
      * can register
      *
      * @param uri The authorized uri
@@ -271,7 +274,6 @@ public final class SecureResourceProvider extends ContentProvider {
         UUID uuid = UUID.fromString(uri.getLastPathSegment());
         return AUTHORIZATIONS.remove(uuid);
     }
-
 
     @Override
     public boolean onCreate() {
@@ -395,10 +397,11 @@ public final class SecureResourceProvider extends ContentProvider {
     /**
      * Method that returns an authorization for the passed Uri.
      *
-     * @param uri The uri to check
+     * @param uri    The uri to check
      * @param revoke Whether revoke the grant
-     * @return AuthorizationResource The authorization resource or null if not there is not
-     * authorization
+     * @return AuthorizationResource The authorization resource or null if not there
+     *         is not
+     *         authorization
      */
     private static AuthorizationResource getAuthorizacionResourceForUri(Uri uri) {
         UUID uuid = UUID.fromString(uri.getLastPathSegment());

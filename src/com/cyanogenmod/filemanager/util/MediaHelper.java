@@ -20,7 +20,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.UserHandle;
+import android.os.Environment;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.provider.MediaStore.MediaColumns;
@@ -59,24 +59,66 @@ public final class MediaHelper {
      */
     public static Map<String, Long> getAllAlbums(ContentResolver cr) {
         Map<String, Long> albums = new HashMap<String, Long>();
-        final String[] projection =
-                {
-                    "distinct " + MediaStore.Audio.Media.ALBUM_ID,
-                    "substr(" + MediaStore.Audio.Media.DATA + ", 0, length(" +
-                            MediaStore.Audio.Media.DATA + ") - length(" +
-                            MediaStore.Audio.Media.DISPLAY_NAME + "))"
-                };
         final String where = MediaStore.Audio.Media.IS_MUSIC + " = ?";
-        Cursor c = cr.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-                projection, where, new String[]{"1"}, null);
-        if (c != null) {
+        Cursor c = null;
+        try {
             try {
+                final String[] projection = {
+                        MediaStore.Audio.Media.ALBUM_ID,
+                        MediaColumns.RELATIVE_PATH
+                };
+                c = cr.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                        projection, where, new String[]{"1"}, null);
+                if (c != null) {
+                    while (c.moveToNext()) {
+                        long albumId = c.getLong(0);
+                        String relativePath = c.getString(1);
+                        if (!TextUtils.isEmpty(relativePath)) {
+                            String absPath = new File(Environment.getExternalStorageDirectory(),
+                                    relativePath).getAbsolutePath();
+                            albums.put(normalizeMediaPath(absPath), albumId);
+                        }
+                    }
+                }
+                return albums;
+            } catch (RuntimeException ignored) {
+                if (c != null) {
+                    c.close();
+                    c = null;
+                }
+                albums.clear();
+            }
+
+            final String[] projection = {
+                    MediaStore.Audio.Media.ALBUM_ID,
+                    MediaStore.Audio.Media.DATA,
+                    MediaStore.Audio.Media.DISPLAY_NAME
+            };
+            c = cr.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
+                    projection, where, new String[]{"1"}, null);
+            if (c != null) {
                 while (c.moveToNext()) {
                     long albumId = c.getLong(0);
-                    String albumPath = c.getString(1);
-                    albums.put(albumPath, albumId);
+                    String data = c.getString(1);
+                    String displayName = c.getString(2);
+                    if (TextUtils.isEmpty(data)) {
+                        continue;
+                    }
+                    String albumPath;
+                    if (!TextUtils.isEmpty(displayName) && data.endsWith(displayName)) {
+                        albumPath = data.substring(0, data.length() - displayName.length());
+                    } else {
+                        File parent = new File(data).getParentFile();
+                        albumPath = parent != null ? parent.getAbsolutePath() : null;
+                    }
+                    if (!TextUtils.isEmpty(albumPath)) {
+                        albums.put(normalizeMediaPath(albumPath), albumId);
+                    }
                 }
-            } finally {
+            }
+        } catch (RuntimeException ignored) {
+        } finally {
+            if (c != null) {
                 c.close();
             }
         }
@@ -267,7 +309,7 @@ public final class MediaHelper {
         }
         // We need to convert EXTERNAL_STORAGE -> EMULATED_STORAGE_TARGET / userId
         if (path.startsWith(EXTERNAL_STORAGE)) {
-            final String userId = String.valueOf(UserHandle.myUserId());
+            final String userId = String.valueOf(AndroidHelper.getMyUserId());
             final String target = new File(EMULATED_STORAGE_TARGET, userId).getAbsolutePath();
             path = path.replace(EXTERNAL_STORAGE, target);
         }

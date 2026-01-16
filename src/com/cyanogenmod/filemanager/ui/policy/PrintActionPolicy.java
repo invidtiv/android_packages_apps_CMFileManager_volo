@@ -281,7 +281,6 @@ public final class PrintActionPolicy extends ActionsPolicy {
                 .setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT)
                 .setPageCount(calculatePageCount(rowsPerPage))
                 .build();
-            info.setDataSize(size);
             boolean changed = !newAttributes.equals(oldAttributes);
             callback.onLayoutFinished(info, changed);
         }

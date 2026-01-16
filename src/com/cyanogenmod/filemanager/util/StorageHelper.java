@@ -35,6 +35,24 @@ public final class StorageHelper {
 
     private static StorageVolume[] sStorageVolumes;
 
+    public static String getStorageVolumePath(StorageVolume volume) {
+        if (volume == null) {
+            return null;
+        }
+        try {
+            Method method = volume.getClass().getMethod("getPath"); //$NON-NLS-1$
+            return (String) method.invoke(volume);
+        } catch (Exception ignored) {
+        }
+        try {
+            Method method = volume.getClass().getMethod("getDirectory"); //$NON-NLS-1$
+            File dir = (File) method.invoke(volume);
+            return dir != null ? dir.getAbsolutePath() : null;
+        } catch (Exception ignored) {
+        }
+        return null;
+    }
+
     /**
      * Method that returns the storage volumes defined in the system.  This method uses
      * reflection to retrieve the method because CM10 has a {@link Context}
@@ -117,7 +135,7 @@ public final class StorageHelper {
 
         } catch (Throwable _throw) {
             // Returns the volume storage path
-            return volume.getPath();
+            return getStorageVolumePath(volume);
         }
     }
 
@@ -135,7 +153,8 @@ public final class StorageHelper {
         int cc = volumes.length;
         for (int i = 0; i < cc; i++) {
             StorageVolume vol = volumes[i];
-            if (fso.startsWith(vol.getPath())) {
+            String vPath = getStorageVolumePath(vol);
+            if (vPath != null && fso.startsWith(vPath)) {
                 return true;
             }
         }
@@ -156,7 +175,11 @@ public final class StorageHelper {
         for (int i = 0; i < cc; i++) {
             StorageVolume vol = volumes[i];
             String p = new File(path).getAbsolutePath();
-            String v = new File(vol.getPath()).getAbsolutePath();
+            String vPath = getStorageVolumePath(vol);
+            if (vPath == null) {
+                continue;
+            }
+            String v = new File(vPath).getAbsolutePath();
             if (p.compareTo(v) == 0) {
                 return true;
             }
@@ -178,7 +201,11 @@ public final class StorageHelper {
         for (int i = 0; i < cc; i++) {
             StorageVolume vol = volumes[i];
             File p = new File(path);
-            File v = new File(vol.getPath());
+            String vPath = getStorageVolumePath(vol);
+            if (vPath == null) {
+                continue;
+            }
+            File v = new File(vPath);
             if (p.getAbsolutePath().startsWith(v.getAbsolutePath())) {
                 return v.getName() + path.substring(v.getAbsolutePath().length());
             }

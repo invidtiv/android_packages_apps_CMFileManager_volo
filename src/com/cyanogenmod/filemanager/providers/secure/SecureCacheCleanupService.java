@@ -30,6 +30,7 @@ import java.util.Date;
 
 /**
  * SecureCacheCleanupService
+ * 
  * <pre>
  *    Service that cleans up cache
  * </pre>
@@ -39,11 +40,12 @@ import java.util.Date;
 public class SecureCacheCleanupService extends IntentService {
 
     // Constants
-    private static final String ACTION_START = "com.cyanogenmod.filemanager.ACTION_START_CLEANUP";
+    private static final String ACTION_START = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID
+            + ".ACTION_START_CLEANUP";
     private static final String NAME = "cleanup-service";
 
     /**
-     * Creates an IntentService.  Invoked by your subclass's constructor.
+     * Creates an IntentService. Invoked by your subclass's constructor.
      */
     public SecureCacheCleanupService() {
         super(NAME);
@@ -110,7 +112,7 @@ public class SecureCacheCleanupService extends IntentService {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, SecureCacheCleanupService.class);
         intent.setAction(ACTION_START);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME, 1000,
                 AlarmManager.INTERVAL_HOUR, pendingIntent);
     }
@@ -129,7 +131,7 @@ public class SecureCacheCleanupService extends IntentService {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, SecureCacheCleanupService.class);
         intent.setAction(ACTION_START);
-        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.cancel(pendingIntent);
     }
 }

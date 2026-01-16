@@ -19,7 +19,7 @@ package com.cyanogenmod.filemanager.commands.shell;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 
-import com.android.internal.util.XmlUtils;
+import com.cyanogenmod.filemanager.util.XmlUtils;
 import com.cyanogenmod.filemanager.FileManagerApplication;
 import com.cyanogenmod.filemanager.R;
 import com.cyanogenmod.filemanager.console.CommandNotFoundException;
@@ -51,8 +51,8 @@ public abstract class Command {
 
     private final String mId;
     private String mCmd;
-    private String mArgs;   // The real arguments
-    private final Object[] mCmdArgs;  //The arguments to be formatted
+    private String mArgs; // The real arguments
+    private final Object[] mCmdArgs; // The arguments to be formatted
 
     private static String sStartCodeCmd;
     private static String sExitCodeCmd;
@@ -62,10 +62,12 @@ public abstract class Command {
     /**
      * @Constructor of <code>Command</code>
      *
-     * @param id The resource identifier of the command
-     * @param args Arguments of the command (will be formatted with the arguments from
-     * the command definition)
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @param id   The resource identifier of the command
+     * @param args Arguments of the command (will be formatted with the arguments
+     *             from
+     *             the command definition)
+     * @throws InvalidCommandDefinitionException If the command has an invalid
+     *                                           definition
      */
     public Command(String id, String... args) throws InvalidCommandDefinitionException {
         this(id, true, args);
@@ -74,32 +76,33 @@ public abstract class Command {
     /**
      * @Constructor of <code>Command</code>
      *
-     * @param id The resource identifier of the command
+     * @param id      The resource identifier of the command
      * @param prepare Indicates if the argument must be prepared
-     * @param args Arguments of the command (will be formatted with the arguments from
-     * the command definition)
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @param args    Arguments of the command (will be formatted with the arguments
+     *                from
+     *                the command definition)
+     * @throws InvalidCommandDefinitionException If the command has an invalid
+     *                                           definition
      */
     public Command(String id, boolean prepare, String... args)
             throws InvalidCommandDefinitionException {
         super();
         this.mId = id;
 
-        //Convert and quote arguments
+        // Convert and quote arguments
         this.mCmdArgs = new Object[args.length];
         int cc = args.length;
         for (int i = 0; i < cc; i++) {
-            //Quote the arguments?
+            // Quote the arguments?
             if (prepare) {
-                this.mCmdArgs[i] =
-                        "\"" + ShellHelper.prepareArgument(args[i]) //$NON-NLS-1$
+                this.mCmdArgs[i] = "\"" + ShellHelper.prepareArgument(args[i]) //$NON-NLS-1$
                         + "\""; //$NON-NLS-1$
             } else {
                 this.mCmdArgs[i] = ShellHelper.prepareArgument(args[i]);
             }
         }
 
-        //Load the command info
+        // Load the command info
         getCommandInfo(FileManagerApplication.getInstance().getResources());
 
         // Get the current trace value
@@ -111,7 +114,7 @@ public abstract class Command {
      * <code>[@]</code> expression in the <code>commandArgs</code> attribute of the
      * command xml definition file.
      *
-     * @param args The expanded arguments
+     * @param args    The expanded arguments
      * @param prepare Indicates if the argument must be prepared
      */
     protected void addExpandedArguments(String[] args, boolean prepare) {
@@ -122,7 +125,7 @@ public abstract class Command {
             int cc = args.length;
             StringBuffer sb = new StringBuffer();
             for (int i = 0; i < cc; i++) {
-                //Quote the arguments?
+                // Quote the arguments?
                 if (prepare) {
                     sb = sb.append("\"" + //$NON-NLS-1$
                             ShellHelper.prepareArgument(args[i]) + "\""); //$NON-NLS-1$
@@ -135,7 +138,7 @@ public abstract class Command {
 
             // Replace the expanded argument
             String start = this.mArgs.substring(0, pos);
-            String end = this.mArgs.substring(pos+EXPANDED_ARGS.length());
+            String end = this.mArgs.substring(pos + EXPANDED_ARGS.length());
             this.mArgs = start + sb.toString() + end;
         }
     }
@@ -155,16 +158,18 @@ public abstract class Command {
     public final void reloadTrace() {
         this.mTrace = Preferences.getSharedPreferences().getBoolean(
                 FileManagerSettings.SETTINGS_SHOW_TRACES.getId(),
-                ((Boolean)FileManagerSettings.SETTINGS_SHOW_TRACES.getDefaultValue()).booleanValue());
+                ((Boolean) FileManagerSettings.SETTINGS_SHOW_TRACES.getDefaultValue()).booleanValue());
     }
 
     /**
      * Method that checks if the result code of the execution was successfully.
      *
      * @param exitCode Program exit code
-     * @throws InsufficientPermissionsException If an operation requires elevated permissions
-     * @throws CommandNotFoundException If the command was not found
-     * @throws ExecutionException If the operation returns a invalid exit code
+     * @throws InsufficientPermissionsException If an operation requires elevated
+     *                                          permissions
+     * @throws CommandNotFoundException         If the command was not found
+     * @throws ExecutionException               If the operation returns a invalid
+     *                                          exit code
      * @hide
      */
     public abstract void checkExitCode(int exitCode)
@@ -210,15 +215,16 @@ public abstract class Command {
      * inflate the internal variables.
      *
      * @param resources The application resource manager
-     * @throws InvalidCommandDefinitionException If the command has an invalid definition
+     * @throws InvalidCommandDefinitionException If the command has an invalid
+     *                                           definition
      */
     private void getCommandInfo(Resources resources) throws InvalidCommandDefinitionException {
 
-        //Read the command list xml file
+        // Read the command list xml file
         XmlResourceParser parser = resources.getXml(R.xml.command_list);
 
         try {
-            //Find the root element
+            // Find the root element
             XmlUtils.beginDocument(parser, TAG_COMMAND_LIST);
             while (true) {
                 XmlUtils.nextElement(parser);
@@ -228,12 +234,10 @@ public abstract class Command {
                 }
 
                 if (TAG_COMMAND.equals(element)) {
-                    CharSequence id = parser.getAttributeValue(R.styleable.Command_commandId);
+                    CharSequence id = parser.getAttributeValue(null, "commandId");
                     if (id != null && id.toString().compareTo(this.mId) == 0) {
-                        CharSequence path =
-                                parser.getAttributeValue(R.styleable.Command_commandPath);
-                        CharSequence args =
-                                parser.getAttributeValue(R.styleable.Command_commandArgs);
+                        CharSequence path = parser.getAttributeValue(null, "commandPath");
+                        CharSequence args = parser.getAttributeValue(null, "commandArgs");
                         if (path == null) {
                             throw new InvalidCommandDefinitionException(
                                     this.mId + ": path is null"); //$NON-NLS-1$
@@ -243,10 +247,10 @@ public abstract class Command {
                                     this.mId + ": args is null"); //$NON-NLS-1$
                         }
 
-                        //Save paths
+                        // Save paths
                         this.mCmd = path.toString();
                         this.mArgs = args.toString();
-                        //Format the arguments of the process with the command arguments
+                        // Format the arguments of the process with the command arguments
                         if (this.mArgs != null && this.mArgs.length() > 0
                                 && this.mCmdArgs != null && this.mCmdArgs.length > 0) {
                             this.mArgs = String.format(this.mArgs, this.mCmdArgs);
@@ -264,7 +268,7 @@ public abstract class Command {
             parser.close();
         }
 
-        //Command not found
+        // Command not found
         throw new InvalidCommandDefinitionException(this.mId);
     }
 
@@ -273,21 +277,22 @@ public abstract class Command {
      *
      * @param resources The application resource manager
      * @return String The exit code command info
-     * @throws InvalidCommandDefinitionException If the command is not present or has an
-     * invalid definition
+     * @throws InvalidCommandDefinitionException If the command is not present or
+     *                                           has an
+     *                                           invalid definition
      */
     public static synchronized String getStartCodeCommandInfo(
             Resources resources) throws InvalidCommandDefinitionException {
-        //Singleton
+        // Singleton
         if (sStartCodeCmd != null) {
             return new String(sStartCodeCmd);
         }
 
-        //Read the command list xml file
+        // Read the command list xml file
         XmlResourceParser parser = resources.getXml(R.xml.command_list);
 
         try {
-            //Find the root element
+            // Find the root element
             XmlUtils.beginDocument(parser, TAG_COMMAND_LIST);
             while (true) {
                 XmlUtils.nextElement(parser);
@@ -297,13 +302,13 @@ public abstract class Command {
                 }
 
                 if (TAG_STARTCODE.equals(element)) {
-                    CharSequence path = parser.getAttributeValue(R.styleable.Command_commandPath);
+                    CharSequence path = parser.getAttributeValue(null, "commandPath");
                     if (path == null) {
                         throw new InvalidCommandDefinitionException(
                                 TAG_STARTCODE + ": path is null"); //$NON-NLS-1$
                     }
 
-                    //Save paths
+                    // Save paths
                     sStartCodeCmd = path.toString();
                     return new String(sStartCodeCmd);
                 }
@@ -316,7 +321,7 @@ public abstract class Command {
             parser.close();
         }
 
-        //Command not found
+        // Command not found
         throw new InvalidCommandDefinitionException(TAG_STARTCODE);
     }
 
@@ -325,21 +330,22 @@ public abstract class Command {
      *
      * @param resources The application resource manager
      * @return String The exit code command info
-     * @throws InvalidCommandDefinitionException If the command is not present or has an
-     * invalid definition
+     * @throws InvalidCommandDefinitionException If the command is not present or
+     *                                           has an
+     *                                           invalid definition
      */
     public static synchronized String getExitCodeCommandInfo(
             Resources resources) throws InvalidCommandDefinitionException {
-        //Singleton
+        // Singleton
         if (sExitCodeCmd != null) {
             return new String(sExitCodeCmd);
         }
 
-        //Read the command list xml file
+        // Read the command list xml file
         XmlResourceParser parser = resources.getXml(R.xml.command_list);
 
         try {
-            //Find the root element
+            // Find the root element
             XmlUtils.beginDocument(parser, TAG_COMMAND_LIST);
             while (true) {
                 XmlUtils.nextElement(parser);
@@ -349,13 +355,13 @@ public abstract class Command {
                 }
 
                 if (TAG_EXITCODE.equals(element)) {
-                    CharSequence path = parser.getAttributeValue(R.styleable.Command_commandPath);
+                    CharSequence path = parser.getAttributeValue(null, "commandPath");
                     if (path == null) {
                         throw new InvalidCommandDefinitionException(
                                 TAG_EXITCODE + ": path is null"); //$NON-NLS-1$
                     }
 
-                    //Save paths
+                    // Save paths
                     sExitCodeCmd = path.toString();
                     return new String(sExitCodeCmd);
                 }
@@ -368,7 +374,7 @@ public abstract class Command {
             parser.close();
         }
 
-        //Command not found
+        // Command not found
         throw new InvalidCommandDefinitionException(TAG_EXITCODE);
     }
 }

@@ -1,0 +1,612 @@
+--------- beginning of main
+01-16 01:46:41.203  1596  3316 D OpenGLRenderer: Swap behavior 1
+01-16 01:46:41.203  1596  3316 I EGL_adreno: eglCreateContext request GLES major-version=2
+01-16 01:46:41.225  1596  3316 D EGL_adreno: eglCreateContext: 0x7fff428d2860: maj 3 min 1 rcv 4
+01-16 01:46:41.227  1596  3316 D EGL_adreno: eglMakeCurrent: 0x7fff428d2860: ver 3 1 (tinfo 0x7fff429bfee0)
+01-16 01:46:41.229  1596  3316 D HostConnection: ExtendedRCEncoderContext GL_VERSION return OpenGL ES 3.1 v1.46
+01-16 01:46:41.230  1596  3316 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008c29
+01-16 01:46:41.230  1596  3316 W GLESv2_enc: no support GL_NUM_PROGRAM_BINARY_FORMATS
+01-16 01:46:41.231  1461  1518 W SurfaceFlinger: Attempting to set client state on removed layer: Dim Layer for - Task=10#0
+01-16 01:46:41.231  1461  1518 W SurfaceFlinger: Attempting to destroy on removed layer: Dim Layer for - Task=10#0
+01-16 01:46:41.235 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+--------- beginning of system
+01-16 01:46:41.268  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:41.273 18112 18112 E WindowManager: 
+01-16 01:46:41.273 18112 18112 E WindowManager: android.view.WindowLeaked: Activity com.cyanogenmod.filemanager.activities.NavigationActivity has leaked window DecorView@1ab23b9[NavigationActivity] that was originally added here
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.view.ViewRootImpl.<init>(ViewRootImpl.java:511)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.view.WindowManagerGlobal.addView(WindowManagerGlobal.java:346)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.view.WindowManagerImpl.addView(WindowManagerImpl.java:93)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.Dialog.show(Dialog.java:329)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.cyanogenmod.filemanager.util.DialogHelper.delegateDialogShow(DialogHelper.java:611)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.cyanogenmod.filemanager.activities.NavigationActivity.showWelcomeMsg(NavigationActivity.java:902)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.cyanogenmod.filemanager.activities.NavigationActivity.finishOnCreate(NavigationActivity.java:671)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.cyanogenmod.filemanager.activities.NavigationActivity.onRequestPermissionsResult(NavigationActivity.java:529)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.Activity.dispatchRequestPermissionsResult(Activity.java:7620)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.Activity.dispatchActivityResult(Activity.java:7470)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.ActivityThread.deliverResults(ActivityThread.java:4401)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.ActivityThread.handleSendResult(ActivityThread.java:4450)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.servertransaction.ActivityResultItem.execute(ActivityResultItem.java:49)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:108)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:68)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1823)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.os.Handler.dispatchMessage(Handler.java:106)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.os.Looper.loop(Looper.java:193)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at android.app.ActivityThread.main(ActivityThread.java:6840)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at java.lang.reflect.Method.invoke(Native Method)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+01-16 01:46:41.273 18112 18112 E WindowManager: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:860)
+01-16 01:46:41.279  1461  1518 W SurfaceFlinger: Attempting to destroy on removed layer: AppWindowToken{5985978 token=Token{36c1adb ActivityRecord{50847ea u0 com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity t10}}}#0
+01-16 01:46:41.289  1461  1461 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-16 01:46:41.289  1461  1461 I chatty  : uid=1000(system) /system/bin/surfaceflinger identical 1 line
+01-16 01:46:41.289  1461  1461 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-16 01:46:41.294  1596 16953 W WindowManager: Failed looking up window callers=com.android.server.wm.WindowManagerService.windowForClientLocked:5541 com.android.server.wm.WindowManagerService.relayoutWindow:1894 com.android.server.wm.Session.relayout:244 
+01-16 01:46:41.297  1596 16953 W WindowManager: Failed looking up window callers=com.android.server.wm.WindowManagerService.windowForClientLocked:5541 com.android.server.wm.WindowManagerService.removeWindow:1662 com.android.server.wm.Session.remove:226 
+01-16 01:46:42.712 18112 18178 D ProfileInstaller: Installing profile for com.cyanogenmod.filemanager.dev
+01-16 01:46:43.471  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:43.472  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 32 lines
+01-16 01:46:43.472  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:44.013  1458  1458 I ldinit  : type=1400 audit(0.0:1279): avc: denied { read } for name="partitions" dev="proc" ino=4026532050 scontext=u:r:ldinit:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=1
+01-16 01:46:44.013  1458  1458 I ldinit  : type=1400 audit(0.0:1279): avc: denied { open } for path="/proc/partitions" dev="proc" ino=4026532050 scontext=u:r:ldinit:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=1
+01-16 01:46:44.013  1458  1458 W ldinit  : type=1300 audit(0.0:1279): arch=c000003e syscall=257 success=yes exit=6 a0=ffffff9c a1=7ffff7c22ae5 a2=0 a3=0 items=0 ppid=1 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 exe="/system/bin/ldinit" subj=u:r:ldinit:s0 key=(null)
+01-16 01:46:44.013  1339  1339 W auditd  : type=1327 audit(0.0:1279): proctitle="/system/bin/ldinit"
+01-16 01:46:44.013  1339  1339 W auditd  : type=1320 audit(0.0:1279): 
+01-16 01:46:44.474  1596  1867 W NotificationService: Toast already killed. pkg=com.cyanogenmod.filemanager.dev callback=android.app.ITransientNotification$Stub$Proxy@b076dcd
+01-16 01:46:44.481  1461  1517 W SurfaceFlinger: Attempting to set client state on removed layer: Surface(name=7e4d0ca Toast)/@0xb105f70 - animation-leash#0
+01-16 01:46:44.481  1461  1517 W SurfaceFlinger: Attempting to destroy on removed layer: Surface(name=7e4d0ca Toast)/@0xb105f70 - animation-leash#0
+01-16 01:46:44.483  1461  1517 W SurfaceFlinger: Attempting to destroy on removed layer: 7e4d0ca Toast#0
+01-16 01:46:46.901  1596  1867 I ActivityManager: START u0 {cmp=com.bslauncher.launcher/com.bslauncher.settings.SettingsActivity} from uid 10062
+01-16 01:46:46.920  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:46.921  1456  1456 I VibratorService: turn vibrator off
+01-16 01:46:46.921  1596  1867 W VibratorService: Failed to perform effect (5)
+01-16 01:46:46.921  1456  1456 I VibratorService: turn vibrator on timeout_ms=1
+01-16 01:46:46.921  1456  1456 I VibratorService: Setting amplitude  to: 3596
+01-16 01:46:46.923  2360  2360 W ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@69b4e3f
+01-16 01:46:46.943  1456  1456 I VibratorService: turn vibrator on timeout_ms=21
+01-16 01:46:46.943  1456  1456 I VibratorService: Setting amplitude  to: 3596
+01-16 01:46:46.959  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:46.965  1456  1456 I VibratorService: turn vibrator off
+01-16 01:46:47.002  2360  2554 E EGL_adreno: tid 2554: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:46:47.002  2360  2554 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff4b1ee880, error=EGL_BAD_MATCH
+01-16 01:46:47.029  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:47.039  2183 18118 D AdvertisingIdClient: AdvertisingIdClient already created.
+01-16 01:46:47.040  2183 18118 I AdvertisingIdClient: shouldSendLog 10126918
+01-16 01:46:47.040  2183 18118 I AdvertisingIdClient: GetInfoInternal elapse 1ms
+01-16 01:46:47.067  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:47.081  2059 18183 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:47.130  2059 18072 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:47.145  1753  1835 I HostConnection: HostConnection::HostConnection: pid=1753, tid=1835, this=0x7fff6a7afb60
+01-16 01:46:47.146  1753  1835 I         : fastpipe: Connect success
+01-16 01:46:47.146  1753  1835 D HostConnection: HostRPC::connect sucess: app=com.android.systemui, pid=1753, tid=1835, this=0x7fff4adb7140
+01-16 01:46:47.146  1753  1835 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:com.android.systemui
+01-16 01:46:41.496  1454  1454 W sensors@1.0-ser: type=1300 audit(0.0:1278): arch=c000003e syscall=16 success=yes exit=0 a0=7 a1=80046865 a2=7ffff6c0f000 a3=7ffff7427288 items=0 ppid=1 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=(none) ses=4294967295 exe="/system/vendor/bin/hw/android.hardware.sensors@1.0-service" subj=u:r:hal_sensors_default:s0 key=(null)
+01-16 01:46:41.496  1339  1339 W auditd  : type=1327 audit(0.0:1278): proctitle="/vendor/bin/hw/android.hardware.sensors@1.0-service"
+01-16 01:46:41.496  1339  1339 W auditd  : type=1320 audit(0.0:1278): 
+01-16 01:46:47.432  2360  2360 W ViewRootImpl[LauncherActivity]: Cancelling event due to no window focus: MotionEvent { action=ACTION_CANCEL, actionButton=0, id[0]=0, x[0]=262.0, y[0]=419.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=10667512, downTime=10666566, deviceId=3, source=0x1002 }
+01-16 01:46:47.432  2360  2360 I chatty  : uid=10062(com.bslauncher.launcher) identical 1 line
+01-16 01:46:47.432  2360  2360 W ViewRootImpl[LauncherActivity]: Cancelling event due to no window focus: MotionEvent { action=ACTION_CANCEL, actionButton=0, id[0]=0, x[0]=262.0, y[0]=419.0, toolType[0]=TOOL_TYPE_FINGER, buttonState=0, metaState=0, flags=0x0, edgeFlags=0x0, pointerCount=1, historySize=0, eventTime=10667512, downTime=10666566, deviceId=3, source=0x1002 }
+01-16 01:46:48.192  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:48.193  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 29 lines
+01-16 01:46:48.193  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:48.351  1596  1867 I ActivityManager: START u0 {flg=0x10000000 cmp=com.bslauncher.launcher/com.bslauncher.settings.AppsActivity} from uid 10062
+01-16 01:46:48.358  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:48.365  2360  2360 W ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@e727525
+01-16 01:46:48.383  2360  2360 I DefaultDispatch: type=1400 audit(0.0:1281): avc: denied { search } for name="Browser" dev="sda2" ino=4030 scontext=u:r:untrusted_app:s0:c62,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=dir permissive=1
+01-16 01:46:48.383  2360  2360 I DefaultDispatch: type=1400 audit(0.0:1281): avc: denied { read } for name="Browser.apk" dev="sda2" ino=4031 scontext=u:r:untrusted_app:s0:c62,c256,c512,c768 tcontext=u:object_r:unlabeled:s0 tclass=file permissive=1
+01-16 01:46:48.389  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:48.393  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:46:48.393  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:46:48.405  2059 18183 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:48.436  2360  2554 E EGL_adreno: tid 2554: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:46:48.436  2360  2554 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff4b1b0a00, error=EGL_BAD_MATCH
+01-16 01:46:48.436  2059 18091 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:48.441  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:48.451  2360  2554 I chatty  : uid=10062(com.bslauncher.launcher) RenderThread identical 1 line
+01-16 01:46:48.457  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:48.481  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:48.482  2360  2554 D OpenGLRenderer: endAllActiveAnimators on 0x7fff489ce700 (RippleDrawable) with handle 0x7fff6c0bd860
+01-16 01:46:48.504  2360  2360 W StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+01-16 01:46:48.515  2360  2360 I chatty  : uid=10062(com.bslauncher.launcher) identical 6 lines
+01-16 01:46:48.515  2360  2360 W StaticLayout: maxLineHeight should not be -1.  maxLines:1 lineCount:1
+01-16 01:46:48.526  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:49.451  1596 16953 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 pkg=io.github.huskydg.magisk cmp=io.github.huskydg.magisk/com.topjohnwu.magisk.ui.MainActivity} from uid 10062
+01-16 01:46:49.460  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:49.490  1596  1613 I ActivityManager: Start proc 18186:io.github.huskydg.magisk/u0a55 for activity io.github.huskydg.magisk/com.topjohnwu.magisk.ui.MainActivity
+01-16 01:46:49.496  1596  1596 I android.anim: type=1400 audit(0.0:1282): avc: denied { ioctl } for path="/dev/fastpipe" dev="tmpfs" ino=178 ioctlcmd=6869 scontext=u:r:system_server:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:46:49.496 18186 18186 I .huskydg.magisk: type=1400 audit(0.0:1283): avc: denied { open } for path="/data/local/cfg-hdnnn/app_device" dev="sdb2" ino=133502 scontext=u:r:untrusted_app:s0:c55,c256,c512,c768 tcontext=u:object_r:system_data_file:s0 tclass=file permissive=1
+01-16 01:46:49.496 18186 18186 W .huskydg.magisk: type=1300 audit(0.0:1283): arch=c000003e syscall=257 success=yes exit=11 a0=ffffff9c a1=7fffffffcb50 a2=0 a3=0 items=0 ppid=1428 auid=4294967295 uid=10055 gid=10055 euid=10055 suid=10055 fsuid=10055 egid=10055 sgid=10055 fsgid=10055 tty=(none) ses=4294967295 exe="/system/bin/app_process64" subj=u:r:untrusted_app:s0:c55,c256,c512,c768 key=(null)
+01-16 01:46:49.496  1339  1339 W auditd  : type=1327 audit(0.0:1283): proctitle="io.github.huskydg.magisk"
+01-16 01:46:49.496  1339  1339 W auditd  : type=1320 audit(0.0:1283): 
+01-16 01:46:49.496 18186 18186 I Zygote  : seccomp disabled by setenforce 0
+01-16 01:46:49.497 18186 18186 D nativebridge: call UnloadNativeBridge! state=1
+01-16 01:46:49.501  2059 18183 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:49.552  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:49.568  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:49.568  2360  2554 D OpenGLRenderer: endAllActiveAnimators on 0x7fff43b3ba00 (RippleDrawable) with handle 0x7fff440ea320
+01-16 01:46:49.622  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:49.623  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 30 lines
+01-16 01:46:49.623  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:49.650 18186 18216 D ProfileInstaller: Skipping profile installation for io.github.huskydg.magisk
+01-16 01:46:49.654 18214 18214 I appproc : app_process main with argv: /system/bin --nice-name=io.github.huskydg.magisk:root:0 com.topjohnwu.superuser.internal.RootServerMain io.github.huskydg.magisk/a.ZP 10055 start 
+01-16 01:46:49.654 18214 18214 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 0 <<<<<<
+01-16 01:46:49.657 18214 18214 E cutils-trace: Error opening trace file: No such file or directory (2)
+01-16 01:46:49.665 18186 18186 D AppCompatDelegate: Checking for metadata for AppLocalesMetadataHolderService : Service not found
+01-16 01:46:49.674 18214 18214 V libnb   : enter native_bridge2_isCompatibleWith 3
+01-16 01:46:49.678 18186 18186 I AppCompatDelegate: The Activity's LayoutInflater already has a Factory installed so we can not install AppCompat's
+01-16 01:46:49.685 18214 18214 I libnb   : Found /system/lib64/libhoudini.so version 3
+01-16 01:46:49.708 18214 18214 D nativebridge: PreInitializeNativeBridge name=io.github.huskydg.magisk:root:0 instruction_set=x86_64
+01-16 01:46:49.708 18214 18214 W nativebridge: Failed to bind-mount /system/lib64/x86_64/cpuinfo as /proc/cpuinfo: No such file or directory
+01-16 01:46:49.708 18214 18214 D nativebridge: call UnloadNativeBridge! state=2
+01-16 01:46:49.713 18186 18186 D OpenGLRenderer: Skia GL Pipeline
+01-16 01:46:49.713  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:49.730 18214 18214 D AndroidRuntime: Calling main entry com.topjohnwu.superuser.internal.RootServerMain
+01-16 01:46:49.754 18186 18298 I HostConnection: HostConnection::HostConnection: pid=18186, tid=18298, this=0x7fff6a7aff80
+01-16 01:46:49.754  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:49.755  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:49.755 18186 18298 I         : fastpipe: Connect success
+01-16 01:46:49.755 18186 18298 D HostConnection: HostRPC::connect sucess: app=io.github.huskydg.magisk, pid=18186, tid=18298, this=0x7fff68de9ac0
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.ncsoft.lineagen gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.vng.thiennhaiminhnguyetdaovng gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.proximabeta.tdm.kr gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.proximabeta.tdm.kr.cloud gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.proximabeta.tdm.kr.onestore gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.tencent.tmgp.wuxia gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.qqsy.gundam.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.qqsy.gundam gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.gravity.cute.tw.testand gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.cayenne.gvl gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netmarble.tskgb gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.longe.racehmt gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.gvi.robegins.aos gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.studiocodedragon.projectss gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.jingxiu.hygd gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.playwith.nsealm.tw.googl gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.playwith.sealm.kr.googl gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.gravity.cute.tw.and gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.forgefun.redcovenant gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.silkroad.mb gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.vortexgravity.bealive.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.com2usholdings.soulstrike.android.google.global.normal gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.cobby.lonelysurvivor gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.cmge.ltqrc gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.cmge.ltqrc.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.seasun.jxqy0.jsgf.xsj gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.seasun.jxqy0.huawei gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.mobigame.tt12 gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.kaneten.client.and gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.playwith.rohan2.kr gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.linecorp.LGATF gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.atknsyl.weaponmaster gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.blizzard.diablo.immortal gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netease.dfjssea gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netease.dfjsjp gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netease.dfjskr gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! jp.co.applibot.chiikawapocketgl gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! jp.co.applibot.chiikawapocket gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.kakaogames.pcr gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.kakaogames.eversoul gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.kakaogames.eversouljp gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.ntrance.dkr.and gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.zlongame.eversoul gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.Chillgaming.oneState gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.activision.callofduty.shooter gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.garena.game.codm gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.vng.codmvn gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.VIIBYTE.RivalisAcademiaNexus gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.qjsjqy.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.dragonli.projectsnow gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netmarble.kofafk gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.greenmushroom.boomblitz.gp gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.hermes.p6gameos gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.crystal.usad gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.jingxiu.yanwu gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.playhardlab.heroes gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.topgamestudio.americanblocksnipersurvival.jf gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! vng.games.gs1.phongthan.mobile.com gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.userjoy.szm gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.netease.yzs gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.korea.tamamonkr.google gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.huanxi.datulong gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.com2us.legendsummoner.android.google.global.normal gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.metek.atm2 gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.huiqi.mrby gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.tencent.wlfz gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.yh.hunter4.firstformal gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.phonecoolgame.sanguo gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.epidgames.trickcalrevive gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.tanle.sycq gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.youzu.djlw gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.happyelements.rxr gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.tencent.zd gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.leisure.tw gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! aos.playpark.ygc gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.zhuyue.dungeon4 gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.sunking.as3d gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.ncsoft.bsh gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.zengame.hlmjhdj gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.zengame.zjscmj gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.leduo.zjscmj gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.tencent.tmgp.scmjxzddnew gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.drivezone.car.race.game gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.game.sgzzqtxsy gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.leduo.ttmjdjb gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.hygame.mhxy.tw.gp gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.hxen.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.leduo.ttmjdjb.p234 gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.kt.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! gg.maxion.knt.and gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.wwjd.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.uwocn.aos gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.joycrit.wac.and.ru.ld gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.hx.interactive gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.chinesegamer.xqj gl
+01-16 01:46:49.755 18186 18298 E HostConnection: /data/local/cfg-hdnnn/gl_force format error! com.joycrit.wac.and.apac.ld gl
+01-16 01:46:49.755 18186 18298 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:io.github.huskydg.magisk
+01-16 01:46:49.756 18186 18298 I         : fastpipe: Connect success
+01-16 01:46:49.756 18186 18298 D HostConnection: recv ProcessPuidReply name=io.github.huskydg.magisk puid=19 g_u64CapsFlag=1d
+01-16 01:46:49.757 18186 18298 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+01-16 01:46:49.757 18186 18298 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
+01-16 01:46:49.757 18186 18298 I OpenGLRenderer: Initialized EGL, version 1.4
+01-16 01:46:49.757 18186 18298 D OpenGLRenderer: Swap behavior 1
+01-16 01:46:49.757 18186 18298 I EGL_adreno: eglCreateContext request GLES major-version=2
+01-16 01:46:49.766 18186 18186 D Sj      : onServiceConnected
+01-16 01:46:49.781 18186 18298 D EGL_adreno: eglCreateContext: 0x7fff6a644880: maj 3 min 1 rcv 4
+01-16 01:46:49.783 18186 18298 D EGL_adreno: eglMakeCurrent: 0x7fff6a644880: ver 3 1 (tinfo 0x7fff729a1c80)
+01-16 01:46:49.786 18186 18298 D HostConnection: ExtendedRCEncoderContext GL_VERSION return OpenGL ES 3.1 v1.46
+01-16 01:46:49.787 18186 18298 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008c29
+01-16 01:46:49.787 18186 18298 W GLESv2_enc: no support GL_NUM_PROGRAM_BINARY_FORMATS
+01-16 01:46:49.791 18186 18298 D vndksupport: Loading /vendor/lib64/hw/android.hardware.graphics.mapper@2.0-impl.so from current namespace instead of sphal namespace.
+01-16 01:46:49.792 18186 18298 D vndksupport: Loading /vendor/lib64/hw/gralloc.default.so from current namespace instead of sphal namespace.
+01-16 01:46:49.793 18186 18298 E EGL_adreno: tid 18298: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:46:49.793 18186 18298 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff68de8300, error=EGL_BAD_MATCH
+01-16 01:46:49.883 18186 18216 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+01-16 01:46:49.887 18186 18216 W .huskydg.magis: Unknown chunk type '200'.
+01-16 01:46:49.887 18186 18216 I chatty  : uid=10055(io.github.huskydg.magisk) DefaultDispatch identical 1 line
+01-16 01:46:49.888 18186 18216 W .huskydg.magis: Unknown chunk type '200'.
+01-16 01:46:49.889 18186 18216 I .huskydg.magis: The ClassLoaderContext is a special shared library.
+01-16 01:46:49.890 18186 18216 I chatty  : uid=10055(io.github.huskydg.magisk) DefaultDispatch identical 1 line
+01-16 01:46:49.891 18186 18216 I .huskydg.magis: The ClassLoaderContext is a special shared library.
+01-16 01:46:49.919  2059  2059 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.presencemanager.service.START dat=chimera-action: cmp=com.google.android.gms/.chimera.PersistentApiService }
+01-16 01:46:49.919  2059  2059 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.presencemanager.service.INTERNAL_IDENTITY dat=chimera-action: cmp=com.google.android.gms/.chimera.PersistentApiService }
+01-16 01:46:49.943 18186 18216 V NativeCrypto: Registering com/google/android/gms/org/conscrypt/NativeCrypto's 329 native methods...
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: Failed to get service from broker. 
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:1950)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:1918)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:1868)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at bbnk.a(:com.google.android.gms@254730017@25.47.30 (100800-833691957):36)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at bbll.z(:com.google.android.gms@254730017@25.47.30 (100800-833691957):150)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at baro.run(:com.google.android.gms@254730017@25.47.30 (100800-833691957):42)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:873)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at cnat.lW(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at cnat.dispatchMessage(:com.google.android.gms@254730017@25.47.30 (100800-833691957):5)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:193)
+01-16 01:46:49.952 18186 19066 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:65)
+01-16 01:46:49.953 18186 19066 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: Failed to register com.google.android.gms.providerinstaller#io.github.huskydg.magisk
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: etjl: 17: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at etjn.a(:com.google.android.gms@254730017@25.47.30 (100800-833691957):13)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at fokc.d(:com.google.android.gms@254730017@25.47.30 (100800-833691957):3)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at foke.run(:com.google.android.gms@254730017@25.47.30 (100800-833691957):130)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at foml.execute(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at fokm.f(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at fokm.m(:com.google.android.gms@254730017@25.47.30 (100800-833691957):99)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at fokm.r(:com.google.android.gms@254730017@25.47.30 (100800-833691957):17)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at emgh.hA(:com.google.android.gms@254730017@25.47.30 (100800-833691957):35)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at ebxk.run(:com.google.android.gms@254730017@25.47.30 (100800-833691957):12)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at foml.execute(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at ebxl.b(:com.google.android.gms@254730017@25.47.30 (100800-833691957):18)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at ebya.b(:com.google.android.gms@254730017@25.47.30 (100800-833691957):36)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at ebyc.d(:com.google.android.gms@254730017@25.47.30 (100800-833691957):25)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at baox.c(:com.google.android.gms@254730017@25.47.30 (100800-833691957):9)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at barm.q(:com.google.android.gms@254730017@25.47.30 (100800-833691957):48)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at barm.d(:com.google.android.gms@254730017@25.47.30 (100800-833691957):10)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at barm.g(:com.google.android.gms@254730017@25.47.30 (100800-833691957):185)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at barm.onConnectionFailed(:com.google.android.gms@254730017@25.47.30 (100800-833691957):2)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at baro.run(:com.google.android.gms@254730017@25.47.30 (100800-833691957):70)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at android.os.Handler.handleCallback(Handler.java:873)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at cnat.lW(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at cnat.dispatchMessage(:com.google.android.gms@254730017@25.47.30 (100800-833691957):5)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at android.os.Looper.loop(Looper.java:193)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at android.os.HandlerThread.run(HandlerThread.java:65)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: Caused by: bane: 17: API: Phenotype.API is not available on this device. Connection failed with: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at bbkx.a(:com.google.android.gms@254730017@25.47.30 (100800-833691957):15)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at bapa.a(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	at baox.c(:com.google.android.gms@254730017@25.47.30 (100800-833691957):5)
+01-16 01:46:49.953 18186 19065 W FlagRegistrar: 	... 11 more
+01-16 01:46:49.955 18186 18216 I ProviderInstaller: Installed default security provider GmsCore_OpenSSL
+01-16 01:46:50.075 18186 18298 D EGL_adreno: eglMakeCurrent: 0x7fff6a644880: ver 3 1 (tinfo 0x7fff729a1c80)
+01-16 01:46:50.117  1596  3316 I HostConnection: HostConnection::~HostConnection, pid=1596, tid=3316, this=0x7fff411902a0, m_stream=0x7fff4285cc00
+01-16 01:46:50.117  1596  3316 I         : fastpipe: close connect
+01-16 01:46:50.120  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:50.120  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 34 lines
+01-16 01:46:50.120  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:50.120  1596  1610 I ActivityManager: Displayed io.github.huskydg.magisk/com.topjohnwu.magisk.ui.MainActivity: +663ms
+01-16 01:46:50.135  1461  1923 W SurfaceFlinger: Attempting to set client state on removed layer: Splash Screen io.github.huskydg.magisk#0
+01-16 01:46:50.135  1461  1923 W SurfaceFlinger: Attempting to destroy on removed layer: Splash Screen io.github.huskydg.magisk#0
+01-16 01:46:50.336 18186 18186 E VT      : a.XK: HTTP 404 
+01-16 01:46:50.336 18186 18186 E VT      : 	at a.Px.w(SourceFile:133)
+01-16 01:46:50.336 18186 18186 E VT      : 	at a.EV.h(SourceFile:9)
+01-16 01:46:50.336 18186 18186 E VT      : 	at a.Ky.run(SourceFile:57)
+01-16 01:46:50.336 18186 18186 E VT      : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+01-16 01:46:50.336 18186 18186 E VT      : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+01-16 01:46:50.336 18186 18186 E VT      : 	at java.lang.Thread.run(Thread.java:764)
+01-16 01:46:51.499  2360 18111 I FA      : Application backgrounded at: timestamp_millis: 1768528009492
+01-16 01:46:54.453  1596  1618 D AutofillManagerService: Close system dialogs
+01-16 01:46:54.454  1753  1753 V StatusBar: mStatusBarWindow: com.android.systemui.statusbar.phone.StatusBarWindowView{2abe487 V.ED..... ........ 0,0-1600,36} canPanelBeCollapsed(): false
+01-16 01:46:54.455  1753  1753 I vol.Events: writeEvent dismiss_dialog volume_controller
+01-16 01:46:54.455  1596  1681 I ActivityManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10200000 cmp=com.bslauncher.launcher/com.bslauncher.LauncherActivity (has extras)} from uid 1000
+01-16 01:46:54.463  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:54.472  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:54.483  2235  2235 I chatty  : uid=1000(system) com.android.coreservice identical 1 line
+01-16 01:46:54.487  2360  2360 D BSLauncher: bindTopSlots called
+01-16 01:46:54.489  2360  2360 D BSLauncher: topSlot6 listener being set...
+01-16 01:46:54.490  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:54.506  1753  1753 I Binder:1753_8: type=1400 audit(0.0:1293): avc: denied { read write } for name="fastpipe" dev="tmpfs" ino=178 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:46:54.506  1753  1753 I Binder:1753_8: type=1400 audit(0.0:1293): avc: denied { open } for path="/dev/fastpipe" dev="tmpfs" ino=178 scontext=u:r:platform_app:s0:c512,c768 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:46:54.506  1753  1753 W Binder:1753_8: type=1300 audit(0.0:1293): arch=c000003e syscall=257 success=yes exit=98 a0=ffffff9c a1=7ffff73cecaa a2=2 a3=0 items=0 ppid=1428 auid=4294967295 uid=10013 gid=10013 euid=10013 suid=10013 fsuid=10013 egid=10013 sgid=10013 fsgid=10013 tty=(none) ses=4294967295 exe="/system/bin/app_process64" subj=u:r:platform_app:s0:c512,c768 key=(null)
+01-16 01:46:54.506  1339  1339 W auditd  : type=1327 audit(0.0:1293): proctitle="com.android.systemui"
+01-16 01:46:54.506  1339  1339 W auditd  : type=1320 audit(0.0:1293): 
+01-16 01:46:54.509  1753 16960 I HostConnection: HostConnection::HostConnection: pid=1753, tid=16960, this=0x7fff6c045fc0
+01-16 01:46:54.510  1753 16960 I         : fastpipe: Connect success
+01-16 01:46:54.510  1753 16960 D HostConnection: HostRPC::connect sucess: app=com.android.systemui, pid=1753, tid=16960, this=0x7fff4b0e1000
+01-16 01:46:54.510  1753 16960 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:com.android.systemui
+01-16 01:46:54.515  2360  2554 E EGL_adreno: tid 2554: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:46:54.515  2360  2554 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff4b1b0a00, error=EGL_BAD_MATCH
+01-16 01:46:54.518  1596  3316 I HostConnection: HostConnection::HostConnection: pid=1596, tid=3316, this=0x7fff411902a0
+01-16 01:46:54.519  1596  3316 I         : fastpipe: Connect success
+01-16 01:46:54.523  1596  3316 D HostConnection: HostRPC::connect sucess: app=system_server, pid=1596, tid=3316, this=0x7fff4285cc00
+01-16 01:46:54.523 18186 18298 D EGL_adreno: eglMakeCurrent: 0x7fff6a644880: ver 3 1 (tinfo 0x7fff729a1c80)
+01-16 01:46:54.523  1596  3316 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:system_server
+01-16 01:46:54.524  1753  1811 I HostConnection: HostConnection::HostConnection: pid=1753, tid=1811, this=0x7fff729a7720
+01-16 01:46:54.525  1753  1811 I         : fastpipe: Connect success
+01-16 01:46:54.525  1753  1811 D HostConnection: HostRPC::connect sucess: app=com.android.systemui, pid=1753, tid=1811, this=0x7fff487173c0
+01-16 01:46:54.525  1753  1811 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:com.android.systemui
+01-16 01:46:54.527  1596  3316 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+01-16 01:46:54.527  1596  3316 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
+01-16 01:46:54.527  1596  3316 I OpenGLRenderer: Initialized EGL, version 1.4
+01-16 01:46:54.527  1596  3316 D OpenGLRenderer: Swap behavior 1
+01-16 01:46:54.527  1596  3316 I EGL_adreno: eglCreateContext request GLES major-version=2
+01-16 01:46:54.547  1596  3316 D EGL_adreno: eglCreateContext: 0x7fff428d2860: maj 3 min 1 rcv 4
+01-16 01:46:54.551  1596  3316 D EGL_adreno: eglMakeCurrent: 0x7fff428d2860: ver 3 1 (tinfo 0x7fff429bfee0)
+01-16 01:46:54.554  1596  3316 D HostConnection: ExtendedRCEncoderContext GL_VERSION return OpenGL ES 3.1 v1.46
+01-16 01:46:54.555  1596  3316 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008c29
+01-16 01:46:54.555  1596  3316 W GLESv2_enc: no support GL_NUM_PROGRAM_BINARY_FORMATS
+01-16 01:46:54.558  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:54.571  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:69 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:46:54.573  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:46:54.616  1596  3316 I HostConnection: HostConnection::~HostConnection, pid=1596, tid=3316, this=0x7fff411902a0, m_stream=0x7fff4285cc00
+01-16 01:46:54.617  1596  3316 I         : fastpipe: close connect
+01-16 01:46:54.621  1461  1517 W SurfaceFlinger: Attempting to set client state on removed layer: Splash Screen com.bslauncher.launcher#0
+01-16 01:46:54.621  1461  1517 W SurfaceFlinger: Attempting to destroy on removed layer: Splash Screen com.bslauncher.launcher#0
+01-16 01:46:54.697  2059 18091 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:46:54.727  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:54.728  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 36 lines
+01-16 01:46:54.728  1596  1604 W System  : A resource failed to call close. 
+01-16 01:46:55.474  1596  1596 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@c8306be
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: Failed to get service from broker. 
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: java.lang.SecurityException: Unknown calling package name 'com.google.android.gms'.
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Parcel.createException(Parcel.java:1950)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:1918)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Parcel.readException(Parcel.java:1868)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at bbnk.a(:com.google.android.gms@254730017@25.47.30 (100800-833691957):36)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at bbll.z(:com.google.android.gms@254730017@25.47.30 (100800-833691957):150)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at baro.run(:com.google.android.gms@254730017@25.47.30 (100800-833691957):42)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Handler.handleCallback(Handler.java:873)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at cnat.lW(:com.google.android.gms@254730017@25.47.30 (100800-833691957):1)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at cnat.dispatchMessage(:com.google.android.gms@254730017@25.47.30 (100800-833691957):5)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.Looper.loop(Looper.java:193)
+01-16 01:46:59.943 18186 19066 E GoogleApiManager: 	at android.os.HandlerThread.run(HandlerThread.java:65)
+01-16 01:46:59.943 18186 19066 W GoogleApiManager: Not showing notification since connectionResult is not user-facing: ConnectionResult{statusCode=DEVELOPER_ERROR, resolution=null, message=null, clientMethodKey=null}
+01-16 01:47:00.016  1448  1526 D hwcomposer: hw_composer sent 84 syncs in 60s
+01-16 01:47:00.030  1448  1448 I HwBinder:1448_1: type=1400 audit(0.0:1297): avc: denied { ioctl } for path="/dev/fastpipe" dev="tmpfs" ino=178 ioctlcmd=6867 scontext=u:r:hal_graphics_composer_default:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:47:00.030  1448  1448 W HwBinder:1448_1: type=1300 audit(0.0:1297): arch=c000003e syscall=16 success=yes exit=0 a0=11 a1=80046867 a2=7ffff521e040 a3=0 items=0 ppid=1 auid=4294967295 uid=1000 gid=1003 euid=1000 suid=1000 fsuid=1000 egid=1003 sgid=1003 fsgid=1003 tty=(none) ses=4294967295 exe="/system/vendor/bin/hw/android.hardware.graphics.composer@2.1-service" subj=u:r:hal_graphics_composer_default:s0 key=(null)
+01-16 01:47:00.030  1339  1339 W auditd  : type=1327 audit(0.0:1297): proctitle="/vendor/bin/hw/android.hardware.graphics.composer@2.1-service"
+01-16 01:47:00.030  1339  1339 W auditd  : type=1320 audit(0.0:1297): 
+01-16 01:47:02.803  1477  1477 I storaged: type=1400 audit(0.0:1298): avc: denied { call } for scontext=u:r:storaged:s0 tcontext=u:r:init:s0 tclass=binder permissive=1
+01-16 01:47:02.803  1477  1477 W storaged: type=1300 audit(0.0:1298): arch=c000003e syscall=16 success=yes exit=0 a0=4 a1=c0306201 a2=7ffff739be40 a3=7ffff6e27288 items=0 ppid=1 auid=4294967295 uid=0 gid=1032 euid=0 suid=0 fsuid=0 egid=1032 sgid=1032 fsgid=1032 tty=(none) ses=4294967295 exe="/system/bin/storaged" subj=u:r:storaged:s0 key=(null)
+01-16 01:47:02.803  1339  1339 W auditd  : type=1327 audit(0.0:1298): proctitle="/system/bin/storaged"
+01-16 01:47:02.803  1339  1339 W auditd  : type=1320 audit(0.0:1298): 
+01-16 01:47:02.804  1477  1541 E storaged: getDiskStats failed with result NOT_SUPPORTED and size 0
+01-16 01:47:04.016  1458  1458 I ldinit  : type=1400 audit(0.0:1299): avc: denied { read } for name="partitions" dev="proc" ino=4026532050 scontext=u:r:ldinit:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=1
+01-16 01:47:04.016  1458  1458 I ldinit  : type=1400 audit(0.0:1299): avc: denied { open } for path="/proc/partitions" dev="proc" ino=4026532050 scontext=u:r:ldinit:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=1
+01-16 01:47:04.016  1458  1458 W ldinit  : type=1300 audit(0.0:1299): arch=c000003e syscall=257 success=yes exit=6 a0=ffffff9c a1=7ffff7c22ae5 a2=0 a3=0 items=0 ppid=1 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 exe="/system/bin/ldinit" subj=u:r:ldinit:s0 key=(null)
+01-16 01:47:04.016  1339  1339 W auditd  : type=1327 audit(0.0:1299): proctitle="/system/bin/ldinit"
+01-16 01:47:04.016  1339  1339 W auditd  : type=1320 audit(0.0:1299): 
+01-16 01:47:04.016  1458  1458 I ldinit  : type=1400 audit(0.0:1300): avc: denied { getattr } for path="/proc/partitions" dev="proc" ino=4026532050 scontext=u:r:ldinit:s0 tcontext=u:object_r:proc:s0 tclass=file permissive=1
+01-16 01:47:04.016  1458  1458 W ldinit  : type=1300 audit(0.0:1300): arch=c000003e syscall=5 success=yes exit=0 a0=6 a1=7ffff6100a10 a2=7ffff7214018 a3=0 items=0 ppid=1 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 tty=(none) ses=4294967295 exe="/system/bin/ldinit" subj=u:r:ldinit:s0 key=(null)
+01-16 01:47:04.661  2183  2183 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+01-16 01:47:04.662  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:04.662  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:04.662  1596  2878 I ActivityManager: Killing 2249:com.google.process.gapps/u0a16 (adj 906): empty for 3230s
+01-16 01:47:04.663  1596  1614 W libprocessgroup: kill(-2249, 9) failed: No such process
+01-16 01:47:04.668  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:04.668  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:04.679  1428  1428 I Zygote  : Process 2249 exited due to signal (9)
+01-16 01:47:04.771  1596  1614 W libprocessgroup: kill(-2249, 9) failed: No such process
+01-16 01:47:04.771  1596  1614 I libprocessgroup: Successfully killed process cgroup uid 10016 pid 2249 in 108ms
+01-16 01:47:09.816  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:09.816  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:14.878  1596  2878 E memtrack: Couldn't load memtrack module
+01-16 01:47:14.879  1596  2878 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:17.044  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:17.044  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:17.052  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:17.052  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:18.814  2183  2183 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.common.BIND_SHARED_PREFS pkg=com.google.android.gms }
+01-16 01:47:25.193  1449  1449 I health@2.0-serv: type=1400 audit(0.0:1301): avc: denied { read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_kobject_uevent_socket permissive=1
+01-16 01:47:25.193  1449  1449 W health@2.0-serv: type=1300 audit(0.0:1301): arch=c000003e syscall=47 success=yes exit=193 a0=8 a1=7fffffffdf48 a2=0 a3=ffffffff items=0 ppid=1 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=(none) ses=4294967295 exe="/system/vendor/bin/hw/android.hardware.health@2.0-service.default" subj=u:r:init:s0 key=(null)
+01-16 01:47:25.193  1339  1339 W auditd  : type=1327 audit(0.0:1301): proctitle="/vendor/bin/hw/android.hardware.health@2.0-service.default"
+01-16 01:47:25.193  1339  1339 W auditd  : type=1320 audit(0.0:1301): 
+01-16 01:47:28.262  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:28.262  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 28 lines
+01-16 01:47:28.262  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:44.160  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:44.160  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:44.168  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:44.168  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:44.174  1596  1610 E memtrack: Couldn't load memtrack module
+01-16 01:47:44.174  1596  1610 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:47:49.029  1596 16953 I ActivityManager: START u0 {flg=0x10000000 cmp=com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity} from uid 2000
+01-16 01:47:49.042  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:47:49.043  1461  1461 I surfaceflinger: type=1400 audit(0.0:1302): avc: denied { ioctl } for path="/dev/fastpipe" dev="tmpfs" ino=178 ioctlcmd=6867 scontext=u:r:surfaceflinger:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:47:49.043  1461  1461 W surfaceflinger: type=1300 audit(0.0:1302): arch=c000003e syscall=16 success=yes exit=0 a0=b a1=80046867 a2=7ffff602c130 a3=a items=0 ppid=1 auid=4294967295 uid=1000 gid=1003 euid=1000 suid=1000 fsuid=1000 egid=1003 sgid=1003 fsgid=1003 tty=(none) ses=4294967295 exe="/system/bin/surfaceflinger" subj=u:r:surfaceflinger:s0 key=(null)
+01-16 01:47:49.043  1339  1339 W auditd  : type=1327 audit(0.0:1302): proctitle="/system/bin/surfaceflinger"
+01-16 01:47:49.043  1339  1339 W auditd  : type=1320 audit(0.0:1302): 
+01-16 01:47:49.044 18112 18112 W ActivityThread: handleWindowVisibility: no activity for token android.os.BinderProxy@824dc3d
+01-16 01:47:49.063  1447  1447 I HwBinder:1447_2: type=1400 audit(0.0:1303): avc: denied { ioctl } for path="/dev/fastpipe" dev="tmpfs" ino=178 ioctlcmd=6869 scontext=u:r:hal_graphics_allocator_default:s0 tcontext=u:object_r:device:s0 tclass=chr_file permissive=1
+01-16 01:47:49.063  1447  1447 W HwBinder:1447_2: type=1300 audit(0.0:1303): arch=c000003e syscall=16 success=yes exit=0 a0=9 a1=80046869 a2=7ffff722c160 a3=1 items=0 ppid=1 auid=4294967295 uid=1000 gid=1003 euid=1000 suid=1000 fsuid=1000 egid=1003 sgid=1003 fsgid=1003 tty=(none) ses=4294967295 exe="/system/vendor/bin/hw/android.hardware.graphics.allocator@2.0-service" subj=u:r:hal_graphics_allocator_default:s0 key=(null)
+01-16 01:47:49.082  2183  2183 D BoundBrokerSvc: onBind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+01-16 01:47:49.082  2183  2183 D BoundBrokerSvc: Loading bound service for intent: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+01-16 01:47:49.112  2183 19100 D AdvertisingIdClient: AdvertisingIdClient already created.
+01-16 01:47:49.112  2183 19100 D AdvertisingIdClient: AdvertisingIdClient is not bounded. Starting to bind it...
+01-16 01:47:49.150 18112 19101 W ContentProvider: Normalized content://com.cyanogenmod.filemanager.dev.providers.bookmarks//bookmarks to content://com.cyanogenmod.filemanager.dev.providers.bookmarks/bookmarks to avoid possible security issues
+01-16 01:47:49.155  2183 19100 D AdvertisingIdClient: AdvertisingIdClient is bounded
+01-16 01:47:49.166  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:47:49.167 18112 19102 W ContentProvider: Normalized content://com.cyanogenmod.filemanager.dev.providers.bookmarks//history to content://com.cyanogenmod.filemanager.dev.providers.bookmarks/history to avoid possible security issues
+01-16 01:47:49.168  2183 19100 I AdvertisingIdClient: shouldSendLog 10126918
+01-16 01:47:49.168  2183 19100 I AdvertisingIdClient: GetInfoInternal elapse 56ms
+01-16 01:47:49.229  2059 19104 I NetworkScheduler: (REDACTED) Error inserting %s
+01-16 01:47:49.237  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:47:49.283  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:49.283  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 30 lines
+01-16 01:47:49.283  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:49.368 18112 18138 E EGL_adreno: tid 18138: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:47:49.368 18112 18138 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff4e5ab800, error=EGL_BAD_MATCH
+01-16 01:47:49.368  1447  1565 D gralloc_default: gralloc_alloc: Creating ashmem region of size 5763072, ignore more log...
+01-16 01:47:49.391  1461  1923 D SurfaceFlinger: duplicate layer name: changing com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity to com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity#1
+01-16 01:47:49.396 18112 18138 E EGL_adreno: tid 18138: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:47:49.396 18112 18138 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff68df8f80, error=EGL_BAD_MATCH
+01-16 01:47:49.401 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.404 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.410  1596  1610 I ActivityManager: Displayed com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity: +377ms
+01-16 01:47:49.421 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.422 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.422  1461  1517 W SurfaceFlinger: Attempting to set client state on removed layer: Splash Screen com.cyanogenmod.filemanager.dev#0
+01-16 01:47:49.422  1461  1517 W SurfaceFlinger: Attempting to destroy on removed layer: Splash Screen com.cyanogenmod.filemanager.dev#0
+01-16 01:47:49.435  1461  1517 D SurfaceFlinger: duplicate layer name: changing com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity to com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity#2
+01-16 01:47:49.439 18112 18138 E EGL_adreno: tid 18138: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:47:49.439 18112 18138 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff68df8400, error=EGL_BAD_MATCH
+01-16 01:47:49.442 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.444 18112 18138 I chatty  : uid=10057(com.cyanogenmod.filemanager.dev) RenderThread identical 1 line
+01-16 01:47:49.453 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.455 18112 18112 E NavigationView: Unable to gain the required privileges to function.
+01-16 01:47:49.455 18112 18112 E NavigationView: com.cyanogenmod.filemanager.console.ConsoleAllocException: Console allocation error.
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.shell.ShellConsole.alloc(ShellConsole.java:420)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.ConsoleBuilder.createNonPrivilegedConsole(ConsoleBuilder.java:297)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.ConsoleBuilder.createDefaultConsole(ConsoleBuilder.java:252)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.ConsoleBuilder.createDefaultConsole(ConsoleBuilder.java:213)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.ConsoleBuilder.getConsole(ConsoleBuilder.java:97)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.ConsoleBuilder.getConsole(ConsoleBuilder.java:72)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.util.CommandHelper.ensureConsoleForFile(CommandHelper.java:2168)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.util.CommandHelper.listFiles(CommandHelper.java:779)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.ui.widgets.NavigationView$NavigationTask.doInBackground(NavigationView.java:281)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.ui.widgets.NavigationView$NavigationTask.doInBackground(NavigationView.java:214)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at android.os.AsyncTask$2.call(AsyncTask.java:333)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at android.os.AsyncTask$SerialExecutor$1.run(AsyncTask.java:245)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at java.lang.Thread.run(Thread.java:764)
+01-16 01:47:49.455 18112 18112 E NavigationView: Caused by: java.lang.IndexOutOfBoundsException: 2
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at android.content.res.XmlBlock$Parser.getAttributeValue(XmlBlock.java:212)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.commands.shell.Command.getStartCodeCommandInfo(Command.java:300)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.shell.ShellConsole.syncExecute(ShellConsole.java:631)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.shell.ShellConsole.execute(ShellConsole.java:541)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	at com.cyanogenmod.filemanager.console.shell.ShellConsole.alloc(ShellConsole.java:380)
+01-16 01:47:49.455 18112 18112 E NavigationView: 	... 15 more
+01-16 01:47:49.457 18112 18112 W System.err: java.lang.Exception: Toast callstack! strTip=Unable to gain the required privileges to function.
+01-16 01:47:49.457 18112 18112 W System.err: 	at android.widget.Toast.show(Toast.java:143)
+01-16 01:47:49.458 18112 18112 W System.err: 	at com.cyanogenmod.filemanager.util.DialogHelper.showToast(DialogHelper.java:627)
+01-16 01:47:49.458 18112 18112 W System.err: 	at com.cyanogenmod.filemanager.util.DialogHelper.showToast(DialogHelper.java:638)
+01-16 01:47:49.458 18112 18112 W System.err: 	at com.cyanogenmod.filemanager.ui.widgets.NavigationView$NavigationTask$2.run(NavigationView.java:298)
+01-16 01:47:49.458 18112 18112 W System.err: 	at android.os.Handler.handleCallback(Handler.java:873)
+01-16 01:47:49.458 18112 18112 W System.err: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+01-16 01:47:49.458 18112 18112 W System.err: 	at android.os.Looper.loop(Looper.java:193)
+01-16 01:47:49.458 18112 18112 W System.err: 	at android.app.ActivityThread.main(ActivityThread.java:6840)
+01-16 01:47:49.458 18112 18112 W System.err: 	at java.lang.reflect.Method.invoke(Native Method)
+01-16 01:47:49.458 18112 18112 W System.err: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:493)
+01-16 01:47:49.458 18112 18112 W System.err: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:860)
+01-16 01:47:49.468 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.469 18112 18138 I chatty  : uid=10057(com.cyanogenmod.filemanager.dev) RenderThread identical 1 line
+01-16 01:47:49.470 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.485  1596  2878 I HostConnection: HostConnection::HostConnection: pid=1596, tid=2878, this=0x7fff39b689c0
+01-16 01:47:49.485  1596  2878 I         : fastpipe: Connect success
+01-16 01:47:49.486  1596  2878 D HostConnection: HostRPC::connect sucess: app=system_server, pid=1596, tid=2878, this=0x7fff41e715c0
+01-16 01:47:49.486  1596  2878 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:system_server
+01-16 01:47:49.489 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.492 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.499  1461  1461 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-16 01:47:49.499  1461  1518 W SurfaceFlinger: Attempting to set client state on removed layer: Dim Layer for - Task=12#0
+01-16 01:47:49.499  1461  1518 W SurfaceFlinger: Attempting to destroy on removed layer: Dim Layer for - Task=12#0
+01-16 01:47:49.503  1596  3316 I HostConnection: HostConnection::HostConnection: pid=1596, tid=3316, this=0x7fff411902a0
+01-16 01:47:49.503  1596  3316 I         : fastpipe: Connect success
+01-16 01:47:49.503  1596  3316 D HostConnection: HostRPC::connect sucess: app=system_server, pid=1596, tid=3316, this=0x7fff4285cc00
+01-16 01:47:49.504  1596  3316 D HostConnection: queryAndSetGLESMaxVersion select gles-version: 3.1 hostGLVersion:46 process:system_server
+01-16 01:47:49.504  1596  3316 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasWideColorDisplay retrieved: 0
+01-16 01:47:49.504  1596  3316 I ConfigStore: android::hardware::configstore::V1_0::ISurfaceFlingerConfigs::hasHDRDisplay retrieved: 0
+01-16 01:47:49.504  1596  3316 I OpenGLRenderer: Initialized EGL, version 1.4
+01-16 01:47:49.504  1596  3316 D OpenGLRenderer: Swap behavior 1
+01-16 01:47:49.504  1596  3316 I EGL_adreno: eglCreateContext request GLES major-version=2
+01-16 01:47:49.515  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:44 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:47:49.516  2360  2360 D BSLauncher: bindTopSlots called
+01-16 01:47:49.526  1596  3316 D EGL_adreno: eglCreateContext: 0x7fff428d2860: maj 3 min 1 rcv 4
+01-16 01:47:49.528  2360  2360 D BSLauncher: topSlot6 listener being set...
+01-16 01:47:49.530  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:47:49.532  2360  2554 E EGL_adreno: tid 2554: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:47:49.532  2360  2554 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff4b1b0a00, error=EGL_BAD_MATCH
+01-16 01:47:49.533  1596  3316 D EGL_adreno: eglMakeCurrent: 0x7fff428d2860: ver 3 1 (tinfo 0x7fff429bfee0)
+01-16 01:47:49.533 18112 18138 E EGL_adreno: tid 18138: eglSurfaceAttrib(1350): error 0x3009 (EGL_BAD_MATCH)
+01-16 01:47:49.533 18112 18138 W OpenGLRenderer: Failed to set EGL_SWAP_BEHAVIOR on surface 0x7fff68df8400, error=EGL_BAD_MATCH
+01-16 01:47:49.538 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.540  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.sendBroadcast:1020 android.content.ContextWrapper.sendBroadcast:449 com.android.coreservice.TabManager.notifyClosing:364 com.android.coreservice.TabManager.updateInner:191 com.android.coreservice.TabManager.onUpdate:226 
+01-16 01:47:49.540  2235  2235 I CoreService: notifyClosing notify tab closed taskPackageName:com.cyanogenmod.filemanager.dev
+01-16 01:47:49.542  1596  3316 D HostConnection: ExtendedRCEncoderContext GL_VERSION return OpenGL ES 3.1 v1.46
+01-16 01:47:49.543  1596  3316 E eglCodecCommon: glUtilsParamSize: unknow param 0x00008c29
+01-16 01:47:49.543  1596  3316 W GLESv2_enc: no support GL_NUM_PROGRAM_BINARY_FORMATS
+01-16 01:47:49.549  2360  2554 D EGL_adreno: eglMakeCurrent: 0x7fff6c133700: ver 3 1 (tinfo 0x7fff6c1468e0)
+01-16 01:47:49.563 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:49.599  1461  1461 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-16 01:47:49.618  2235  2235 W ContextImpl: Calling a method in the system process without a qualified user: android.app.ContextImpl.startService:1531 android.content.ContextWrapper.startService:664 android.content.ContextWrapper.startService:664 com.android.coreservice.CoreBroadcastReceiver.onReceive:53 android.app.ActivityThread.handleReceiver:3424 
+01-16 01:47:49.624  1461  1518 W SurfaceFlinger: Attempting to destroy on removed layer: AppWindowToken{9a9a89d token=Token{9a44b74 ActivityRecord{a60e747 u0 com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity t12}}}#0
+01-16 01:47:49.632  1461  1461 W SurfaceFlinger: couldn't log to binary event log: overflow.
+01-16 01:47:49.672  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:49.677  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 41 lines
+01-16 01:47:49.677  1596  1604 W System  : A resource failed to call close. 
+01-16 01:47:52.964 18112 18138 D EGL_adreno: eglMakeCurrent: 0x7fff6c050620: ver 3 1 (tinfo 0x7fff6c00de40)
+01-16 01:47:52.965  1461  1518 D SurfaceFlinger: duplicate layer name: changing Surface(name=78dd093 Toast)/@0x64ef28a - animation-leash to Surface(name=78dd093 Toast)/@0x64ef28a - animation-leash#1
+01-16 01:47:52.966  1596 16953 W NotificationService: Toast already killed. pkg=com.cyanogenmod.filemanager.dev callback=android.app.ITransientNotification$Stub$Proxy@2a6a7a9
+01-16 01:47:53.032  1461  1518 W SurfaceFlinger: Attempting to destroy on removed layer: 78dd093 Toast#0
+01-16 01:47:59.538  2183  2183 D BoundBrokerSvc: onUnbind: Intent { act=com.google.android.gms.measurement.START pkg=com.google.android.gms }
+01-16 01:48:00.016  1448  1526 D hwcomposer: hw_composer sent 24 syncs in 60s
+01-16 01:48:02.803  1477  1477 I storaged: type=1400 audit(0.0:1310): avc: denied { call } for scontext=u:r:storaged:s0 tcontext=u:r:init:s0 tclass=binder permissive=1
+01-16 01:48:02.803  1477  1477 W storaged: type=1300 audit(0.0:1310): arch=c000003e syscall=16 success=yes exit=0 a0=4 a1=c0306201 a2=7ffff739be40 a3=7ffff6e27288 items=0 ppid=1 auid=4294967295 uid=0 gid=1032 euid=0 suid=0 fsuid=0 egid=1032 sgid=1032 fsgid=1032 tty=(none) ses=4294967295 exe="/system/bin/storaged" subj=u:r:storaged:s0 key=(null)
+01-16 01:48:02.803  1339  1339 W auditd  : type=1327 audit(0.0:1310): proctitle="/system/bin/storaged"
+01-16 01:48:02.803  1339  1339 W auditd  : type=1320 audit(0.0:1310): 
+01-16 01:48:02.805  1477  1541 E storaged: getDiskStats failed with result NOT_SUPPORTED and size 0
+01-16 01:48:03.966  1596  1596 W WindowManager: removeWindowToken: Attempted to remove non-existing token: android.os.Binder@5486bf7
+01-16 01:48:12.553  1449  1449 I health@2.0-serv: type=1400 audit(0.0:1311): avc: denied { read } for scontext=u:r:init:s0 tcontext=u:r:init:s0 tclass=netlink_kobject_uevent_socket permissive=1
+01-16 01:48:12.553  1449  1449 W health@2.0-serv: type=1300 audit(0.0:1311): arch=c000003e syscall=47 success=yes exit=193 a0=8 a1=7fffffffdf48 a2=0 a3=ffffffff items=0 ppid=1 auid=4294967295 uid=1000 gid=1000 euid=1000 suid=1000 fsuid=1000 egid=1000 sgid=1000 fsgid=1000 tty=(none) ses=4294967295 exe="/system/vendor/bin/hw/android.hardware.health@2.0-service.default" subj=u:r:init:s0 key=(null)
+01-16 01:48:12.553  1339  1339 W auditd  : type=1327 audit(0.0:1311): proctitle="/vendor/bin/hw/android.hardware.health@2.0-service.default"
+01-16 01:48:12.553  1339  1339 W auditd  : type=1320 audit(0.0:1311): 
+01-16 01:48:14.925  1596 16953 E memtrack: Couldn't load memtrack module
+01-16 01:48:14.926  1596 16953 W android.os.Debug: failed to get memory consumption info: -1
+01-16 01:48:28.344  1596  1604 W System  : A resource failed to call close. 
+01-16 01:48:28.345  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 28 lines
+01-16 01:48:28.345  1596  1604 W System  : A resource failed to call close. 
+01-16 01:48:32.248  2059 18091 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 10832332]
+01-16 01:48:32.249  2059 18091 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+01-16 01:48:32.286  2059 17878 V NativeCrypto: Read error: ssl=0x7fff6c0665c8: I/O error during system call, Connection reset by peer
+01-16 01:48:32.308  2059 18091 V NativeCrypto: SSL shutdown failed: ssl=0x7fff6c0665c8: I/O error during system call, Broken pipe
+01-16 01:48:32.308  2059 18091 W WakeLock: GCM_HB_ALARM release without a matched acquire! [CONTEXT service_id=259 ]
+01-16 01:48:32.308  2059 18091 W WakeLock: GCM_HB_ALARM counter does not exist
+01-16 01:48:32.404  2059 17878 I NetworkManagementSocketTagger: tagSocketFd(-1, 1031, -1) failed with errno-9
+01-16 01:48:32.527  2059 18091 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 10952611]
+01-16 01:48:32.573  2059 18091 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 10952657]
+01-16 01:48:32.630  2059 18091 I AlarmManager: setExactAndAllowWhileIdle [name: GCM_HB_ALARM type: 2 triggerAtMillis: 10952713]
+01-16 01:48:32.648  1596  1604 W System  : A resource failed to call close. 
+01-16 01:48:32.648  1596  1604 I chatty  : uid=1000(system) FinalizerDaemon identical 36 lines
+01-16 01:48:32.648  1596  1604 W System  : A resource failed to call close. 
+01-16 01:48:33.238  2059  2059 D BoundBrokerSvc: onRebind: Intent { act=com.google.android.gms.libs.gmscorelogger.service.START dat=chimera-action: cmp=com.google.android.gms/.chimera.PersistentDirectBootAwareApiService }

@@ -27,13 +27,15 @@ import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.UserHandle;
+import android.os.Process;
 import android.os.UserManager;
 import android.util.DisplayMetrics;
+import com.cyanogenmod.filemanager.util.HexDump;
 import android.view.ViewConfiguration;
 
-import com.android.internal.util.HexDump;
 
 import java.io.ByteArrayInputStream;
+import java.lang.reflect.Method;
 import java.security.GeneralSecurityException;
 import java.security.MessageDigest;
 import java.security.cert.CertificateFactory;
@@ -150,8 +152,20 @@ public final class AndroidHelper {
         return UserManager.supportsMultipleUsers();
     }
 
+    public static int getMyUserId() {
+        try {
+            Method myUserId = UserHandle.class.getMethod("myUserId");
+            Object value = myUserId.invoke(null);
+            if (value instanceof Integer) {
+                return ((Integer) value).intValue();
+            }
+        } catch (Exception ignored) {
+        }
+        return Process.myUid() / 100000;
+    }
+
     public static boolean isUserOwner() {
-        return UserHandle.myUserId() == UserHandle.USER_OWNER;
+        return getMyUserId() == 0;
     }
 
     public static boolean isSecondaryUser(Context context) {

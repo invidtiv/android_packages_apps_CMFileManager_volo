@@ -54,6 +54,7 @@ import java.util.Properties;
 /**
  * A class that wraps the information of the application (constants,
  * identifiers, statics variables, ...).
+ * 
  * @hide
  */
 public final class FileManagerApplication extends Application {
@@ -67,11 +68,12 @@ public final class FileManagerApplication extends Application {
 
     /**
      * A constant that contains the main process name.
+     * 
      * @hide
      */
     public static final String MAIN_PROCESS = "com.cyanogenmod.filemanager"; //$NON-NLS-1$
 
-    //Static resources
+    // Static resources
     private static FileManagerApplication sApp;
     private static ConsoleHolder sBackgroundConsole;
 
@@ -87,16 +89,17 @@ public final class FileManagerApplication extends Application {
                         FileManagerSettings.INTENT_SETTING_CHANGED) == 0) {
 
                     // The settings has changed
-                    String key =
-                            intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
+                    String key = intent.getStringExtra(FileManagerSettings.EXTRA_SETTING_CHANGED_KEY);
                     if (key != null &&
-                        key.compareTo(FileManagerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
+                            key.compareTo(FileManagerSettings.SETTINGS_SHOW_TRACES.getId()) == 0) {
 
                         // The debug traces setting has changed. Notify to consoles
                         Console c = null;
                         try {
                             c = getBackgroundConsole();
-                        } catch (Exception e) {/**NON BLOCK**/}
+                        } catch (Exception e) {
+                            /** NON BLOCK **/
+                        }
                         if (c != null) {
                             c.reloadTrace();
                         }
@@ -105,20 +108,23 @@ public final class FileManagerApplication extends Application {
                             if (c != null) {
                                 c.reloadTrace();
                             }
-                        } catch (Throwable _throw) {/**NON BLOCK**/}
+                        } catch (Throwable _throw) {
+                            /** NON BLOCK **/
+                        }
                     }
                 }
             }
         }
     };
 
-    // A broadcast receiver for detect the install/uninstall of apps (for themes, AIDs, ...)
+    // A broadcast receiver for detect the install/uninstall of apps (for themes,
+    // AIDs, ...)
     private final BroadcastReceiver mUninstallReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
                 if (intent.getAction().compareTo(Intent.ACTION_PACKAGE_REMOVED) == 0 ||
-                    intent.getAction().compareTo(Intent.ACTION_PACKAGE_FULLY_REMOVED) == 0) {
+                        intent.getAction().compareTo(Intent.ACTION_PACKAGE_FULLY_REMOVED) == 0) {
                     // Check that the remove package is not the current theme
                     if (intent.getData() != null) {
                         // --- AIDs
@@ -138,8 +144,7 @@ public final class FileManagerApplication extends Application {
                             if (currentTheme.getPackage().compareTo(apkPackage) == 0) {
                                 // The apk that contains the current theme was remove, change
                                 // to default theme
-                                String composedId =
-                                    (String)FileManagerSettings.SETTINGS_THEME.getDefaultValue();
+                                String composedId = (String) FileManagerSettings.SETTINGS_THEME.getDefaultValue();
                                 ThemeManager.setCurrentTheme(getApplicationContext(), composedId);
                                 try {
                                     Preferences.savePreference(
@@ -150,8 +155,7 @@ public final class FileManagerApplication extends Application {
 
                                 // Notify the changes to activities
                                 try {
-                                    Intent broadcastIntent =
-                                            new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
+                                    Intent broadcastIntent = new Intent(FileManagerSettings.INTENT_THEME_CHANGED);
                                     broadcastIntent.putExtra(
                                             FileManagerSettings.EXTRA_THEME_ID, composedId);
                                     sendBroadcast(broadcastIntent);
@@ -168,6 +172,17 @@ public final class FileManagerApplication extends Application {
         }
     };
 
+    /**
+     * {@inheritDoc}
+     */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        androidx.multidex.MultiDex.install(this);
+    }
 
     /**
      * {@inheritDoc}
@@ -180,16 +195,16 @@ public final class FileManagerApplication extends Application {
         init();
         register();
 
-        // Kick off usage by mime type indexing for external storage; most likely use case for
+        // Kick off usage by mime type indexing for external storage; most likely use
+        // case for
         // file manager
         File externalStorage = Environment.getExternalStorageDirectory();
         MimeTypeIndexService.indexFileRoot(this, externalStorage.getAbsolutePath());
         MimeTypeIndexService.indexFileRoot(this, Environment.getRootDirectory().getAbsolutePath());
         StorageVolume[] storageVolumes = StorageHelper.getStorageVolumes(this, true);
         for (StorageVolume storageVolume : storageVolumes) {
-            MimeTypeIndexService.indexFileRoot(this, storageVolume.getPath());
+            MimeTypeIndexService.indexFileRoot(this, StorageHelper.getStorageVolumePath(storageVolume));
         }
-
 
         // Schedule in case not scheduled (i.e. never booted with this app on device
         SecureCacheCleanupService.scheduleCleanup(getApplicationContext());
@@ -207,22 +222,22 @@ public final class FileManagerApplication extends Application {
         try {
             unregisterReceiver(this.mNotificationReceiver);
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
         try {
             unregisterReceiver(this.mUninstallReceiver);
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
         try {
             destroyBackgroundConsole();
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
         try {
             ConsoleBuilder.destroyConsole();
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
         super.onTerminate();
     }
@@ -248,7 +263,7 @@ public final class FileManagerApplication extends Application {
      * Method that initializes the application.
      */
     private void init() {
-        //Save the static application reference
+        // Save the static application reference
         sApp = this;
 
         // Read the system properties
@@ -265,21 +280,20 @@ public final class FileManagerApplication extends Application {
         // Check optional commands
         loadOptionalCommands();
 
-        //Sets the default preferences if no value is set yet
+        // Sets the default preferences if no value is set yet
         Preferences.loadDefaults();
 
         // Read AIDs
         AIDHelper.getAIDs(getApplicationContext(), true);
 
         // Allocate the default and current themes
-        String defaultValue = ((String)FileManagerSettings.
-                SETTINGS_THEME.getDefaultValue());
+        String defaultValue = ((String) FileManagerSettings.SETTINGS_THEME.getDefaultValue());
         String value = Preferences.getSharedPreferences().getString(
                 FileManagerSettings.SETTINGS_THEME.getId(),
                 defaultValue);
         ThemeManager.getDefaultTheme(getApplicationContext());
         if (!ThemeManager.setCurrentTheme(getApplicationContext(), value)) {
-            //The current theme was not found. Mark the default setting as default theme
+            // The current theme was not found. Mark the default setting as default theme
             ThemeManager.setCurrentTheme(getApplicationContext(), defaultValue);
             try {
                 Preferences.savePreference(
@@ -292,12 +306,12 @@ public final class FileManagerApplication extends Application {
         Theme theme = ThemeManager.getCurrentTheme(getApplicationContext());
         theme.setBaseTheme(getApplicationContext(), false);
 
-        //Create a console for background tasks. Register the virtual console prior to
+        // Create a console for background tasks. Register the virtual console prior to
         // the real console so mount point can be listed properly
         VirtualMountPointConsole.registerVirtualConsoles(getApplicationContext());
         allocBackgroundConsole(getApplicationContext());
 
-        //Force the load of mime types
+        // Force the load of mime types
         try {
             MimeTypeHelper.loadMimeTypes(getApplicationContext());
         } catch (Exception e) {
@@ -372,8 +386,8 @@ public final class FileManagerApplication extends Application {
      */
     public static Console getBackgroundConsole() {
         if (sBackgroundConsole == null ||
-            sBackgroundConsole.getConsole() == null ||
-            !sBackgroundConsole.getConsole().isActive()) {
+                sBackgroundConsole.getConsole() == null ||
+                !sBackgroundConsole.getConsole().isActive()) {
 
             allocBackgroundConsole(getInstance().getApplicationContext());
         }
@@ -387,7 +401,7 @@ public final class FileManagerApplication extends Application {
         try {
             sBackgroundConsole.dispose();
         } catch (Throwable ex) {
-            /**NON BLOCK**/
+            /** NON BLOCK **/
         }
     }
 
@@ -404,20 +418,19 @@ public final class FileManagerApplication extends Application {
                 sBackgroundConsole = null;
             }
 
-            //Create a console for background tasks
+            // Create a console for background tasks
             if (ConsoleBuilder.isPrivileged()) {
-                sBackgroundConsole =
-                        new ConsoleHolder(
-                                ConsoleBuilder.createPrivilegedConsole(ctx));
+                sBackgroundConsole = new ConsoleHolder(
+                        ConsoleBuilder.createPrivilegedConsole(ctx));
             } else {
-                sBackgroundConsole =
-                        new ConsoleHolder(
-                                ConsoleBuilder.createNonPrivilegedConsole(ctx));
+                sBackgroundConsole = new ConsoleHolder(
+                        ConsoleBuilder.createNonPrivilegedConsole(ctx));
             }
         } catch (Exception e) {
             Log.e(TAG,
-                    "Background console creation failed. " +  //$NON-NLS-1$
-                    "This probably will cause a force close.", e); //$NON-NLS-1$
+                    "Background console creation failed. " + //$NON-NLS-1$
+                            "This probably will cause a force close.", //$NON-NLS-1$
+                    e);
         }
     }
 
@@ -429,25 +442,28 @@ public final class FileManagerApplication extends Application {
     public static void changeBackgroundConsoleToPriviligedConsole()
             throws ConsoleAllocException {
         if (sBackgroundConsole == null ||
-              !(sBackgroundConsole.getConsole() instanceof PrivilegedConsole)) {
+                !(sBackgroundConsole.getConsole() instanceof PrivilegedConsole)) {
             try {
                 if (sBackgroundConsole != null) {
                     sBackgroundConsole.dispose();
                 }
-            } catch (Throwable ex) {/**NON BLOCK**/}
+            } catch (Throwable ex) {
+                /** NON BLOCK **/
+            }
 
             // Change the privileged console
             try {
-                sBackgroundConsole =
-                        new ConsoleHolder(
-                                ConsoleBuilder.createPrivilegedConsole(
-                                        getInstance().getApplicationContext()));
+                sBackgroundConsole = new ConsoleHolder(
+                        ConsoleBuilder.createPrivilegedConsole(
+                                getInstance().getApplicationContext()));
             } catch (Exception e) {
                 try {
                     if (sBackgroundConsole != null) {
                         sBackgroundConsole.dispose();
                     }
-                } catch (Throwable ex) {/**NON BLOCK**/}
+                } catch (Throwable ex) {
+                    /** NON BLOCK **/
+                }
                 sBackgroundConsole = null;
                 throw new ConsoleAllocException(
                         "Failed to alloc background console", e); //$NON-NLS-1$
@@ -464,12 +480,10 @@ public final class FileManagerApplication extends Application {
         if (!sHasShellCommands) {
             return AccessMode.SAFE;
         }
-        String defaultValue =
-                ((ObjectStringIdentifier)FileManagerSettings.
-                            SETTINGS_ACCESS_MODE.getDefaultValue()).getId();
+        String defaultValue = ((ObjectStringIdentifier) FileManagerSettings.SETTINGS_ACCESS_MODE.getDefaultValue())
+                .getId();
         String id = FileManagerSettings.SETTINGS_ACCESS_MODE.getId();
-        AccessMode mode =
-                AccessMode.fromId(Preferences.getSharedPreferences().getString(id, defaultValue));
+        AccessMode mode = AccessMode.fromId(Preferences.getSharedPreferences().getString(id, defaultValue));
         return mode;
     }
 
@@ -477,8 +491,7 @@ public final class FileManagerApplication extends Application {
         String value = Preferences.getWorldReadableProperties(
                 context, FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getId());
         if (value == null) {
-            value = String.valueOf(FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.
-                    getDefaultValue());
+            value = String.valueOf(FileManagerSettings.SETTINGS_RESTRICT_SECONDARY_USERS_ACCESS.getDefaultValue());
         }
         return Boolean.parseBoolean(value);
     }
@@ -513,8 +526,7 @@ public final class FileManagerApplication extends Application {
      */
     private static void readSystemProperties() {
         try {
-            String propsFile =
-                    getInstance().getApplicationContext().getString(R.string.system_props_file);
+            String propsFile = getInstance().getApplicationContext().getString(R.string.system_props_file);
             Properties props = new Properties();
             props.load(new FileInputStream(new File(propsFile)));
             sSystemProperties = props;
@@ -535,13 +547,14 @@ public final class FileManagerApplication extends Application {
             String[] commands = shellCommands.split(","); //$NON-NLS-1$
             int cc = commands.length;
             if (cc == 0) {
-                //???
+                // ???
                 Log.w(TAG, "No shell commands."); //$NON-NLS-1$
                 return false;
             }
             for (int i = 0; i < cc; i++) {
                 String c = commands[i].trim();
-                if (c.length() == 0) continue;
+                if (c.length() == 0)
+                    continue;
                 File cmd = new File(c);
                 if (!cmd.exists() || !cmd.isFile()) {
                     Log.w(TAG,
@@ -603,8 +616,9 @@ public final class FileManagerApplication extends Application {
             for (int i = 0; i < cc; i++) {
                 String c = commands[i].trim();
                 String key = c.substring(0, c.indexOf("=")).trim(); //$NON-NLS-1$
-                c = c.substring(c.indexOf("=")+1).trim(); //$NON-NLS-1$
-                if (c.length() == 0) continue;
+                c = c.substring(c.indexOf("=") + 1).trim(); //$NON-NLS-1$
+                if (c.length() == 0)
+                    continue;
                 File cmd = new File(c);
                 Boolean found = Boolean.valueOf(cmd.exists() && cmd.isFile());
                 sOptionalCommandsMap.put(key, found);

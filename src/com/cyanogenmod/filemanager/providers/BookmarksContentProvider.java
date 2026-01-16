@@ -35,7 +35,7 @@ import com.cyanogenmod.filemanager.preferences.BookmarksDatabaseHelper;
 /**
  * A content provider for manage the user-defined bookmarks
  */
-public class BookmarksContentProvider extends ContentProvider  {
+public class BookmarksContentProvider extends ContentProvider {
 
     private static final boolean DEBUG = false;
 
@@ -51,8 +51,8 @@ public class BookmarksContentProvider extends ContentProvider  {
     /**
      * The authority string name.
      */
-    public static final String AUTHORITY =
-            "com.cyanogenmod.filemanager.providers.bookmarks"; //$NON-NLS-1$
+    public static final String AUTHORITY = com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID
+            + ".providers.bookmarks"; //$NON-NLS-1$
 
     private static final UriMatcher sURLMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
@@ -122,7 +122,7 @@ public class BookmarksContentProvider extends ContentProvider  {
         // Open the database
         SQLiteDatabase db = this.mOpenHelper.getReadableDatabase();
         Cursor cursor = qb.query(db, projectionIn, selection, selectionArgs,
-                              null, null, sort);
+                null, null, sort);
         if (cursor == null) {
             if (DEBUG) {
                 Log.v(TAG, "Bookmarks.query: failed"); //$NON-NLS-1$
@@ -185,8 +185,8 @@ public class BookmarksContentProvider extends ContentProvider  {
         }
         if (DEBUG) {
             Log.v(TAG,
-                  "*** notifyChange() rowId: " + //$NON-NLS-1$
-                  rowId + " url " + url); //$NON-NLS-1$
+                    "*** notifyChange() rowId: " + //$NON-NLS-1$
+                            rowId + " url " + url); //$NON-NLS-1$
         }
         getContext().getContentResolver().notifyChange(url, null);
         return count;
@@ -214,7 +214,7 @@ public class BookmarksContentProvider extends ContentProvider  {
             tablename = "history";
             uri = History.Columns.CONTENT_URI;
         }
-        long rowId = db.insert(tablename, null, initialValues); //$NON-NLS-1$
+        long rowId = db.insert(tablename, null, initialValues); // $NON-NLS-1$
         if (rowId < 0) {
             throw new SQLException("Failed to insert row"); //$NON-NLS-1$
         }
@@ -246,7 +246,7 @@ public class BookmarksContentProvider extends ContentProvider  {
                     whereQuery = "_id=" + segment; //$NON-NLS-1$
                 } else {
                     whereQuery = "_id=" + segment + //$NON-NLS-1$
-                                 " AND (" + whereQuery + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+                            " AND (" + whereQuery + ")"; //$NON-NLS-1$ //$NON-NLS-2$
                 }
                 count = db.delete("bookmarks", whereQuery, whereArgs); //$NON-NLS-1$
                 break;

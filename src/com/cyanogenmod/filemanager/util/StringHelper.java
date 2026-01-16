@@ -18,7 +18,7 @@ package com.cyanogenmod.filemanager.util;
 
 import android.text.TextUtils;
 
-import com.android.internal.util.HexDump;
+import com.cyanogenmod.filemanager.util.HexDump;
 
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;

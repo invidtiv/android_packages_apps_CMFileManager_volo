@@ -653,7 +653,7 @@ public class PickerActivity extends Activity
                 StorageVolume volume = volumes[i];
                 if (volumes[i] != null) {
                     String mountedState = volumes[i].getState();
-                    String path = volumes[i].getPath();
+                    String path = StorageHelper.getStorageVolumePath(volumes[i]);
                     if (!Environment.MEDIA_MOUNTED.equalsIgnoreCase(mountedState) &&
                             !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(mountedState)) {
                         Log.w(TAG, "Ignoring '" + path + "' with state of '"+ mountedState + "'");
@@ -679,7 +679,7 @@ public class PickerActivity extends Activity
                 popup.dismiss();
                 if (volumes != null) {
                     PickerActivity.this.
-                        mNavigationView.changeCurrentDir(volumes[position].getPath());
+                        mNavigationView.changeCurrentDir(StorageHelper.getStorageVolumePath(volumes[position]));
                 }
             }
         });
