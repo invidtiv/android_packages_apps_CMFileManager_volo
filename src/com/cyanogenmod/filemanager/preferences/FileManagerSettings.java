@@ -220,7 +220,7 @@ public enum FileManagerSettings {
          * @hide
          */
         SETTINGS_THEME("cm_filemanager_theme", //$NON-NLS-1$
-                        "com.cyanogenmod.filemanager:light"),
+                        com.cyanogenmod.filemanager.BuildConfig.APPLICATION_ID + ":light"),
 
         /**
          * The current theme to use in the app
