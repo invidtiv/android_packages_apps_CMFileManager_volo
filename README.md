@@ -4,6 +4,17 @@ LineageOS File Manager
 A file manager for AOSP, focused on rooted devices and specially designed
 for the LineageOS Project.
 
+## Project Status & History
+
+This project (the "Volo" fork) represents a revival of the classic CyanogenMod/LineageOS File Manager. After more than **10 years of freeze**, the codebase has been modified and updated to address modern requirements and new features.
+
+Key updates since the "unfreeze":
+- Integration with the **BSLauncher** ecosystem.
+- Enhanced **Intent Support** for automated navigation and folder handling.
+- Modernized build system and SDK targeting (up to Android 13 / SDK 33).
+- Critical bug fixes and feature enhancements to support specialized use cases.
+
+
 ## Requirements
 
 - Java 17
