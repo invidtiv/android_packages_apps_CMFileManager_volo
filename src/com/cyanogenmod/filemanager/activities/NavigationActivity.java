@@ -770,9 +770,17 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+
+        // If we differ from the search action, we probably want to navigate.
+        // Reset the search flag so initNavigation accepts the request.
+        if (Intent.ACTION_VIEW.equals(intent.getAction()) || intent.hasExtra(EXTRA_NAVIGATE_TO)) {
+            mDisplayingSearchResults = false;
+        }
+
         // If no directory specified, restore current directory
         final String navigateTo = intent.getStringExtra(EXTRA_NAVIGATE_TO);
-        final boolean restore = TextUtils.isEmpty(navigateTo);
+        final boolean restore = TextUtils.isEmpty(navigateTo) && intent.getData() == null;
 
         // Initialize navigation
         if (!hasPermissions()) {

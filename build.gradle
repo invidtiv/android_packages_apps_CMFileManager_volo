@@ -24,7 +24,7 @@ android {
         buildConfig true
     }
     defaultConfig {
-        applicationId "com.cyanogenmod.filemanager"
+        applicationId "com.babysharks.filemanager"
         // minSdkVersion handled by flavors
         targetSdkVersion 33
         versionCode 105
