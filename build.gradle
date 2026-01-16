@@ -27,8 +27,8 @@ android {
         applicationId "com.babysharks.filemanager"
         // minSdkVersion handled by flavors
         targetSdkVersion 33
-        versionCode 105
-        versionName "3.0.1"
+        versionCode 106
+        versionName "3.5.1"
         multiDexEnabled true
     }
     flavorDimensions "compatibility"

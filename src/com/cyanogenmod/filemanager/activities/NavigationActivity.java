@@ -1872,6 +1872,15 @@ public class NavigationActivity extends Activity
                 File path = new File(data.getPath());
                 if (path.isDirectory()) {
                     initialDir = path.getAbsolutePath();
+
+                    // Automatically set as home if it's a resource/folder
+                    if ("resource/folder".equals(intent.getType())) {
+                        try {
+                            Preferences.savePreference(FileManagerSettings.SETTINGS_INITIAL_DIR, initialDir, true);
+                        } catch (Exception ex) {
+                            Log.e(TAG, "Failed to auto-save home directory", ex);
+                        }
+                    }
                 }
             }
         }

@@ -8,7 +8,7 @@ To open a specific directory in the file manager.
 **Action:** `android.intent.action.VIEW`
 
 **Supported Schemes:** `file://`, `folder://`, `directory://`
-
+ 
 **MIME Type:** `resource/folder`
 
 **Data URI:** `file:///absolute/path/to/directory`
@@ -18,9 +18,11 @@ To open a specific directory in the file manager.
 # Open using file scheme
 adb shell am start -a android.intent.action.VIEW -d "file:///sdcard/Download" -n com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity
 
-# Open using folder scheme
-adb shell am start -a android.intent.action.VIEW -d "folder:///sdcard/Download" -n com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity
+# Open using folder scheme (Will automatically set /sdcard/Download as Home)
+adb shell am start -a android.intent.action.VIEW -d "folder:///sdcard/Download" -t "resource/folder" -n com.cyanogenmod.filemanager.dev/com.cyanogenmod.filemanager.activities.NavigationActivity
 ```
+
+> **Note:** When opening a folder with MIME type `resource/folder`, the application will automatically save that directory as the new "Home" directory.
 
 **Alternative (using Extras):**
 *   **Extra Key:** `extra_navigate_to` (String)
