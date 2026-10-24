@@ -40,6 +40,7 @@ import android.nfc.NfcAdapter;
 import android.nfc.NfcEvent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Build;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Parcel;
@@ -498,13 +499,29 @@ public class NavigationActivity extends Activity
     private AsyncTask<Void, Void, Boolean> mHistoryTask;
 
     private static final int REQUEST_CODE_STORAGE_PERMS = 321;
+    private static final int REQUEST_CODE_ALL_FILES_ACCESS = 322;
+    private boolean mStorageInitialized;
 
     private boolean hasPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            return Environment.isExternalStorageManager();
+        }
         int res = checkCallingOrSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
         return (res == PackageManager.PERMISSION_GRANTED);
     }
 
     private void requestNecessaryPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
+                    Uri.parse("package:" + getPackageName()));
+            if (intent.resolveActivity(getPackageManager()) == null) {
+                intent = new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION);
+            }
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivityForResult(intent, REQUEST_CODE_ALL_FILES_ACCESS);
+            }
+            return;
+        }
         String[] permissions = new String[] {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
         };
@@ -588,6 +605,7 @@ public class NavigationActivity extends Activity
     }
 
     private void finishOnCreate() {
+        mStorageInitialized = true;
 
         // Register the broadcast receiver
         IntentFilter filter = new IntentFilter();
@@ -732,7 +750,7 @@ public class NavigationActivity extends Activity
         super.onStart();
 
         // Check restrictions
-        if (!hasPermissions() ||
+        if (!mStorageInitialized || !hasPermissions() ||
                 !FileManagerApplication.checkRestrictSecondaryUsersAccess(this, mChRooted)) {
             return;
         }
@@ -2208,6 +2226,23 @@ public class NavigationActivity extends Activity
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_CODE_ALL_FILES_ACCESS) {
+            if (hasPermissions()) {
+                if (!mStorageInitialized) {
+                    finishOnCreate();
+                    if (mDrawerToggle != null) {
+                        mDrawerToggle.syncState();
+                    }
+                } else {
+                    initNavigation(mCurrentNavigationView, false, getIntent());
+                    getCurrentNavigationView().refresh(true);
+                }
+            } else {
+                // Navigation cannot list arbitrary files without this access.
+                finish();
+            }
+            return;
+        }
         if (requestCode == INTENT_REQUEST_SETTINGS) {
             // reset bookmarks list to default as the user could changed the
             // root mode which changes the system bookmarks
